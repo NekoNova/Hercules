@@ -1,0 +1,27 @@
+-	script	CashPointsUpdater	-1,{
+
+OnPCLoginEvent:
+
+set .@nb,query_sql("SELECT `balance` FROM `cp_credits` WHERE `account_id` = "+ getcharid(3) +" LIMIT 1",@credit);
+  
+if (.@nb && @credit)
+{
+	set @credit,@credit*100;
+    // Update User's Points
+    set #CASHPOINTS,#CASHPOINTS + @credit;
+        
+    // Update Cash Points Table  
+    set .@nb,query_sql ("DELETE FROM `cp_credits` WHERE (`account_id` = "+ getcharid(3) +") LIMIT 1");
+
+    // Let Player Know Points Updated
+    mes "^008000[ AthereA ]^000000";
+    mes " ";
+    mes "Your Donation Credit Points has been successfully updated. Your new balance is ...";
+    mes " ";
+    mes "Donation Credit Points : ^0000FF"+ #CASHPOINTS +"^000000";
+    close;
+}
+
+end;
+
+}

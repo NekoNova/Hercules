@@ -1,0 +1,65 @@
+//===== Hercules Script =======================================
+//= LevelUp Pop-up Guide
+//===== By: ==================================================
+//= Olivar
+//===== Current Version: =====================================
+//= Version 1.0
+//= Shows the popup for job level up based on class/level
+//===== Description: ========================================= 
+// This script will provide a text guide for the player when 
+// he levels up his job, and instruct him where to find the
+// correct NPC to advance to the next job.
+//============================================================
+-	script	Spirit#guide	-1,{
+
+OnPCBaseLvUpEvent:
+if(BaseLevel == 10 && Class == Job_Novice) {
+		mes "[Elys]";
+		mes "" + strcharinfo(0) + ", you have obtained some experience that will aid you in combat.";
+		mes "Focus on improving your attributes so you may become stronger";
+		close;
+		end;
+	}
+	if(BaseLevel == 40 && Class == Job_Novice) {
+		mes "[Elys]";
+		mes "Congratulations!";
+		mes "You reached level 40 as novice and can now be promoted to SuperNovice!";
+		close;
+		end;
+	}
+
+	if(BaseLevel == 99 && JobLevel == 50 && Class < 4001) {
+		mes "[Elys]";
+		mes "We have come a long way " + strcharinfo(0) + ". You have become strong as any human out there but that will not do. It is finally time for you to surpass your kind.";
+		next;
+		mes "[" + strcharinfo(0) + "]";
+		mes "Surpass my kind?";
+		next;
+		mes "[Elys]";
+		mes "Precisely " + strcharinfo(0) + ", seek the heart that which made the Gods what they are.";
+		close;
+		end;
+	}
+
+
+OnPCJobLvUpEvent:
+	if(JobLevel == 10 && Class == Job_Novice) {
+		mes "[Elys]";
+		mes "Elys: You have enough skill to choose a class. Choose your path wisely " + strcharinfo(0) + ", what path you choose now determines your future.";
+		close;
+		end;
+	}
+	if(JobLevel == 40 && (Class == Job_Swordman || Class == Job_Mage || Class == Job_Archer || Class == Job_Acolyte || Class == Job_Merchant || Class == Job_Thief || Class == Job_Baby_Swordman || Class == Job_Baby_Mage || Class == Job_Baby_Archer || Class == Job_Baby_Acolyte || Class == Job_Baby_Merchant || Class == Job_Baby_Thief)) {
+		mes "[Elys]";
+		mes "It appears that Jean in Prontera is looking for you after hearing news of your great skill in combat. However, there is still much to learn and I advise you to gain some more skill before meeting with her.";
+		close;
+		end;
+	}
+	if(JobLevel == 50 && (Class == Job_Swordman || Class == Job_Mage || Class == Job_Archer || Class == Job_Acolyte || Class == Job_Merchant || Class == Job_Thief || Class == Job_Baby_Swordman || Class == Job_Baby_Mage || Class == Job_Baby_Archer || Class == Job_Baby_Acolyte || Class == Job_Baby_Merchant || Class == Job_Baby_Thief)) {
+		mes "[Elys]";
+		mes "Well done, " + strcharinfo(0) + "! You have taken my advise... Now we shall go meet Jean in Prontera. Find out what she has to offer and choose that which suits you best..";
+		close;
+		end;
+	}
+end;
+}

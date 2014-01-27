@@ -1,0 +1,33 @@
+//===== Hercules Script =======================================
+//= LevelUp Pop-up Guide
+//===== By: ==================================================
+//= Olivar
+//===== Current Version: =====================================
+//= Version 1.0
+//= Shows the popup for job level up based on class/level
+//===== Description: ========================================= 
+// This script will provide a text guide for the player when 
+// he levels up his job, and instruct him where to find the
+// correct NPC to advance to the next job.
+//============================================================
+-	script	Spirit#guide	-1,{
+
+OnPCBaseLvUpEvent:
+if(BaseLevel == 10 && Class == Job_Novice) {
+		mes "Elys: " + strcharinfo(0) + ", you have obtained some experience that will aid you in combat.";
+		mes "Focus on improving your attributes so you may become stronger";
+	}
+end;
+
+	if(BaseLevel == 40 && Class == Job_Novice) {
+		mes "Congratulations!";
+		mes "You reached level 40 as novice and can now be promoted to SuperNovice!";
+	}
+end;
+
+OnPCJobLvUpEvent:
+	if(JobLevel == 10 && Class == Job_Novice) {
+		mes "Elys: You have enough skill to choose a class. Choose your path wisely " + strcharinfo(0) + ", what path you choose now determines your future.";
+	}
+end;
+}

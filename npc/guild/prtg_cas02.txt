@@ -96,7 +96,11 @@ prtg_cas02,162,161,4	duplicate(InsideFlagsPR2)	Swanhild#16	GUILD_FLAG
 
 // Guild Flag (Town)
 //============================================================
+<<<<<<< HEAD
 prontera,146,194,3	duplicate(InsideFlagsPR2)	Swanhild#17	GUILD_FLAG
+=======
+prontera,153,221,4	duplicate(InsideFlagsPR2)	Swanhild#17	GUILD_FLAG
+>>>>>>> atherea/master
 
 // Kafra Employee
 //============================================================

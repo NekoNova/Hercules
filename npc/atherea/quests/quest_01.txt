@@ -1,0 +1,425 @@
+//===== Hercules Script ======================================
+//= Custom Quests for Atherea Ragnarok Online 
+//===== By: ==================================================
+//= Atherea Dev Team
+//===== Current Version: =====================================
+//= 1.1 (November 24th, 2013)
+//===== Description: =========================================
+//=== Investigate the Payon Forests ===
+//== Learn about Suhnbi, the Enriched Refiner ===
+//=== The Legend of Satan Morroc ===
+//=== Investigate the Orc Village ===
+//=== Create the Solution ===
+//===== Additional Comments: =================================
+//= 1.0 Added dialogues for NPCs [Seffi]
+//= 1.1 Added functions for NPCs [Seffi]
+//============================================================
+
+
+// === Investigate the Payon Forests ===
+
+payon,165,99,5	script	Payon Chief	708,{
+
+	if(!questpay2){
+		mes "[Payon Chief]";
+		mes "" + strcharinfo(0) + "! The villagers of Payon are concerned for their forests!";
+		mes "They have reported sightings of strange wooden creatures, and they have requested for somebody to go and investigate.";
+		next;
+		mes "[Payon Chief]";
+		mes "" + strcharinfo(0) + ", will you take on the mission?";
+		next;
+		menu "Yes, I will investigate",-,"Sorry, I cannot.",no1;	
+		mes "[Payon Chief]";
+		mes "Thank you " + strcharinfo(0) + ", please enter the forests and bring me back 3 Trunks, 5 Fine-Grained Trunks, 10 Solid Trunks, and 15 Barren Trunks.";
+		mes "Your help is greatly appreciated, brave adventurer.";
+		set questpay2,1;
+		close;
+		no1:
+		mes "[Payon Chief]";
+		mes "Alright adventurer. Please, if you change your mind.. do reconsider.";
+		close;
+		end;
+	}else if((questpay2==1)){
+		if ((countitem(1019) < 3)&&(countitem(1066) < 5)&&(countitem(1067) < 10)&&(countitem(1068) < 15)&&(questpay2==1)){
+			mes "[Payon Chief]";
+			mes " " + strcharinfo(0) + ", please enter the forests,";
+			mes "and bring me back 3 Trunks, 5 Fine-Grained Trunks, 10 Solid Trunks, and 15 Barren Trunks.";
+			mes "Your help is greatly appreciated, brave adventurer.";
+			close;
+		}else if ((countitem(1019) > 2)&&(countitem(1066) > 4)&&(countitem(1067) > 9)&&(countitem(1068) > 14)&&(questpay2==1)){
+			mes "[Payon Chief]";
+			mes "You've invetigated the forests? Thank you very much.";
+			mes "Take this as a reward.";
+			delitem 1019,3;
+			delitem 1066,5;
+			delitem 1067,10;
+			delitem 1068,15;
+			getexp 12560,2540;
+			set questpay2,2;
+			close;
+		}else{
+			mes "[Payon Chief]";
+			mes "Thank you for your help yesterday.";
+			close;
+		}
+	}
+
+	
+end;
+	
+}
+
+// === Learn about Suhnbi, the Enriched Refiner ===
+
+payon,191,224,4	script	Beast Clan Member	497,{
+	if (!questpay3){
+		mes "[Bobert]";
+		mes "" + strcharinfo(0) + "! Have you heard of Suhnbi, the Enriched Refiner?";
+		mes "They say he has never broken a single piece of equipment in all his years of refining..";
+		next;
+		menu "Do you know how he does it?",-;
+		mes "[Bobert]";
+		mes "Unfortunately, I do not... however there is a swordsman just north of Payon.. I hear he has a weapon refined by him.";
+		next;
+		mes "[Bobert]";
+		mes "Maybe you could go and talk to him? He might know more about it.";
+		set questpay3,1;
+		close;
+	}else if(questpay3==1){
+		mes "[Bobert]";
+		mes "Have you talked to the swordsman?";
+		mes "He just north of Payon.";
+		close;
+		end;
+	
+	}
+}
+	
+pay_arche,140,35,4	script	Swordsman	688,{
+	if(!questpay3){
+	mes "[Alexander]";
+	mes "Hi, what are you here about?";
+	}else if(questpay3==1){
+		mes "[Alexander]";
+		mes "Hi, what are you here about?";
+		next;
+		mes "[" + strcharinfo(0) + "]";
+		mes "Are you the swordsman with a weapon refined by Suhnbi?";
+		next;
+		mes "[Alexander]";
+		mes "Why yes, I am... why are you asking?";
+		next;
+		menu "Can you explain the process?",-,"No reason, I'll be on my way.",noreason;
+		mes "[Alexander]";
+		mes "That's what you'd like to know? Well it's quite simple you see...";
+		next;
+		mes "[Alexander]";
+		mes "Suhnbi uses enriched ores. They are called Enriched Oridecon, and Enriched Elunium.";
+		next;
+		mes "[Alexander]";
+		mes "With these ores, your equipment will not break, no matter what.";
+		next;
+		mes "[Alexander]";
+		mes "The only penalty is, if Suhnbi does fail... your equipment will be downgraded back to +0..";
+		mes "However, it's a small price to pay. You will still have your equipment at least.";
+		next;
+		mes "[Alexander]";
+		mes "Suhnbi's native town is Payon, however you can find him in various towns hanging around with the other refiners.";
+		mes "Is that all you wish to know?";
+		next;
+		mes "[" + strcharinfo(0) + "]";
+		mes "Yes, thank you for your explaination... I may go pay Suhnbi a visit in the future.";
+		next;
+		mes "[Alexander]";
+		mes "No problem my friend, I wish you luck and much over upgraded equipment to come!";
+		set questpay3,2;
+		getexp 30000,14400;
+		close;
+	}else if (questpay3>=2){
+		mes "[Alexander]";
+		mes "Suhnbi's native town is Payon, however you can find him in various towns hanging around with the other refiners.";
+		close;
+	}
+	end;
+	
+noreason:
+	mes "[Alexander]";
+	mes "No reason? Alright, goodbye then.";
+	close;
+	end;
+}
+
+
+// === The Legend of Satan Morroc ===
+
+morocc,222,265,5	script	Crusader#custom	751,{
+	
+	if(satanquest==2){
+		mes "[Hil]";
+		mes "I hope these restorations will go quickly. There are so many homeless because of that demon..";
+		close;
+		end;
+	}else if(satanquest==1) {
+		mes "[Hil]";
+		mes "Maybe you could ask another villiger in morroc about the legend? I do not know any more about it...";
+		close;
+		end;
+	}else {
+		mes "[Hil]";
+		mes "This town is such a wreak, I as a Crusader must carry out my duty.";
+		mes "I must volunteer my service, and help those in need.";
+		next;
+		mes "[Hil]";
+		mes "Hello dear traveller, what is it you're looking for?";
+		next;
+		menu "What happened here?",-,"Nothing.",2nothing;
+		mes "[Hil]";
+		mes "Well, I don't know if you're heard the legend, but the evil demon Satan Morroc has broken from it's seal.";
+		mes "It has done a very large amount of damage to Morroc, leaving many villagers homeless, injured, or dead.";
+		next;
+		menu "Do you know more?",-,"(Say Nothing)",2nothing;
+		mes "[Hil]";
+		mes "Unfortunately, that is the best of my knowledge...";
+		mes "I do not know much more than that, perhaps you could ask another villager here in Morroc?";
+		set satanquest,1;
+		close;
+		end;
+	
+		2nothing:
+		close;
+		end;
+	
+	}
+	
+}
+
+morocc,91,52,4	script	Demon Clan Member	667,{
+	
+	if(satanquest==0){
+		mes "[Adalita]";
+		mes "This town isn't safe you know.. you shouldn't be wandering around aimlessly.";
+		close;
+		end;
+	}else if(satanquest==1){
+		mes "[Adalita]";
+		mes "Hmm? You seem confused.. are you looking for something?";
+		next;
+		menu "Tell me about Satan Morroc.",-,"(Say Nothing.)",morroc1;
+		mes "[Adalita]";
+		mes "About Satan Morroc?";
+		mes "Well, as a Demon Clan member, this legend has much to do with my upbringing.";
+		next;
+		mes "[Adalita]";
+		mes "Would you like to hear the legend, traveller?";
+		next;
+		menu "Yes.",-,"No.",no2;
+		mes "[Adalita]";
+		mes "It begins with the Mage Knight, Thanatos. He was the one who sealed the great demon under this city.";
+		mes "Thanatos brought down the greater demon in a heated battle.";
+		next;
+		mes "[Adalita]";
+		mes "Legend has it that the fallout from the battle destroyed the south eastern part of the Rune-Midgard Kingdom, creating what is now known as the Sograt Desert.";
+		mes "In order to protect the seal and keep the demon locked away, the people of Rune-Midgard constructed a castle above the seal.";
+		next;
+		mes "[Adalita]";
+		mes "Before long, buildings and tents were built around the castle, and this new-founded city took the name of the demon and was called Morroc.";
+		mes "Some say that this Mage Knight Thanatos still exists, and that he is now a demon involved in the tragedies taking place in Thanatos Tower.";
+		next;
+		mes "[Adalita]";
+		mes "The demon clan worships Thanatos as a god among demons, however this now Wounded Morroc must be stopped, for he is a demon out of control.";
+		next;
+		mes "[Adalita]";
+		mes "If only the great demon knight Thanatos could come and put an end to this chaos once and for all.";
+		next;
+		mes "[Adalita]";
+		mes "So, curious one, now you know the legend. Run along now, this town isn't safe..";
+		getexp 30000,14000;
+		set satanquest,2;
+		close;
+		end;
+	
+		no2:
+		mes "[Adalita]";
+		mes "As you wish, now run along.";
+		close;
+		end;
+	
+		morroc1:
+		close;
+		end;
+		
+	}else {
+		mes "[Adalita]";
+		mes "If only the great demon knight Thanatos could come and put an end to this chaos once and for all.";
+		close;
+		end;
+	}
+	
+}
+
+
+	
+// === Investigate the Orc Village ===
+
+geffen,133,65,3	script	Magician	669,{
+
+if (orcquest==2){
+	mes "[Eve]";
+	mes	"How much do you know about magic? I believe magic is the most effective way to influence the world.";
+	next;
+	mes "[Eve]";
+	mes "With magic, you can change the world. You know that, right?";
+	close;
+	end;
+	}else if ((countitem(931) >= 30)&&(countitem(7002) >= 10)) {
+		if (orcquest==1){
+			mes "[Eve]";
+			mes "Well done, you surely do have the power to influence the world. Your talents are humbly regarded.";
+			next;
+			mes "[Eve]";
+			mes "Surely, you deserve a reward for that. I hope this will help you influence the world even more.";
+			next;
+			mes "[Eve]";
+			delitem 931,30;
+			delitem 7002,10;
+			getexp 120000,55000;
+			mes "Goodluck, adventurer";
+			set orcquest,2;
+			close;
+			end;
+		}else {
+			mes "[Eve]";
+			mes	"How much do you know about magic? I believe magic is the most effective way to influence the world.";
+			next;
+			mes "[Eve]";
+			mes "With magic, you can change the world. You know that, right?";
+			next;
+			mes "[Eve]";
+			mes "Are you brave? Do you think you can change the world?";
+			next;
+			mes "[Eve]";
+			mes "Would you like to take on a challenge?";
+			next;
+			menu "I can take on any challenge.",-,"No, I am not brave enough.",notbrave;
+			mes "You think you can change the world? If you think you can make a difference, exit Geffen and seek the Orc Village.";
+			next;
+			mes "[Eve]";
+			mes "Change the future with magic and defeat the Orcs. Come back to me once you have brought back 30 Orcish Vouchers and 10 Ogre Tooths.";
+			set orcquest,1;
+			close;
+			end;
+			}
+			
+	}else {
+		mes "[Eve]";
+		mes	"How much do you know about magic? I believe magic is the most effective way to influence the world.";
+		next;
+		mes "[Eve]";
+		mes "With magic, you can change the world. You know that, right?";
+		next;
+		mes "[Eve]";
+		mes "Are you brave? Do you think you can change the world?";
+		next;
+		mes "[Eve]";
+		mes "Would you like to take on a challenge?";
+		next;
+		menu "I can take on any challenge.",-,"No, I am not brave enough.",notbrave;
+		mes "[Eve]";
+		mes "You think you can change the world? If you think you can make a difference, exit Geffen and seek the Orc Village.";
+		next;
+		mes "[Eve]";
+		mes "Change the future with magic and defeat the Orcs. Come back to me once you have brought back 30 Orcish Vouchers and 10 Ogre Tooths.";
+		set orcquest,1;
+		close;
+		end;
+	
+		notbrave:
+		mes "[Eve]";
+		mes "That's alright.. we all get there eventually.";
+		close;
+		end;
+	}
+	
+}
+
+// === Create the Solution ===
+
+alde_alche,150,11,3	script	Alchemist#custom	805,{
+
+if (solutionquest==2) {
+		mes "[Robin]";
+		mes "One day, I'll make a solution that will change the world!";
+		close;
+		end;
+}else {
+	if ((countitem(912) >= 20)&&(countitem(511) >= 20)&&(countitem(990) >= 5)&&(countitem(911) >= 5)) {
+		mes "[Robin]";
+		mes "Hey you have the materials I need to create my solution!";
+		next;
+		mes "[Robin]";
+		mes "So, you're willing to help me out and give me the materials?";
+		next;
+		menu "Yes, take them!",-,"No, I've changed my mind.",no8;
+		delitem 912,20;
+		delitem 511,20;
+		delitem 990,5;
+		delitem 911,5;
+		mes "[Robin]";
+		mes "So generous of you! Thanks!";
+		next;
+		mes "[Robin]";
+		mes "It's not much, but I can give you a sample of the solution...";
+		next;
+		mes "[Robin]";
+		mes "One moment please.";
+		next;
+		mes "...";
+		next;
+		mes "...";
+		next;
+		mes "...";
+		next;
+		mes "[Robin]";
+		getexp 90000,45000; // EXP reward goes here.
+		// Player will receive some EXP and ITEM ID: 7917, Magic Potion which can be used in future quests.
+		getitem 7917,1;
+		set solutionquest,2;
+		mes "Done! Here you are, thanks for your help!";
+		close;
+		end;
+		no8:
+		mes "[Robin]";
+		mes "Thats alright.. they are rare items afterall.";
+		close;
+		end;
+	}else {
+		mes "[Robin]";		
+		mes "Gosh, I cannot seem to figure out this solution.. the components simply aren't matching up!";
+		next;
+		menu "Do you need some help?",-,"(Walk away.)",walkaway;
+		mes "[Robin]";
+		mes "Some help? You know about chemistry?";
+		next;
+		mes "[Robin]";
+		mes "Hmm.. well actually, you could help me. I'm trying to make a solution, if it works it'll be a breakthrough.. but I'm lacking the materials.";
+		next;
+		mes "[Robin]";
+		mes "If you think you could help, you could go gather them for me.";
+		next;
+		mes "[Robin]";
+		mes "I need:";
+		mes "20x Zargon";
+		mes "20x Green Herb";
+		mes "5x Red Blood";
+		mes "5x Scell";
+		next;
+		mes "[Robin]";
+		mes "If you have those items, please return to me!";
+		close;
+		end;
+		walkaway:
+		close;
+		end;
+		}
+	}
+}

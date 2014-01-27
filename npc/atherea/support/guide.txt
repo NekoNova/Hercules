@@ -1,0 +1,294 @@
+// Job Guide NPC
+// =======================================
+// Warps players to the job transfer NPC when they reach the appropriate level.
+//
+prontera,148,170,3	script	Guide	124,{
+	// If the player is a Novice, then we will ask him once to teleport to the correct location.
+	// but only for a baseLevel 10 novice
+	if(JobLevel == 10 && Class == Job_Novice){
+		mes "What profession would you like to be?";
+		next;
+		switch(select("Swordman:Acolyte:Thief:Merchant:Archer:Mage")){
+			case 1:
+				mes "[Guide]";
+				mes "So you wish to become a Swordman? Very well...";
+				mes "The town you will be sent to is called Izlude which is a satellite of Prontera. The Swordman Association is located in the West of town. Please remember this.";
+				next;
+				savepoint "izlude",95,104;
+				warp "izlude_in",75,168;
+				end;
+				break;
+				
+			case 2:
+				mes "[Guide]";
+				mes "So you wish to become an Acolyte? Very well...";
+				mes "The Prontera Sanctuary is located to the North-East in Prontera. Please remember this.";
+				next;
+				savepoint "prontera",117,72;
+				warp "prt_church",172,19;
+				end;
+				break;
+   
+			case 3:
+				mes "[Guide]";
+				mes "So you wish to become a Thief? Very well...";
+				mes "The Thief guild is in the underground 1st floor of a pyramid which is North-West of town. Please remember this.";
+				next;				
+				savepoint "morocc",150,99;
+				warp "moc_ruins",155,44;
+				end;
+				break;
+   
+			case 4:
+				mes "[Guide]";
+				mes "So you wish to become a Merchant? Very well...";
+				mes "The Merchant Guild is located to the South-West in Alberta. Please remember this.";
+				next;
+				savepoint "alberta",30,232;
+				warp "alberta_in",62,44;
+				end;
+				break;
+   
+			case 5:
+				mes "[Guide]";
+				mes "So you wish to become an Archer? Very well...";
+				mes "The Archer Guild is located to the North-West in Payon. Please remember this.";
+				next;
+				savepoint "payon",256,242;
+				warp "payon_in02",64,65;
+				end;
+				break;
+				
+		   case 6:
+				mes "[Guide]";
+				mes "So you wish to become a Mage? Very well...";				
+				mes "The Mage Academy is located in the North-West in town. Please remember this.";
+				next;
+				savepoint "geffen",119,37;
+				warp "geffen_in",163,98;
+				end;
+				break;
+		}		
+	}
+
+	// If the character is a class already that can no longer be
+	// promoted, then end the script immediatly.
+	if(Class == Job_Swordman || Class == Job_Mage || Class == Job_Archer || Class == Job_Acolyte || Class == Job_Merchant || Class == Job_Thief
+		|| Class == Job_Baby_Swordman || Class == Job_Baby_Mage || Class == Job_Baby_Archer || Class == Job_Baby_Acolyte || Class == Job_Baby_Merchant
+		|| Class == Job_Baby_Thief){
+		if(JobLevel >= 40){
+			mes "[Guide]";
+			mes "It seems that various people are looking for you now that you have shown great skill in combat. It is now time for you to choose your path and advance to the next class.";
+			mes "However, I would recommend you to wait it out a little longer until you have gained some more skill before meeting with them, you still have more potential to unlock.";
+			mes "";	
+			menu "Take me.....",-,"no bla bla ",L_exit;
+			
+			// take a look at the class the User currently has and then teleport him to the
+			// correct location based on what he wants to be.
+			switch(Class){			
+				case Job_Swordman:
+				case Job_Baby_Swordman:
+					mes "[Guide]";
+					mes "You can now choose between the following classes:";
+					switch(select("Knight:Crusader:Neither")){
+						case 1:
+							mes "So you wish to become a Knight? Very well...";
+							mes "The Knight's Guild is located in the North-West in Prontera. Please remember this.";
+							next;
+							savepoint "prontera",117,72;
+							warp "prt_in",85,92;
+							end;
+							break;
+							
+						case 2:
+							mes "So you wish to become a Crusader? Very well...";
+							mes "The Crusader's Guild is located in the North-West in Prontera. Please remember this.";
+							next;
+							savepoint "prontera",117,72;
+							warp "prt_castle",45,167;
+							end;
+							break;
+							
+						case 3:
+							goto l_exit;
+							break;
+					}
+					break;
+				
+				case Job_Mage:
+				case Job_Baby_Mage:
+					mes "[Guide]";
+					mes "You can now choose between the following classes:";
+					switch(select("Wizard:Sage:Neither")){
+						case 1:
+							mes "So you wish to become a Wizard? Very well...";
+							mes "The Knight's Guild is located in the North-West in Geffen. Please remember this.";
+							next;
+							savepoint "geffen",119,37;
+							warp "gef_tower",111,34;
+							end;
+							break;
+							
+						case 2:
+							mes "So you wish to become a Sage? Very well...";
+							mes "The Sage's Guild is located in the North-East in Juno. Please remember this.";
+							next;
+							savepoint "yuno",161,177;
+							warp "yuno_in03",153,30;
+							end;
+							break;
+							
+						case 3:
+							goto l_exit;
+							break;
+					}
+					break;					
+					
+				case Job_Archer:
+				case Job_Baby_Archer:
+					mes "[Guide]";
+					mes "You can now choose between the following classes:";
+					
+					// check the gender for Bard/Dancer
+					if(Sex == 1)
+						set .@profession$, "Bard";
+					else
+						set .@profession$, "Dancer";
+						
+					// perform the task
+					switch(select("Hunter",.@profession$,"Neither")){
+						case 1:
+							mes "So you wish to become a Hunter? Very well...";
+							mes "The Hunter's Guild is located in the North-East in Hugel. Please remember this.";
+							next;
+							savepoint "hugel",92,161;
+							warp "hu_in01",383,373;
+							end;
+							break;
+							
+						case 2:
+							if(Sex == 1){
+								mes "So you wish to become a Bard? Very well...";							
+								mes "The Bard's Guild is located in Comodo. Please remember this.";
+								next;
+								savepoint "comodo",200,145;
+								warp "comodo",224,122;
+								end;
+							} else {
+								mes "So you wish to become a Dancer? Very well...";							
+								mes "The Dancer's Guild is located in Comodo. Please remember this.";
+								next;
+								savepoint "comodo",200,145;
+								warp "comodo",191,151;
+								end;
+							}
+							break;
+							
+						case 3:
+							goto l_exit;
+							break;
+					}
+					break;	
+					
+				case Job_Acolyte:
+				case Job_Baby_Acolyte:
+					mes "[Guide]";
+					mes "You can now choose between the following classes:";
+					switch(select("Priest:Monk:Neither")){
+						case 1:
+							mes "So you wish to become a Priest? Very well...";
+							mes "The Priest's Guild is located in the North-East in Prontera. Please remember this.";
+							next;
+							savepoint "prontera",117,72;
+							warp "prt_church",16,38;
+							end;
+							break;
+							
+						case 2:
+							mes "So you wish to become a Monk? Very well...";
+							mes "The Monk's Guild is located to the North-East of Prontera. Please remember this.";
+							next;
+							savepoint "prt_monk",130,252;
+							warp "prt_monk",130,252;
+							end;
+							break;
+							
+						case 3:
+							goto l_exit;
+							break;
+					}
+					break;	
+					
+				case Job_Merchant:
+				case Job_Baby_Merchant:
+					mes "[Guide]";
+					mes "You can now choose between the following classes:";
+					switch(select("Blacksmith:Alchemist:Neither")){
+						case 1:
+							mes "So you wish to become a Blacksmith? Very well...";
+							mes "The Blacksmith's Guild is located in the South-East in Einbroch. Please remember this.";
+							next;
+							savepoint "einbroch",63,197;
+							warp "ein_in01",18,24;
+							end;
+							break;
+							
+						case 2:
+							mes "So you wish to become an Alchemist? Very well...";
+							mes "The Alchemist's Guild is located in the South-West of Aldebaran. Please remember this.";
+							next;
+							savepoint "aldebaran",139,122;
+							warp "alde_alche",26,182;
+							end;
+							break;
+							
+						case 3:
+							goto l_exit;
+							break;
+					}
+					break;	
+				
+				case Job_Thief:
+				case Job_Baby_Thief:
+					mes "[Guide]";
+					mes "You can now choose between the following classes:";
+					switch(select("Assassin:Rogue:Neither")){
+						case 1:
+							mes "So you wish to become an Assassin? Very well...";
+							mes "The Assassin's Guild is located to the South-East of Morroc. Please remember this.";
+							next;
+							savepoint "moc_fild16",205,296;
+							warp "in_moc_16",16,21;
+							end;
+							break;
+							
+						case 2:
+							mes "So you wish to become a Rogue? Very well...";
+							mes "The Rogue's Guild is located to the South-East of Comodo. Please remember this.";
+							next;
+							savepoint "cmd_fild07",199,113;
+							warp "in_rogue",368,44;
+							end;
+							break;
+							
+						case 3:
+							goto l_exit;
+							break;
+					}
+					break;	
+			}
+		}
+	} else {
+		mes "[Guide]";
+		mes "Today is a nice day.";
+		close;
+		end;
+	}
+	
+	// This displays the three ... from the NPC and ends the conversation.
+	l_exit:
+		mes "";
+		mes "...";
+		close;
+	end;
+}

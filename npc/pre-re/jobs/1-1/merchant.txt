@@ -133,7 +133,11 @@ alberta_in,53,43,6	script	Merchant#mer	4_M_04,{
 					mes "Please return when you have earned the 500 zeny that you need to become a Merchant.";
 					close;
 				}
+<<<<<<< HEAD
 				Zeny -= 500;
+=======
+				set Zeny, Zeny-500;
+>>>>>>> atherea/master
 				mes "Ah yes...!";
 				mes "Now your";
 				mes "membership";
@@ -151,6 +155,15 @@ alberta_in,53,43,6	script	Merchant#mer	4_M_04,{
 		mes "Congratulations!";
 		callfunc "Job_Change",Job_Merchant;
 		callfunc "F_ClearJobVar";
+<<<<<<< HEAD
+=======
+		getitem 2305,1;
+		getitem 1351,1;
+		getitem 2211,1;
+		getitem 2501,1;
+		getitem 2401,1;
+		getitem 2328,1;
+>>>>>>> atherea/master
 		if(checkquest(1009) != -1) {
 			completequest 1009;
 		}
@@ -169,7 +182,11 @@ alberta_in,53,43,6	script	Merchant#mer	4_M_04,{
 			mes "[Chief Mahnsoo]";
 			mes "*Ahem* Aaaaand let me give you a little bit of money for delivering that message to Blossom for me.";
 			mes "I hope you'll help me again next time~";
+<<<<<<< HEAD
 			Zeny += 200;
+=======
+			set Zeny, Zeny+200;
+>>>>>>> atherea/master
 			set quest_alb_01,2;
 		}
 		else {
@@ -341,7 +358,11 @@ alberta_in,53,43,6	script	Merchant#mer	4_M_04,{
 					mes "[Chief Mahnsoo]";
 					if (Zeny >= 1000) {
 						set job_merchant_q,2;
+<<<<<<< HEAD
 						Zeny -= 1000;
+=======
+						set Zeny, Zeny-1000;
+>>>>>>> atherea/master
 						mes "Alright~";
 						mes "That's 1,000 zeny.";
 						mes "Excellent, excellent.";
@@ -355,7 +376,11 @@ alberta_in,53,43,6	script	Merchant#mer	4_M_04,{
 					mes "[Chief Mahnsoo]";
 					if (Zeny >= 500) {
 						set job_merchant_q,1;
+<<<<<<< HEAD
 						Zeny -= 500;
+=======
+						set Zeny, Zeny-500;
+>>>>>>> atherea/master
 						mes "Let's see...";
 						mes "That's 500 Zeny. Although I don't think splitting payment is a good idea for any Merchant, it's alright since you're still learning.";
 					}
@@ -1058,7 +1083,11 @@ prontera,248,42,0	script	Kafra Employee#mer	4_F_KAFRA2,{
 				cutin "",255;
 				end;
 			}
+<<<<<<< HEAD
 			Zeny -= 600;
+=======
+			set Zeny, Zeny-600;
+>>>>>>> atherea/master
 			set RESRVPTS, RESRVPTS + 37;
 			cutin "",255;
 			warp "izlude",94,103;

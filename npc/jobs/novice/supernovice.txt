@@ -56,7 +56,17 @@ aldeba_in,223,167,3	script	Tzerero#sn	4_M_SEAMAN,{
 		next;
 		completequest 6010;
 		callfunc "F_ClearJobVar";
+<<<<<<< HEAD
 		getitem 2339,1; //G_Strings
+=======
+		getitem 2340,1;
+		getitem 2416,1;
+		getitem 2512,1;
+		getitem 5112,1;
+		getitem 2113,1;
+		getitem 2765,1;
+		getitem 1146,1;
+>>>>>>> atherea/master
 		if (Upper==0) jobchange Job_SuperNovice;
 		if (Upper==2) jobchange Job_Super_Baby;
 		mes "[Tzerero]";

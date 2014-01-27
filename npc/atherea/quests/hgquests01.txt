@@ -1,0 +1,454 @@
+//===== Hercules Script ======================================
+//= Headgear Quests for Atherea Ragnarok Online 
+//===== By: ==================================================
+//= Atherea Dev Team
+//===== Current Version: =====================================
+//= 1.2 (November 27th, 2013)
+//===== Description: =========================================
+//= Custom Headgear Quests available in AthereaRO.
+//===== Additional Comments: =================================
+//= 1.0 Added Parade Hat, Cat Ear Beret [Seffi] [Trace]
+//= 1.1 Added 4 Leaf Clover in Mouth [Trace]
+//= 1.2 Added some more headgears [Seffi]
+//============================================================
+
+// === Prontera Guildsman ===
+
+prt_castle,106,26,3	script	Prontera Guildsman	542,{
+	
+		mes "[Allen]";
+		mes "Hey, have you ever participated in the War of Emperium? You know, where guilds battle it out for ownership of the castle!";		
+		next;
+		mes "[Allen]";
+		mes "Well, I have some headgears that can spruce up for War of Emperium experience, and I can make them for you.";
+		next;
+		mes "[Allen]";
+		mes "Which one would you like to make?";
+		next;
+		menu "Parade Hat",-,"None.",none;
+		mes "[Allen]";
+		mes "You would like to make the ^3355FFParade Hat^000000? Good choice.";
+		next;
+		mes "[Allen]";
+		mes "I will need:";
+		mes "1x Army Cap";
+		mes "1x Turquoise";
+		next;
+		if ((countitem(2261) > 0)&&(countitem(7294) > 0)) {
+		mes "[Allen]";
+		mes "Oh, I see you have the items required to make the ^3355FFParade Hat^000000. Would you like to make it?";
+		next;
+		menu "Yes.",-,"No.",none;
+		delitem 2261,1; //Army_Cap
+		delitem 7294,1; //Turquoise
+		getitem 5225,1; //Parade_Hat
+		mes "[Allen]";
+		mes "There you go! You've made your ^3355FFParade Hat^000000. Have fun in War of Emperium, now you won't get stunned as often!";
+		close;
+		end;
+	}else {
+		mes "[Allen]";
+		mes "Oh, it looks like you don't have enough materials to make this hat.";
+		next;
+		mes "[Allen]";
+		mes "Come back when you have:";
+		mes "1x Army Cap";
+		mes "1x Turquoise";
+		close;
+		end;
+	
+	}
+none:
+	mes "[Allen]";
+	mes "Alright, if you ever want some headgears that will help you in the War of Emperium, you know where to look!";
+	close;
+	end;
+}
+
+// === Cat Ear Beret ===
+
+alberta,135,190,4	script	Mr.Fuzzy Wuzzy	553,{
+	if ((countitem(5057) > 0)&&(countitem(5172) > 0)) {
+		mes "[Mr. Fuzzy Wuzzy]";
+		mes "I want to make something fuzzy and cute... with cat ears...";
+		next;
+		mes "[Mr. Fuzzy Wuzzy]";
+		mes "I know! Would you give me your ^3355FFBlack Cat Ears^000000 and ^3355FFBeret^000000? I'd only need 1 of each.";
+		next;
+		switch(select("Alright.","No way!")) {
+		case 1:
+			mes "[Mr. Fuzzy Wuzzy]";
+			mes "Oh my gosh~ This will looks so cute on you!";
+			next;
+			delitem 5057,1; //Black_Cat_Ears
+			delitem 5172,1; //Beret
+			getitem 18600,1; //Cat_Ear_Beret
+			mes "[Mr. Fuzzy Wuzzy]";
+			mes "Thanks! Let me know if you need another one~";
+			close;
+		case 2:
+			mes "[Mr. Fuzzy Wuzzy]";
+			mes "*Sigh* You expect me to get ^3355FFBlack Cat Ears^000000 and ^3355FFBeret^000000 by myself?";
+			close;
+		}
+	}
+	else {
+		mes "[Mr. Fuzzy Wuzzy]";
+		mes "I'm so bored... I want to make a cute hat...";
+		next;
+		mes "[Mr. Fuzzy Wuzzy]";
+		mes "...";
+		mes "But for that, I'll need ^3355FFBlack Cat Ears^000000 and ^3355FFBeret^000000, please bring them to me. I'll make something cute for you!";
+		close;
+	}
+}
+
+// === 4Leaf Clover in Mouth ===
+
+prontera,92,210,4	script	Bard	51,{
+
+	if ((countitem(705) >= 700)&&(countitem(706) > 0)) {
+		mes "[Bard]";
+		mes "Oh, well hello there traveler. I'd like to ask you a favor.";
+		next;
+		mes "[Bard]";
+		mes "If you can grab me 700 ^3355FFClover^000000 and 1 ^3355FFFour Leaf Clover^000000, I can make you something really cool.";
+		next;
+		mes "[Bard]";
+		mes "So how 'bout it? Would you like me to make it for you?";
+		next;
+		menu "Sure, that sounds cool!",-,"No thanks.",nothanks5;
+		mes "[Bard]";
+		mes "Lets hope I don't mess up now.. heh..";
+		next;
+		delitem 705,700; //Clover
+		delitem 706,1; //Four_Leaf_Clover
+		getitem 5596,1; //4Leaf_Clover_In_Mouth
+		mes "[Bard]";
+		mes "Thanks a lot mate!";
+		close;
+		
+		nothanks5:
+		mes "[Bard]";
+		mes "*Sigh* I guess this lonely Bard will have to make it himself..";
+		close;
+		
+	}else {
+		mes "[Bard]";
+		mes "Hmm.. I can make ya something really cool if ya have some spare time.";
+		next;
+		mes "[Bard]";
+		mes "Grab me 700 ^3355FFClover^000000 and 1 ^3355FFFour Leaf Clover^000000 and we'll see what I can make.";
+		next;
+		mes "[Bard]";
+		mes "By the way, I'll give ya a bit of advice.";
+		mes "I hear that a kid in Umbala is giving ^3355FFClovers^000000 away for some meat. But you'll have to learn his language first..";
+		close;
+		
+	}
+	
+}
+
+// === Charming Ribbon ===
+
+lighthalzen,257,122,4	script	Supika	529,{
+	if ((countitem(5083) > 0)&&(countitem(994) > 0)&&(countitem(7174) > 0)) {
+		mes "[Supika]";
+		mes "You look like a cute one!";
+		next;
+		mes "[Supika]";
+		mes "But you know what would make you cuter? A ^3355FFCharming Ribbon^000000.";
+		next;
+		mes "[Supika]";
+		mes "Maybe.. if somebody brings me ^3355FFWrapping Lace^000000, a ^3355FFFlame Heart^000000 and a ^3355FFRed Ribbon^000000, I can make them one..";
+		next;
+		switch(select("Alright.","Never!")) {
+		case 1:
+			mes "[Supika]";
+			mes "You're going to look so pretty!";
+			next;
+			delitem 5083,1;
+			delitem 994,1;
+			delitem 7174,1;
+			getitem 5140,1;
+			mes "[Supika]";
+			mes "Such a charming ribbon! It'll look great on you. I hope you enjoy it, it's rare!";
+			close;
+		case 2:
+			mes "[Supika]";
+			mes "I'm sorry but I really can't do anything with what you've given me...";
+			close;
+		}
+	}
+	else {
+		mes "[Supika]";
+		mes "I love ribbons, don't you?";
+		next;
+		mes "[Supika]";
+		mes "They're the prettiest, don't you think it would look pretty on you?";
+		next;
+		mes "I could make a ^3355FFCharming Ribbon^000000, but I'd need ^3355FFWrapping Lace^000000, a ^3355FFFlame Heart^000000 and a ^3355FFRed Ribbon^000000..";
+		close;
+	}
+}
+
+// === Scarlet Rose ===
+
+gonryun,185,113,4	script	Airi	533,{
+	if ((countitem(5117) > 0)&&(countitem(7293) > 0)) {
+		mes "[Airi]";
+		mes "Roses are red, violets are blue.... if you bring me ^3355FFRose Quartz^000000 and a ^3355FFMystic Rose^000000, I can make a ^3355FFScarlet Rose^000000 for you!";
+		next;
+		mes "[Airi]";
+		mes "So what do you say, wanna make one?";
+		switch(select("I'd love to!.","Roses aren't my thing..")) {
+		case 1:
+			mes "[Airi]";
+			mes "I knew you'd agree! ";
+			next;
+			delitem 5117,1;
+			delitem 7293,1;
+			getitem 5548,1;
+			mes "[Airi]";
+			mes "A very pretty rose.. you'll look very sharp with it!";
+			close;
+		case 2:
+			mes "[Airi]";
+			mes "You're missing the materials! To make the most beautiful rose.. I will need more.";
+			close;
+		}
+	}
+	else {
+		mes "[Airi]";
+		mes "Roses are red, violets are blue.... if you bring me ^3355FFRose Quartz^000000 and a ^3355FFMystic Rose^000000, I can make a ^3355FFScarlet Rose^000000 for you!";
+		close;
+	}
+}
+
+// === Sigrun's Wings ===
+
+prt_church,175,101,4	script	Acoylte	641,{
+	if ((countitem(7441) > 1)&&(countitem(2254) > 1)&&(countitem(523) > 19)) {
+		mes "[Acolyte]";
+		mes "Did you ever know about the ^3355FFSigrun's Wings^000000?";
+		next;
+		mes "[Acolyte]";
+		mes "Wearing them can give you real angelic power. I could make you one if I had these materials:";
+		mes "^2x 3355FFBlue Feather^000000.";
+		mes "1x ^3355FFAngel Wing^000000.";
+		mes "20x^3355FFHoly Water^000000.";
+		next;
+		mes "[Acolyte]";
+		mes "Would you like to make them and gain angelic powers?";
+		switch(select("Make me an angel.","No thanks..")) {
+		case 1:
+			mes "[Acolyte]";
+			mes "Here we go!";
+			next;
+			mes "[Acolyte]";
+			mes "By the holy gods above, I grant you the angelic ^3355FFSigrun's Wings^000000!";
+			delitem 7441,2;
+			delitem 2254,1;
+			delitem 523,20;
+			getitem 5592,1;
+			mes "[Acolyte]";
+			mes "Well done! Wear them and feel the power spread through you!";
+			close;
+		case 2:
+			mes "[Acolyte]";
+			mes "Unfortunately I cannot grant you the wings... you will need to bring more.";
+			close;
+		}
+	}
+	else {
+		mes "[Acolyte]";
+		mes "Did you ever know about the ^3355FFSigrun's Wings^000000?";
+		next;
+		mes "[Acolyte]";
+		mes "Wearing them can give you real angelic power. I could make you one if I had these materials:";
+		mes "^2x 3355FFBlue Feather^000000.";
+		mes "1x ^3355FFAngel Wing^000000.";
+		mes "20x^3355FFHoly Water^000000.";
+		close;
+	}
+}
+
+// === Wandering Wolf Hat ===
+
+morocc,171,87,1	script	Rogue Wolf	481,{
+	if ((countitem(4029) > 0)&&(countitem(920) > 199)&&(countitem(1034) > 99)) {
+		mes "[Rogue Wolf]";
+		mes "So you wanna be a wandering wolf like me?";
+		next;
+		mes "[Rogue Wolf]";
+		mes "Well, I'll tell you... you certainly don't look like one.";
+		next;
+		mes "[Rogue Wolf]";
+		mes "If you really want to be a wolf.. you'll need the 3355FFWandering Wolf Hat^000000.";
+		next;
+		mes "[Rogue Wolf]";
+		mes "And well...getting it is not so easy. You'll need to bring me:";
+		mes "^1x 3355FFWolf Card^000000.";
+		mes "200x ^3355FFWolf Claw^000000.";
+		mes "100x^3355FFBlue Hair^000000.";
+		next;
+		mes "[Rogue Wolf]";
+		mes "Looks like you got enough. Wanna make it?";
+		switch(select("I wanna be a wolf!","No thanks.")) {
+		case 1:
+			mes "[Rogue Wolf]";
+			mes "If you insist..";
+			next;
+			delitem 4029,1;
+			delitem 920,200;
+			delitem 1034,100;
+			getitem 5498,1;
+			mes "[Rogue Wolf]";
+			mes "Well there you go. You've made a 3355FFWandering Wolf Hat^000000.";
+			close;
+		case 2:
+			mes "[Rogue Wolf]";
+			mes "You think you could be a wolf with this? It's not a joke. Please, bring me what I'm asking for.";
+			close;
+		}
+	}
+	else {
+		mes "[Rogue Wolf]";
+		mes "So you wanna be a wandering wolf like me?";
+		next;
+		mes "[Rogue Wolf]";
+		mes "Well, I'll tell you... you certainly don't look like one.";
+		next;
+		mes "[Rogue Wolf]";
+		mes "If you really want to be a wolf.. you'll need the 3355FFWandering Wolf Hat^000000.";
+		next;
+		mes "[Rogue Wolf]";
+		mes "And well...getting it is not so easy. You'll need to bring me:";
+		mes "^1x 3355FFWolf Card^000000.";
+		mes "200x ^3355FFWolf Claw^000000.";
+		mes "100x^3355FFBlue Hair^000000.";
+		close;
+	}
+}
+
+// === Moonowl Cap ===
+
+payon,254,312,1	script	Moonlight Flower	1814,{
+	if ((countitem(969) > 0)&&(countitem(976) > 0)&&(countitem(1022) > 300)) {
+		mes "[Moonlight Flower]";
+		mes "*ding* *ding*";
+		mes "Isn't my cap pretty? It's called the 3355FFMoonowl Cap^000000";
+		next;
+		mes "[Moonlight Flower]";
+		mes "*ding* *ding*";
+		mes "I bet you want it, don't you?";
+		next;
+		mes "[Moonlight Flower]";
+		mes "*ding* *ding*";
+		mes "Well, I'll never give it up unless I get:";
+		mes "^1x 3355FFGold^000000.";
+		mes "1x ^3355FFLemon Dyestuffs^000000.";
+		mes "300x^3355FFNine Tails^000000.";
+		next;
+		mes "[Moonlight Flower]";
+		mes "*ding* *ding*";
+		mes "Hey! Do you wanna trade?";
+		switch(select("Gimmie that rare hat!","No..")) {
+		case 1:
+			mes "[Moonlight Flower]";
+			mes "*ding* *ding*";
+			mes "Yes! Haha I've just ripped you off..";
+			next;
+			delitem 969,1;
+			delitem 976,1;
+			delitem 1022,300;
+			getitem 5214,1;
+			mes "[Moonlight Flower]";
+			mes "*ding* *ding*";
+			mes "I hope you enjoy the hat... even though my reward was clearly much better!";
+			mes "*ding* *ding*";
+			close;
+		case 2:
+			mes "[Moonlight Flower]";
+			mes "*ding* *ding*";
+			mes "That's all you're offering me? No way!.";
+			mes "Come back with more!";
+			close;
+		}
+	}
+	else {
+		mes "[Moonlight Flower]";
+		mes "*ding* *ding*";
+		mes "My cap is too rare for you!";
+		next;
+		mes "[Moonlight Flower]";
+		mes "*ding* *ding*";
+		mes "I would never part with it.. unless maybe somebody brought me:";
+		mes "^1x 3355FFGold^000000.";
+		mes "1x ^3355FFLemon Dyestuffs^000000.";
+		mes "300x^3355FFNine Tails^000000.";
+		close;
+	}
+}
+
+// === Stylish Wizard ===
+
+gef_tower,120,3,4	script	Stylish Wizard	673,{
+	
+		mes "[Wizard]";
+		mes "Hello young wizard, you look kind of bare... ";		
+		next;
+		mes "[Wizard]";
+		mes "Maybe I can make you a hat that you can wear?";
+		mes "Hehe that rhymed.";
+		next;
+		mes "[Wizard]";
+		mes "Anyway, I got some hats that a wizard like you might like.. would you like to make any of them?";
+		next;
+		menu "Tam",-,"None.",none;
+		mes "[Wizard]";
+		mes "You would like to make the ^3355FFTam^000000? Good choice.";
+		next;
+		mes "[Wizard]";
+		mes "I will need:";
+		mes "1x ^3355FFWhite Chocolate^000000.";
+		mes "1x ^3355FFIllusion Flower^000000.";
+		mes "1x ^3355FFWhite Dyestuffs^000000.";
+		mes "200x ^3355FFFabric^000000.";
+		mes "5x ^7B68EEAther^000000.";
+		next;
+		if ((countitem(561) > 0)&&(countitem(710) > 0)&&(countitem(982) > 0)&&(countitem(1059) > 199)&&(countitem(7000) >4 )) {
+		mes "[Wizard]";
+		mes "Well done, you have all the items you need. Would you like to make the ^3355FFTam^000000?";
+		next;
+		menu "Yes.",-,"No.",none;
+		delitem 561,1;
+		delitem 710,1;
+		delitem 982,1;
+		delitem 7000,1;
+		delitem 1059,200;
+		getitem 5379,1;
+		mes "[Wizard]";
+		mes "And there you have it. A ^3355FFTam^000000. Your MATK will benefit greatly, young wizard.";
+		close;
+		end;
+	}else {
+		mes "[Wizard]";
+		mes "This isn't enough. You'll need to hunt more.";
+		next;
+		mes "[Wizard]";
+		mes "1x ^3355FFWhite Chocolate^000000.";
+		mes "1x ^3355FFIllusion Flower^000000.";
+		mes "1x ^3355FFWhite Dyestuffs^000000.";
+		mes "200x ^3355FFFabric^000000.";
+		mes "5x ^7B68EEAther^000000.";
+		close;
+		end;
+	
+	}
+none:
+	mes "[Wizard]";
+	mes "If you require stylish and useful headgears for wizards, seek me out.";
+	close;
+	end;
+}

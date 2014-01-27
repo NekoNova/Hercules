@@ -1,0 +1,596 @@
+//===== Hercules Script ======================================
+//= Custom Quests for Atherea Ragnarok Online 
+//===== By: ==================================================
+//= Atherea Dev Team
+//===== Current Version: =====================================
+//= 1.0 (November 20th, 2013)
+//===== Description: =========================================
+//= All custom quests avaliable in Atherea RO
+//= These quests will only activate if your character
+//= is a certain level, and you have not previously done
+//= the quest with that character.
+//===== Additional Comments: =================================
+//= 1.0 Added dialogues for NPCs [Seffi]
+//============================================================
+
+// === Explore the Payon Caves ===
+
+payon,226,266,4	script	Archer Captain	531,{
+	
+	mes "[Archer Captain]";
+	mes "Brave adventurer, could you do me a favor?";
+	mes "The monsters in Payon Caves have gotten more aggressive than usual... we sent a group of archers into the caves, but they have not yet come back.";
+	next;
+	mes "[Archer Captain]";
+	mes "We are worried, about our men and about the monsters... would you be so kind as to enter the caves and scout for them?";
+	next;
+	mes "We need somebody to kill 10 Zombies, 10 Soldier Skeleton, 10 Archer Skeletons, 15 Bonguns, and 15 Munaks, as well as find our Archers who went into the cave..";
+	mes "We would greatly appreciate your help, will you do it?";
+	next;
+	menu "Not to worry, I will investigate",-,"I am busy, another time?",notnow;
+	mes "[Archer Captain]";
+	mes "How brave of you! I pray for your safety, please return unharmed.";
+	close;
+	end;
+	
+notnow:
+	mes "[Archer Captain]";
+	mes "Not to worry, thank you for at least hearing me out.";
+	close;
+	end;
+}
+	
+pay_dun02,141,218,4	script	Dead Archer	694,{
+
+	mes "An archer... he doesn't appear to be breathing...";
+	next;
+	mes "Unfortunate, I suppose I will report back.";
+	close;
+	end;
+}
+
+// === Investigate the Payon Forests ===
+
+payon,165,99,5	script	Payon Chief	708,{
+
+	mes "[Payon Chief]";
+	mes "" + strcharinfo(0) + "! The villagers of Payon are concerned for their forests!";
+	mes "They have reported sightings of strange wooden creatures, and they have requested for somebody to go and investigate.";
+	next;
+	mes "[Payon Chief]";
+	mes "" + strcharinfo(0) + ", will you take on the mission?";
+	next;
+	menu "Yes, I will take it upon myself to investigate",-,"Not now.",no1;
+	mes "[Payon Chief]";
+	mes "Thank you " + strcharinfo(0) + ", please enter the forests and bring me back 3 Trunks, 5 Fine-Grained Trunks, 10 Solid Trunks, and 15 Barren Trunks.";
+	next;
+	mes "[Payon Chief]";
+	mes "Your help is greatly appreciated, brave adventurer.";
+	close;
+	end;
+
+no1:
+	mes "[Payon Chief]";
+	mes "Alright adventurer. Please, if you change your mind.. do reconsider.";
+	close;
+	end;
+	
+}
+
+// === Learn about Suhnbi, the Enriched Refiner ===
+
+payon,191,224,4	script	Beast Clan Member	497,{
+
+	mes "[Bobert]";
+	mes "" + strcharinfo(0) + "! Have you heard of Suhnbi, the Enriched Refiner?";
+	mes "They say he has never broken a single piece of equipment in all his years of refining..";
+	next;
+	mes "[" + strcharinfo(0) + "]";
+	mes "Interesting, do you know how he does it?";
+	next;
+	mes "[Bobert]";
+	mes "Unfortunately, I do not... however there is a swordsman just north of Payon.. I hear he has a weapon refined by him.";
+	next;
+	mes "[Bobert]";
+	mes "Maybe you could go and talk to him? He might know more about it.";
+	close;
+	end;
+}
+	
+pay_arche,140,35,4	script	Swordsman	688,{
+
+	mes "[Alexander]";
+	mes "Hi, what are you here about?";
+	next;
+	mes "[" + strcharinfo(0) + "]";
+	mes "Are you the swordsman with a weapon refined by Suhnbi?";
+	next;
+	mes "[Alexander]";
+	mes "Why yes, I am... why are you asking?";
+	next;
+	menu "Can you explain the process?",-,"No reason, I'll be on my way.",noreason;
+	mes "[Alexander]";
+	mes "That's what you'd like to know? Well it's quite simple you see...";
+	next;
+	mes "[Alexander]";
+	mes "Suhnbi uses enriched ores. They are called Enriched Oridecon, and Enriched Elunium.";
+	next;
+	mes "[Alexander]";
+	mes "With these ores, your equipment will not break, no matter what.";
+	next;
+	mes "[Alexander]";
+	mes "The only penalty is, if Suhnbi does fail... your equipment will be downgraded back to +0..";
+	mes "However, it's a small price to pay. You will still have your equipment at least.";
+	next;
+	mes "[Alexander]";
+	mes "Suhnbi's native town is Payon, however you can find him in various towns hanging around with the other refiners.";
+	mes "Is that all you wish to know?";
+	next;
+	mes "[" + strcharinfo(0) + "]";
+	mes "Yes, thank you for your explaination... I may go pay Suhnbi a visit in the future.";
+	next;
+	mes "[Alexander]";
+	mes "No problem my friend, I wish you luck and much over upgraded equipment to come!";
+	close;
+	end;
+	
+noreason:
+	mes "[Alexander]";
+	mes "No reason? Alright, goodbye then.";
+	close;
+	end;
+}
+
+// === A Chivalrous Request ===
+// This quest uses an existing NPC in the knight guild.
+// I suppose you could just put this text onto that NPC? If not just make this a new NPC.
+// The NPC is located on prt_in,85,99
+
+//the real location of this NPC is prt_in 85,99, it has been changed for testing purposes.
+prt_in,85,100,3	script	Knight	734,{
+	
+	mes "[Essofeit]";
+	mes "Hello brave adventurer, you are aware that I have a quest for you?";
+	next;
+	mes "[Essofeit]";
+	mes "I will warn you... this quest is filled with treachery.";
+	mes "Are you willing to undertake it, and prove that you are chivalrous to the Knight Guild?";
+	next;
+	menu "Yes, sir knight.",-,"I cannot, I am busy",cannot;
+	mes "[Essofeit]";
+	mes "Very reckless.. please make sure you are not jumping into something without consideration for yourself, alright?";
+	next;
+	mes "[Essofeit]";
+	mes "I will explain the quest now.";
+	mes "Some of the monsters in Prontera fields have gone out of control... our knights have investigated.";
+	mes "They have grown, become more powerful, and taken on a stranger and larger form.";
+	next;
+	mes "[Essofeit]";
+	mes "The monsters I am talking about are called Eclipse and Vocal. Beware, they are powerful.";
+	mes "I want you to hunt one of the two, and bring back it's remains. Can you do this for us?";
+	next;
+	menu "Yes, I can sir knight.",-,"I am sorry, I cannot.",cannot1;	
+	mes "[Essofeit]";
+	mes "Such bravery. I expect you back shortly. Do not play games with it, this issue must be treated seriously.";
+	close;
+	end;
+	
+cannot1:
+	mes "[Essofeit]";
+	mes "I understand. If you reconsider, we will be waiting.";
+	close;
+	end;
+	
+cannot:
+	mes "[Essofeit]";
+	mes "I understand. If you reconsider, we will be waiting.";
+	close;
+	end;
+	
+// Upon returning to the NPC with the quest completed, this is what he will say
+
+	mes "[Essofeit]";
+	mes "Well done! Such chivalry and skill. We are all very impressed.";
+	mes "Take your reward good " + strcharinfo(0) + ", we are in your debt.";
+	close;
+	end;
+
+}
+
+// === Meet with the Refiner, the Socket Enchanter, and the Hidden Enchanter ===
+// These NPCs are also pre-existing. Add the messages to their script.
+// Quest will start with Hollgrehenn
+
+//the real location of this NPC is prt_in 63,60, it has been changed for testing purposes.
+prt_in,63,61,1	script	Hollgrehenn	85,{
+
+	mes "[Hollgrehenn]";
+	mes "Hello " + strcharinfo(0) + ", I am the refiner of Prontera. Hollgrehenn is my name.";
+	mes "You may have heard of me.";
+	next;
+	mes "[Hollgrehenn]";
+	mes "So I see you'd like to refine something huh? Well, would you like to know how it's done?";
+	next;
+	menu "Yes, please explain!",-,"No thanks, please move on.",continue1;
+	mes "[Hollgrehenn]";
+	mes "I see, you're hungry for knowledge aren't you?";
+	mes "Well, it's simple.";
+	next;
+	mes "[Hollgrehenn]";
+	mes "Refining level 1 weapons is safe until +7. It uses Pharcon.";
+	mes "Refining level 2 weapons is safe until +6. It uses Emveretarcon.";
+	next;
+	mes "[Hollgrehenn]";
+	mes "Refining level 3 weapons is safe until +5. It uses Oridecon.";
+	mes "Refining level 4 weapons is safe until +4. It uses Oridecon as well.";
+	next;
+	mes "[Hollgrehenn]";
+	mes "For each refine, your weapons ATK will increase, but be careful, refining above the safe limit is dangerous and could break your weapon.";
+	mes "We are not liable for any broken equipment, it is at your own risk.";
+	next;
+	mes "[Hollgrehenn]";
+	mes "Armor is a little different. All of it is safe until +4, and it uses Elunium.";
+	mes "Over upgrading your armor will give you bonus DEF.";
+	mes "Also, as a general note beware if your equipment is broken, any card slotted inside will not be returned.";
+	next;
+	mes "[Hollgrehenn]";
+	mes "With that, I believe that is all I have to tell you.";
+	mes "I will now refer you to Seiyablem who is in the next room on your left. He will tell you about socket enchanting.";
+	close;
+	end;
+	
+continue1:
+	mes "[Hollgrehenn]";
+	mes "Fair enough.";
+	mes "I will now refer you to Seiyablem who is in the next room on your left. He will tell you about socket enchanting.";
+	close;
+	end;
+	
+}
+
+//the real location of this NPC is prt_in 34,69, it has been changed for testing purposes.
+prt_in,34,70,5	script	Seiyablem	84,{
+
+	mes "[Seiyablem]";
+	mes "Hi, so you'd like to learn about socket enchanting?";
+	mes "Simple work, really. There are 4 classes of items:";
+	mes "Class C.";
+	mes "Class B.";
+	mes "Class A.";
+	mes "and Class S.";
+	next;
+	mes "[Seiyablem]";
+	mes "C is the easiest to slot, while S is the hardest.";
+	mes "If I fail to slot your item, it will be lost, and your zeny will not be refunded.";
+	next;
+	mes "[Seiyablem]";
+	mes "Lastly, my brother, Leablem, also socket enchants items.";
+	mes "Both of us can be found in Prontera, Payon, Lighthalzen, and Morroc.";
+	next;
+	mes "[Seiyablem]";
+	mes "That's pretty much it. You should go down to the south Prontera exit and meet with the Apprentice Craftsman.";
+	mes "She can put a hidden enchantment onto your armor. Go talk to her to find out how!";
+	close;
+	end;
+
+}
+
+//the real location of this NPC is prontera 166,59, it has been changed for testing purposes.	
+prontera,166,59,4	script	Apprentice Craftsman	73,{
+
+	mes "[Apprentice Craftsman]";
+	mes "Hello there! So you'd like to learn about armor enchanting?";
+	mes "Well, listen here and let me explain.";
+	next;
+	mes "[Apprentice Craftsman]";
+	mes "There are 3 types of armor that you can enchant. Not all armors can be enchanted.";
+	mes "There are non-slotted armors, slotted armors, and high grade armors.";
+	next;
+	mes "[Apprentice Craftsman]";
+	mes "Non-slotted is the easiest, while slotted armors are a bit harder.";
+	mes "High grade armors are exceedingly rare armors, and the hardest to enchant.";
+	mes "Keep in mind, if I do fail while enchanting your armor, it will be lost for good.";
+	next;
+	mes "[Apprentice Craftsman]";
+	mes "While enchanting, there is a chance that your armor will gain a random stat.";
+	mes "Most likely, it will only be +1, however on rare occasions, there can be +2 or +3.";
+	next;
+	mes "[Apprentice Craftsman]";
+	mes "The last thing to note, is that if your armor is refined, or has any cards slotted into it, it will be lost.";
+	mes "Make sure the armor you are enchanting is not well refined, or has any rare cards in it. That would be unfortunate to lose!";
+	next;
+	mes "[Apprentice Craftsman]";
+	mes "Anyway, it seems like we're done here. You now know about refining, socket enchanting, and now armor enchanting!";
+	mes "You're such a smart one!";
+	next;
+	mes "[Apprentice Craftsman]";
+	mes "For all that listening, you must deserve a reward huh? Well, here you go.";
+	mes "See ya around!";
+	close;
+	end;
+	
+}
+	
+// === Assist in Investigating the Sphinx ===
+
+morocc,120,96,5	script	Villager	536,{
+
+	mes "[Williem]";
+	mes "Hey! You look strong!";
+	mes "Have you ever entered the Morroc Sphinx? Gosh, that place is scary..";
+	next;
+	mes "[Williem]";
+	mes "That landmark was built so long ago for a powerful Pharoah, but those monsters inside still exist today..";
+	mes "Some brave adventurers even say they have seen the Pharoah's spirit, still wandering the lower levels of the dungeon.";
+	next;
+	mes "[Williem]";
+	mes "That stuff scares us villagers every day of our lives..";
+	mes "We've been looking for a strong adventurer like you, do you think you could enter the Sphinx and take a look for yourself?";
+	next;
+	menu "Yeah, I'll take a look.",-,"Sorry, I'd rather not.",rathernot;
+	mes "[Williem]";
+	mes "Quite bold of you.. well, here's my request.";
+	mes "Once you've entered, defeat 30 Zeroms, 20 Requiems, 10 Matyrs, and 10 Drainliars. Once you've done it, return to me.";
+	mes "The village will be so grateful.";
+	close;
+	end;
+	
+// When you return to him, he will say this
+
+	mes "[Williem]";
+	mes "You did it! You're so strong!";
+	mes "I must admit, I didn't actually think you'd make it out of there...";
+	next;
+	mes "[Williem]";
+	mes "The village is very grateful. We've gathered a reward for you, I hope this will help.";
+	next;
+	mes "[Williem]";
+	mes "Thanks again, brave adventurer.";
+	close;
+	end;
+	
+rathernot:
+	mes "[Williem]";
+	mes "I see, well you're only mortal. I wouldn't want to enter that god forsaken Sphinx either.";
+	close;
+	end;
+	
+}
+
+// === Deliver a Letter to the Assassin Guild ===
+// The "Assassin" is a pre-existing NPC
+
+morocc,81,182,4	script	Messenger	998,{
+
+	mes "[Messenger]";
+	mes "You look like an able body, could you take this letter for me?";
+	next;
+	menu "Sure!",-,"You look suspicious.. I don't know.",idontknow;
+	mes "[Messenger]";
+	mes "You didn't even question it? Well, that's fine.. I appreciate your willingness.";
+	mes "STOP! Don't open the letter.";
+	mes "You cannot be allowed to read the contents inside..";
+	next;
+	mes "[Messenger]";
+	mes "Just deliver it to the assassin guild, would you?";
+	mes "Talk to the white haired assassin, inside their hideout.";
+	close;
+	end;
+	
+idontknow:
+	mes "[Messenger]";
+	mes "You don't trust me? Fine, I will have somebody else hear my request.";
+	close;
+	end;
+
+}
+
+//the real location of this NPC is in_moc_16,14,27, it has been changed for testing purposes.	
+in_moc_16,14,28,5	script	Assassin	884,{
+
+	mes "[Assassin]";
+	mes "What's this, a letter for us?";
+	mes "Thank you, I've been expecting this.";
+	next;
+	mes "[Assassin]";
+	mes "Now walk out that door.";
+	next;
+	menu "Leave.",-,"Question him.",question;
+	close;
+	end;
+	
+question:
+// if you are an assassin:
+	mes "[Assassin]";
+	mes "Normally, I'd demand that you leave...";
+	mes "However, you are a member of the Assassin Guild, I will share with you a little information.";
+	next;
+	mes "[Assassin]";
+	mes "Are you aware that the Assassin Guild is composed of many Demon Clan members?";
+	next;
+	mes "[Assassin]";
+	mes "This letter is from the Demon Clan. It is about tonight's event....";
+	next;
+	mes "...where we will sneak into Morroc, and feast on unsuspecting travellers and villagers.";
+	close;
+	end;
+
+// if you are not an assassin:
+	mes "[Assassin]";
+	mes "You think you have the right to question me?";
+	mes "Get out of here, or we'll kill you and drag you out.";
+	close;
+	end;
+	
+}
+
+// === The Legend of Satan Morroc ===
+
+morocc,222,265,5	script	Crusader	751,{
+
+	mes "[Hil]";
+	mes "This town is such a wreak, I as a Crusader must carry out my duty.";
+	mes "I must volunteer my service, and help those in need.";
+	next;
+	mes "[Hil]";
+	mes "Hello dear traveller, what is it you're looking for?";
+	next;
+	menu "What happened here?",-,"Nothing.",2nothing;
+	mes "[Hil]";
+	mes "Well, I don't know if you're heard the legend, but the evil demon Satan Morroc has broken from it's seal.";
+	mes "It has done a very large amount of damage to Morroc, leaving many villagers homeless, injured, or dead.";
+	next;
+	menu "Do you know more?",-,"(Say Nothing)",2nothing;
+	mes "[Hil]";
+	mes "Unfortunately, that is the best of my knowledge...";
+	mes "I do not know much more than that, perhaps you could ask another villager here in Morroc?";
+	close;
+	end;
+	
+2nothing:
+	close;
+	end;
+	
+}
+
+morocc,91,52,4	script	Demon Clan Member	667,{
+
+	mes "[Adalita]";
+	mes "Hmm? You seem confused.. are you looking for something?";
+	next;
+	menu "Tell me about Satan Morroc.",-,"(Say Nothing.)",morroc1;
+	mes "[Adalita]";
+	mes "About Satan Morroc?";
+	mes "Well, as a Demon Clan member, this legend has much to do with my upbringing.";
+	next;
+	mes "[Adalita]";
+	mes "Would you like to hear the legend, traveller?";
+	next;
+	menu "Yes.",-,"No.",no2;
+	mes "[Adalita]";
+	mes "It begins with the Mage Knight, Thanatos. He was the one who sealed the great demon under this city.";
+	mes "Thanatos brought down the greater demon in a heated battle.";
+	next;
+	mes "[Adalita]";
+	mes "Legend has it that the fallout from the battle destroyed the south eastern part of the Rune-Midgard Kingdom, creating what is now known as the Sograt Desert.";
+	mes "In order to protect the seal and keep the demon locked away, the people of Rune-Midgard constructed a castle above the seal.";
+	next;
+	mes "[Adalita]";
+	mes "Before long, buildings and tents were built around the castle, and this new-founded city took the name of the demon and was called Morroc.";
+	mes "Some say that this Mage Knight Thanatos still exists, and that he is now a demon involved in the tragedies taking place in Thanatos Tower.";
+	next;
+	mes "[Adalita]";
+	mes "The demon clan worships Thanatos as a god among demons, however this now Wounded Morroc must be stopped, for he is a demon out of control.";
+	next;
+	mes "[Adalita]";
+	mes "If only the great demon knight Thanatos could come and put an end to this chaos once and for all.";
+	next;
+	mes "[Adalita]";
+	mes "So, curious one, now you know the legend. Run along now, this town isn't safe..";
+	close;
+	end;
+	
+ no2:
+	mes "[Adalita]";
+	mes "As you wish, now run along.";
+	close;
+	end;
+	
+morroc1:
+	close;
+	end;
+	
+}
+
+// === Discover the Ruins of Glast Heim ===
+
+geffen,127,116,5	script	Curious Man	995,{
+
+	mes "[Gilliam]";
+	mes "You look like you've traveled a lot, have you heard of the ancient ruin Glast Heim?";
+	next;
+	mes "[Gilliam]";
+	mes "Probably not, very few travellers dare enter such a place... but a place like that..";
+	next;
+	mes "[Gilliam]";
+	mes "Doesn't it make you want to find out more?";
+	next;
+	mes "[Gilliam]";
+	mes "You look strong enough, do you think you could go there for me and find out what happened there?";
+	next;
+	menu "Yes, I'm curious too.",-,"No thank you, too scary.",no3;
+	mes "[Gilliam]";
+	mes "You'd really do it? That's quite adventurous of you!";
+	next;
+	mes "[Gilliam]";
+	mes "Please do not take too long, or I will worry that I have doomed you into a deathtrap..";
+	close;
+	end;
+	
+no3:
+	mes "[Gilliam]";
+	mes "No? Fair enough, continue on then.";
+	close;
+	end;
+
+}
+
+glast_01,345,270,5	script	Demon Clan Member	605,{
+
+	mes "[Frederick]";
+	mes "What is an innocent soul like yourself doing out here?";
+	mes "Do you wish you be eaten?";
+	next;
+	menu "I want to find out what happened here.",-,"Please, don't eat me!",dont_eat;
+	mes "[Frederick]";
+	mes "The history of Glast Heim huh?";
+	next;
+	mes "[Frederick]";
+	mes "I don't feel like I need to tell you anything, what's stopping me from eating your soul where you stand? That is what I usually to do unsuspecting travellers in this area..";
+	next;
+	mes "[Frederick]";
+	mes "Since I see some great potential in you.. I will give you a challenge.";
+	next;
+	mes "[Frederick]";
+	mes "Have you noticed the Gargoyles around here? They are my demon bretherin. Slay 10 of them, and I shall give you the information you seek.";
+	close;
+	end;
+	
+dont_eat:
+	mes "[" + strcharinfo(0) + "]";
+	mes "Nooooo!";
+	next;
+	mes "[Frederick]";
+	mes "Your soul is delicious!";
+	// show some sort of effect and kill the player.
+	close;
+	end;
+	
+	
+// If you have slain 10 gargoyles, he will say this.
+
+	mes "[Frederick]";
+	mes "You made short work of them, didn't you? I am a demon of my word, I will tell you the story of Glast Heim.";
+	next;
+	mes "[Frederick]";
+	mes "Glast Heim, the Shadows of Terror, were once the capital of the Rune Kingdom. The Rune Kingdom's warriors were so powerful that other nations saw them as super entities.";
+	next;
+	mes "[Frederick]";
+	mes "Legends say that the king of that kingdom was seeking more power from the sacred tomes hidden deep inside of the Ancient Tower of Geffenia, so he sent Assassins to steal it from there.";
+	next;
+	mes "[Frederick]";
+	mes "Little did he know that by reading the tomes he unleashed evil powers over his kingdom; so powerful that it damned every soul into infinite torment.";
+	next;
+	mes "[Frederick]";
+	mes "The king's name was lost, now he is only known as the Dark Lord, and what is left from Glast Heim citizens are now fearsome monsters feasting on the flesh and souls of wanderers.";
+	next;
+	mes "[Frederick]";
+	mes "Lately some adventurers reported hearing explosions from inside the Ruins, no body knows what happened exactly.";
+	next;
+	mes "[Frederick]";
+	mes "That is the story of Glast Heim so far.. as for the rest it is not currently known. Maybe you should enter the ruins and find out for yourself?";
+	close;
+	end;
+}
+	
+	

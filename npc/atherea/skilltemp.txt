@@ -1,0 +1,23 @@
+// Start Bioethics quest
+vip,75,46,3	script	Kellasus#temp	57,{
+	if (BaseJob == Job_Alchemist && bioeth == 13) {
+		mes "[Kellasus]";
+		mes "Raziel is so evil that he recreated me just to fix you guys :c ";
+		mes "Alright then, I'll begin";
+		next;
+		mes "[Kellasus]";
+		mes "You have learnt ^FF0000Bioethics^000000,";
+		set bioeth,13;
+		skill 238,1,0;
+		close;
+	}
+}
+
+//Exit Warper
+market,102,112,3	script	Exit#vend	726,{
+
+	warp "prontera.gat",155,186;
+	end;
+}
+
+prontera	mapflag	autotrade

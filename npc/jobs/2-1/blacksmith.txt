@@ -255,6 +255,14 @@ ein_in01,18,28,4	script	Guildsman#BLS	4_M_JOB_BLACKSMITH,{
 			set .@joblvl,JobLevel;
 			callfunc "Job_Change",Job_Blacksmith;
 			callfunc "F_ClearJobVar";		// clears all job variables for the current player
+<<<<<<< HEAD
+=======
+			getitem 1360,1;
+			getitem 2224,1;
+			getitem 2405,1;
+			getitem 2314,1;
+			getitem 2505,1;
+>>>>>>> atherea/master
 			mes "[Altiregen]";
 			mes "Always remember that we are creators, and artists over metals. Be wary that you do not fall into the pitfalls of selfishness";
 			mes "and greed.";

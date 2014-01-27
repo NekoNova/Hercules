@@ -1,0 +1,139 @@
+// UVP 2
+prontera.gat,167,187,3	script	Ultimate PvP Warper	405,{
+	if (.pvp_square$=="") donpcevent "Ultimate PVP warper::OnClock0000";
+ 
+	mes "[PvP Warper]";
+	mes "Do you want to test your combat skills?";
+	mes "Choose the mode you wish to enter:";
+	next;
+	switch(select("PVP Arena ["+getmapusers("pvp_n_1-5")+"/100]:GvG Arena ["+getmapusers("guild_vs4")+"/100]")) {
+
+	case 1:	// No debuff PVP Square
+		if (getmapusers("pvp_n_1-5") > 99) callsub S_full;
+		callsub S_payment;
+		warp "pvp_n_1-5",0,0;
+		end;
+
+	case 2:	// GvG Room
+		if (getmapusers("guild_vs4") > 99) callsub S_full;
+		callsub S_payment;
+		warp "guild_vs4",0,0;
+		end;
+}
+S_full:
+	mes " ";
+	mes "I'm sorry, this arena is full.  Please try again later...";
+	close;
+S_payment:
+	if (Zeny < (0*BaseLevel + 0)) {
+		mes "You don't have enough zeny.";
+		mes "It costs "+(0*BaseLevel + 0)+" zeny for you to enter.";
+		close;
+	}
+	set Zeny, Zeny - (0*BaseLevel + 0);
+	return;
+ 
+OnInit:
+	OnTimer5000:
+	delwaitingroom;
+	if(getmapusers("pvp_n_1-5") >= getmapusers("guild_vs4")){
+		waitingroom getmapusers("pvp_n_1-5")+" player"+( getmapusers("pvp_n_1-5") > 1 ? "s are":" is") +" in the PvP Room", 0;
+		goto Timer;
+		end;
+	}
+	else {
+		waitingroom getmapusers("guild_vs4")+" player"+( getmapusers("guild_vs4") > 1 ? "s are":" is") +" in the GvG Room", 0;
+		goto Timer;
+		end;
+	}
+	
+Timer:
+	initnpctimer;
+
+OnClock0000:
+	// set the "PVP Square" map, based on day of the weeek
+	switch(gettime(4)) {
+	case 0:	// Sunday
+	case 1:	// Monday
+	case 2:	// Tuesday
+	case 3:	// Wednesday
+	case 4:	// Thursday
+	case 5:	// Friday
+	case 6: // Saturday
+		set .pvp_square$, "pvp_n_1-5";
+		break;
+	}
+ 
+}
+ 
+moscovia.gat,229,188,4	duplicate(Ultimate PvP Warper)	Ultimate PvP Warper#1	405
+//askydun.gat,96,113,3	duplicate(Ultimate PvP Warper)	Ultimate PvP Warper#2	405 // Kliwa //Czel: This map doesn't exist yet. I'm cleaning error logs at the moment.
+alberta.gat,118,62,4	duplicate(Ultimate PvP Warper)	Ultimate PvP Warper#3	405 // Kliwa
+aldebaran.gat,147,113,1	duplicate(Ultimate PvP Warper)	Ultimate PvP Warper#4	405 // Kliwa
+amatsu.gat,123,164,3	duplicate(Ultimate PvP Warper)	Ultimate PvP Warper#5	405 // Kliwa
+ayothaya.gat,155,121,4	duplicate(Ultimate PvP Warper)	Ultimate PvP Warper#6	405 // Kliwa
+comodo.gat,215,146,4	duplicate(Ultimate PvP Warper)	Ultimate PvP Warper#7	405 // Kliwa
+einbech.gat,86,109,4	duplicate(Ultimate PvP Warper)	Ultimate PvP Warper#8	405 // Taas Kaliwa
+einbroch.gat,174,172,5	duplicate(Ultimate PvP Warper)	Ultimate PvP Warper#9	405 // Taas Kaliwa
+geffen.gat,125,67,4	duplicate(Ultimate PvP Warper)	Ultimate PvP Warper#10	405
+gonryun.gat,152,122,5	duplicate(Ultimate PvP Warper)	Ultimate PvP Warper#11	405
+hugel.gat,102,142,4	duplicate(Ultimate PvP Warper)	Ultimate PvP Warper#12	405
+izlude.gat,132,120,4	duplicate(Ultimate PvP Warper)	Ultimate PvP Warper#13	405
+lighthalzen.gat,166,101,4	duplicate(Ultimate PvP Warper)	Ultimate PvP Warper#14	405
+louyang.gat,227,102,4	duplicate(Ultimate PvP Warper)	Ultimate PvP Warper#15	405
+xmas.gat,154,136,4	duplicate(Ultimate PvP Warper)	Ultimate PvP Warper#16	405
+morocc.gat,160,101,4	duplicate(Ultimate PvP Warper)	Ultimate PvP Warper#17	405
+payon.gat,165,238,4	duplicate(Ultimate PvP Warper)	Ultimate PvP Warper#18	405
+rachel,136,106,4	duplicate(Ultimate PvP Warper)	Ultimate PvP Warper#19 	405
+veins.gat,223,127,4	duplicate(Ultimate PvP Warper)	Ultimate PvP Warper#20	405
+yuno.gat,161,174,4	duplicate(Ultimate PvP Warper)	Ultimate PvP Warper#21	405
+umbala.gat,106,159,3	duplicate(Ultimate PvP Warper)	Ultimate PvP Warper#22	405
+poring_c02,139,81,4	duplicate(Ultimate PvP Warper)	Ultimate PvP Warper#23	405
+alberta.gat,186,148,5	duplicate(Ultimate PvP Warper)	Ultimate PvP Warper#24	405
+mid_camp.gat,220,246,4	duplicate(Ultimate PvP Warper)	Ultimate PvP Warper#25	405
+splendide.gat,194,91,6	duplicate(Ultimate PvP Warper)	Ultimate PvP Warper#26	405
+manuk.gat,282,216,4	duplicate(Ultimate PvP Warper)	Ultimate PvP Warper#27	405
+brasilis.gat,202,218,3	duplicate(Ultimate PvP Warper)	Ultimate PvP Warper#28	405
+dicastes01,187,182,6	duplicate(Ultimate PvP Warper)	Ultimate PvP Warper#29	405
+jawaii,200,295,4	duplicate(Ultimate PvP Warper)	Ultimate PvP Warper#30	405
+ 
+pvp_n_1-5,97,119,5	script	Broadcaster#pvp	405,{
+
+	mes "[Broadcaster]";
+	mes "What do you want to do?";
+	next;
+	if(select("Seek some PvP action","Leave") == 1) {
+		if(pvpdelay > gettimetick(2)) {
+		mes "[Broadcaster]";
+		mes "I am sorry, but I can't do that.";
+		dispbottom "Broadcaster :Your 1 minute cooldown time has not ended.";
+		close;
+		}
+		mes "[Broadcaster]";
+		mes "Ok, here goes!";
+		announce strcharinfo(0)+" is seeking some PvP action!",8;
+		set pvpdelay, gettimetick(2) + 60; // 86400 is one day in seconds.
+		dispbottom "Broadcaster : Please wait 1 minute till you broadcast again.";
+		close;
+	}
+	mes "[Broadcaster]";
+	mes "^00DD00Couldn't take the heat huh?^000000... (^DD00005 Seconds^000000)";
+	next;
+	warp "SavePoint",0,0;
+	end;
+}
+
+//Broadcaster Duplicates
+guild_vs4.gat,46,73,5	duplicate(Broadcaster)	Broadcaster#gvg	405
+
+
+// Mapflags
+pvp_n_1-5	mapflag	pvp
+pvp_n_1-5	mapflag	nowarpto
+pvp_n_1-5	mapflag	noteleport
+pvp_n_1-5	mapflag	noreturn
+
+guild_vs4	mapflag	pvp
+guild_vs4	mapflag	nowarpto
+guild_vs4	mapflag	noteleport
+guild_vs4	mapflag	noreturn

@@ -427,6 +427,15 @@ prt_in,88,101,4	script	Chivalry Captain#knt	1_M_KNIGHTMASTER,{
 		completequest 9012;
 		callfunc "Job_Change",Job_Knight;
 		callfunc "F_ClearJobVar"; // Clears all job variables for the current player
+<<<<<<< HEAD
+=======
+		getitem 1163,1;
+		getitem 1463,1;
+		getitem 2228,1;
+		getitem 2316,1;
+		getitem 2505,1;
+		getitem 2411,1;
+>>>>>>> atherea/master
 		mes "[Captain Herman]";
 		mes "I hereby declare";
 		mes "you a member of";

@@ -1,0 +1,172 @@
+// UVP 2
+prontera.gat,167,187,3	script	Arena Warper	459,{
+	if (.pvp_square$=="") donpcevent "Arena Warper::OnClock0000";
+ 
+	mes "[Galus]";
+	mes "Do you want to test your combat skills?";
+	mes "Choose the mode you wish to enter:";
+	next;
+	switch(select("PvP Arena ["+getmapusers("pvp_n_1-5")+"/100]:GvG Arena ["+getmapusers("guild_vs4")+"/100]")) {
+
+	case 1:	// No debuff PVP Square
+		if (getmapusers("pvp_n_1-5") > 99) callsub S_full;
+		callsub S_payment;
+		warp "pvp_n_1-5",0,0;
+		end;
+
+	case 2:	// GvG Room
+		if (getmapusers("guild_vs4") > 99) callsub S_full;
+		callsub S_payment;
+		warp "guild_vs4",0,0;
+		end;
+}
+S_full:
+	mes " ";
+	mes "I'm sorry, this arena is full.  Please try again later...";
+	close;
+S_payment:
+	if (Zeny < (0*BaseLevel + 0)) {
+		mes "You don't have enough zeny.";
+		mes "It costs "+(0*BaseLevel + 0)+" zeny for you to enter.";
+		close;
+	}
+	set Zeny, Zeny - (0*BaseLevel + 0);
+	return;
+ 
+OnInit:
+	OnTimer5000:
+	delwaitingroom;
+	if(getmapusers("pvp_n_1-5") >= getmapusers("guild_vs4")){
+		waitingroom getmapusers("pvp_n_1-5")+" player"+( getmapusers("pvp_n_1-5") > 1 ? "s are":" is") +" in the PvP Room", 0;
+		goto Timer;
+		end;
+	}
+	else {
+		waitingroom getmapusers("guild_vs4")+" player"+( getmapusers("guild_vs4") > 1 ? "s are":" is") +" in the GvG Room", 0;
+		goto Timer;
+		end;
+	}
+	
+Timer:
+	initnpctimer;
+
+OnClock0000:
+	// set the "PVP Square" map, based on day of the weeek
+	switch(gettime(4)) {
+	case 0:	// Sunday
+	case 1:	// Monday
+	case 2:	// Tuesday
+	case 3:	// Wednesday
+	case 4:	// Thursday
+	case 5:	// Friday
+	case 6: // Saturday
+		set .pvp_square$, "pvp_n_1-5";
+		break;
+	}
+ 
+}
+ 
+moscovia.gat,229,188,4	duplicate(Arena Warper)	Arena Warper#1	459
+//askydun.gat,96,113,3	duplicate(Arena Warper)	Arena Warper#2	459 // Kliwa //Czel: This map doesn't exist yet. I'm cleaning error logs at the moment.
+alberta.gat,36,240,4	duplicate(Arena Warper)	Arena Warper#3	459 // Kliwa
+aldebaran.gat,147,113,1	duplicate(Arena Warper)	Arena Warper#4	459 // Kliwa
+amatsu.gat,123,164,3	duplicate(Arena Warper)	Arena Warper#5	459 // Kliwa
+ayothaya.gat,201,169,4	duplicate(Arena Warper)	Arena Warper#6	459 // Kliwa
+comodo.gat,199,147,4	duplicate(Arena Warper)	Arena Warper#7	459 // Kliwa
+einbech.gat,86,109,4	duplicate(Arena Warper)	Arena Warper#8	459 // Taas Kaliwa
+einbroch.gat,174,172,5	duplicate(Arena Warper)	Arena Warper#9	459 // Taas Kaliwa
+geffen.gat,125,67,4	duplicate(Arena Warper)	Arena Warper#10	459
+gonryun.gat,152,122,5	duplicate(Arena Warper)	Arena Warper#11	459
+hugel.gat,102,142,4	duplicate(Arena Warper)	Arena Warper#12	459
+izlude.gat,132,120,4	duplicate(Arena Warper)	Arena Warper#13	459
+lighthalzen.gat,166,101,4	duplicate(Arena Warper)	Arena Warper#14	459
+louyang.gat,227,102,4	duplicate(Arena Warper)	Arena Warper#15	459
+xmas.gat,154,136,4	duplicate(Arena Warper)	Arena Warper#16	459
+morocc.gat,160,101,4	duplicate(Arena Warper)	Arena Warper#17	459
+payon.gat,165,238,4	duplicate(Arena Warper)	Arena Warper#18	459
+rachel,136,106,4	duplicate(Arena Warper)	Arena Warper#19 	459
+veins.gat,223,127,4	duplicate(Arena Warper)	Arena Warper#20	459
+yuno.gat,161,174,4	duplicate(Arena Warper)	Arena Warper#21	459
+umbala.gat,106,159,3	duplicate(Arena Warper)	Arena Warper#22	459
+poring_c02,139,81,4	duplicate(Arena Warper)	Arena Warper#23	459
+alberta.gat,186,148,5	duplicate(Arena Warper)	Arena Warper#24	459
+mid_camp.gat,220,246,4	duplicate(Arena Warper)	Arena Warper#25	459
+splendide.gat,194,91,6	duplicate(Arena Warper)	Arena Warper#26	459
+manuk.gat,282,216,4	duplicate(Arena Warper)	Arena Warper#27	459
+brasilis.gat,202,218,3	duplicate(Arena Warper)	Arena Warper#28	459
+dicastes01,187,182,6	duplicate(Arena Warper)	Arena Warper#29	459
+jawaii,200,295,4	duplicate(Arena Warper)	Arena Warper#30	459
+dewata.gat,205,186,4	duplicate(Arena Warper)	Arena Warper#31	459 // Kliwa
+ 
+pvp_n_1-5,97,119,4	script	Galus#pvp	459,{
+
+	mes "[Broadcaster]";
+	mes "What do you want to do?";
+	next;
+	if(select("Seek some PvP action","Leave") == 1) {
+		if(pvpdelay > gettimetick(2)) {
+		mes "[Broadcaster]";
+		mes "I am sorry, but I can't do that.";
+		dispbottom "Broadcaster :Your 1 minute cooldown time has not ended.";
+		close;
+		}
+		mes "[Broadcaster]";
+		mes "Ok, here goes!";
+		announce strcharinfo(0)+" is seeking some PvP action!",8;
+		set pvpdelay, gettimetick(2) + 60; // 86400 is one day in seconds.
+		dispbottom "Broadcaster : Please wait 1 minute till you broadcast again.";
+		close;
+	}
+	mes "[Broadcaster]";
+	mes "^00DD00Couldn't take the heat huh?^000000...";
+	next;
+	warp "SavePoint",0,0;
+	end;
+}
+
+//Broadcaster GvG
+guild_vs4.gat,46,73,5	script	Galus#gvg	459,{
+
+	mes "[Broadcaster]";
+	mes "What do you want to do?";
+	next;
+	if(select("Seek some PvP action","Leave") == 1) {
+		if(pvpdelay > gettimetick(2)) {
+		mes "[Broadcaster]";
+		mes "I am sorry, but I can't do that.";
+		dispbottom "Broadcaster :Your 1 minute cooldown time has not ended.";
+		close;
+		}
+		mes "[Broadcaster]";
+		mes "Ok, here goes!";
+		announce strcharinfo(2)+" is seeking some GvG action!",8;
+		set pvpdelay, gettimetick(2) + 60; // 86400 is one day in seconds.
+		dispbottom "Broadcaster : Please wait 1 minute till you broadcast again.";
+		close;
+	}
+	mes "[Broadcaster]";
+	mes "^00DD00Couldn't take the heat huh?^000000...";
+	next;
+	warp "SavePoint",0,0;
+	end;
+}
+
+// Mapflags
+pvp_n_1-5	mapflag	pvp
+pvp_n_1-5	mapflag	nowarpto
+pvp_n_1-5	mapflag	noteleport
+pvp_n_1-5	mapflag	noreturn
+pvp_n_1-5	mapflag	nomemo
+pvp_n_1-5	mapflag	nobranch
+pvp_n_1-5	mapflag	nosave
+pvp_n_1-5	mapflag	novending
+pvp_n_1-5	mapflag	nopenalty
+
+guild_vs4	mapflag	nowarpto
+guild_vs4	mapflag	noteleport
+guild_vs4	mapflag	noreturn
+guild_vs4	mapflag	nomemo
+guild_vs4	mapflag	nobranch
+guild_vs4	mapflag	nosave
+guild_vs4	mapflag	novending
+guild_vs4	mapflag	nopenalty

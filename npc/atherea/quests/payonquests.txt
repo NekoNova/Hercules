@@ -1,0 +1,113 @@
+payon,226,266,4	script	Archer Captain	531,{
+	
+	mes "[Archer Captain]";
+	mes "Brave adventurer, could you do me a favor?";
+	mes "The monsters in Payon Caves have gotten more aggressive that usual... we sent a group of archers into the caves, but they have not yet come back.";
+	next;
+	mes "[Archer Captain]";
+	mes "We are worried, about our men and about the monsters... would you be so kind as to enter the caves and scout for them?";
+	next;
+	mes "We need somebody to kill 10 Zombies, 10 Soldier Skeleton, 10 Archer Skeletons, 15 Bonguns, and 15 Munaks, as well as find our Archers who went into the cave..";
+	mes "We would greatly appreciate your help, will you do it?";
+	next;
+	menu "Not to worry, I will investigate",-,"I am busy, another time?",notnow;
+	mes "[Archer Captain]";
+	mes "How brave of you! I pray for your safety, please return unharmed.";
+	close;
+	end;
+	
+notnow:
+	mes "[Archer Captain]";
+	mes "Not to worry, thank you for at least hearing me out.";
+	close;
+	end;
+}
+	
+pay_dun02,141,218,4	script	Dead Archer	694,{
+
+	mes "An archer... he doesn't appear to be breathing...";
+	next;
+	mes "Unfortunate, I suppose I will report back.";
+	close;
+	end;
+}
+
+payon,165,99,5	script	Payon Chief	708,{
+
+	mes "[Payon Chief]";
+	mes " + strcharinfo(0) + "! The villagers of Payon are concerned for their forests!";
+	mes "They have reported sightings of strange wooden creatures, and they have requested for somebody to go and investigate.";
+	next;
+	mes "[Payon Chief]";
+	mes " + strcharinfo(0) + ", will you take on the mission?";
+	menu "Yes, I will take it upon myself to investigate",-,"Not now.",no1;
+	next;
+	mes "[Payon Chief]";
+	mes "Thank you " + strcharinfo(0) + ", please enter the forests and bring me back 3 Trunks, 5 Fine-Grained Trunks, 10 Solid Trunks, and 15 Barren Trunks.";
+	next;
+	mes "[Payon Chief]";
+	mes "Your help is greatly appreciated, brave adventurer.";
+	close;
+	end;
+
+no1:
+	mes "[Payon Chief]";
+	mes "Alright adventurer. Please, if you change your mind.. do reconsider.";
+	close;
+	end;
+	
+}
+
+// === Learn about Suhnbi, the Enriched Refiner ===
+
+payon,191,224,4	script	Beast Clan Member	497,{
+
+	mes "[Bobert]";
+	mes " + strcharinfo(0) + "! Have you heard of Suhnbi, the Enriched Refiner?";
+	mes "They say he has never broken a single piece of equipment in all his years of refining..";
+	next;
+	mes "[" + strcharinfo(0) + "]";
+	mes "Interesting, do you know how he does it?";
+	next;
+	mes "[Bobert]";
+	mes "Unfortunately, I do not... however there is a swordsman just north of Payon.. I hear he has a weapon refined by him.";
+	next;
+	mes "Maybe you could go and talk to him? He might know more about it.";
+	close;
+	end;
+}
+	
+pay_arche,140,35,4	script	Swordsman	688,{
+
+	mes "[Alexander]";
+	mes "Hi, what are you here about?";
+	next;
+	mes "[" + strcharinfo(0) + "]";
+	mes "Are you the swordsman with a weapon refined by Suhnbi?";
+	next;
+	mes "[Alexander]";
+	mes "Why yes, I am... why are you asking?";
+	next;
+	mes "[" + strcharinfo(0) + "]";
+	mes "I would like to know how this enriched refining works... could you explain the process?;
+	next;
+	mes "[Alexander]";
+	mes "That's what you'd like to know? Well it's quite simple you see...";
+	mes "Suhnbi uses enriched ores. They are called Enriched Oridecon, and Enriched Elunium. With these ores, your equipment will not break, no matter what.";
+	next;
+	mes "[Alexander]";
+	mes "The only penalty is, if Suhnbi does fail... your equipment will be downgraded back to +0..";
+	mes "However, it's a small price to pay. You will still have your equipment at least.";
+	next;
+	mes "[Alexander]";
+	mes "Suhnbi's native town is Payon, however you can find him in various towns hanging around with the other refiners.";
+	mes "Is that all you wish to know?";
+	next;
+	mes "[" + strcharinfo(0) + "]";
+	mes "Yes, thank you for your explaination... I may go pay Suhnbi a visit in the future.";
+	next;
+	mes "[Alexander]";
+	mes "No problem my friend, I wish you luck and many overupped equipment to come!";
+	close;
+	end;
+}

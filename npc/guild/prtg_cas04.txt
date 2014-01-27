@@ -94,7 +94,11 @@ prtg_cas04,263,27,4	duplicate(InsideFlagsPR4)	Skoegul#14	GUILD_FLAG
 
 // Guild Flag (Town)
 //============================================================
+<<<<<<< HEAD
 prontera,167,203,6	duplicate(InsideFlagsPR4)	Skoegul#15	GUILD_FLAG
+=======
+prontera,159,221,4	duplicate(InsideFlagsPR4)	Skoegul#15	GUILD_FLAG
+>>>>>>> atherea/master
 
 // Kafra Employee
 //============================================================

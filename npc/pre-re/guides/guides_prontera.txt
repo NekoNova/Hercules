@@ -21,7 +21,11 @@
 //	-Thanks to Brainstorm.
 //============================================================
 
+<<<<<<< HEAD
 prontera,154,187,4	script	Guide#prt::PrtGuide	8W_SOLDIER,{
+=======
+prontera,140,181,5	script	Guide#prt::PrtGuide	8W_SOLDIER,{
+>>>>>>> atherea/master
 	cutin "prt_soldier",2;
 	mes "[Prontera Guide]";
 	mes "Welcome to Prontera,";

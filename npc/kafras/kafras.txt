@@ -66,7 +66,11 @@ aldeba_in,96,181,4	script	Kafra Service	4_F_KAFRA5,{
 		mes "and administrative functions,";
 		mes "I'll access your Storage for you.";
 		next;
+<<<<<<< HEAD
 		Zeny -= 20;
+=======
+		set Zeny, Zeny-20;
+>>>>>>> atherea/master
 		set RESRVPTS, RESRVPTS + (20/5);
 		mes "[Kafra Leilah]";
 		mes "In the future, please";
@@ -134,7 +138,11 @@ geffen,120,62,0	script	Kafra Employee::kaf_geffen	4_F_KAFRA3,{
 	mes "are always on your side.";
 	mes "So how can I help you?";
 	callfunc "F_Kafra",5,0,0,30,750;
+<<<<<<< HEAD
 	savepoint "geffen",119,40;
+=======
+	savepoint "geffen",119,67;
+>>>>>>> atherea/master
 	callfunc "F_KafEnd",0,1,"in the city of Geffen";
 }
 
@@ -243,7 +251,11 @@ prontera,152,326,3	script	Kafra Employee::kaf_prontera	4_F_KAFRA6,{
 	callfunc "F_KafEnd",0,1,"in the city of Prontera";
 }
 
+<<<<<<< HEAD
 prontera,151,29,0	script	Kafra Employee::kaf_prontera2	4_F_KAFRA3,{
+=======
+prontera,152,192,5	script	Kafra Employee::kaf_prontera2	4_F_KAFRA3,{
+>>>>>>> atherea/master
 	cutin "kafra_03",2;
 	callfunc "F_KafSet";
 	mes "[Kafra Employee]";
@@ -252,7 +264,11 @@ prontera,151,29,0	script	Kafra Employee::kaf_prontera2	4_F_KAFRA3,{
 	mes "are always on your side.";
 	mes "So how can I help you?";
 	callfunc "F_Kafra",5,0,0,40,800;
+<<<<<<< HEAD
 	savepoint "prontera",150,33;
+=======
+	savepoint "prontera",155,188;
+>>>>>>> atherea/master
 	callfunc "F_KafEnd",0,1,"in the city of Prontera";
 }
 
@@ -309,7 +325,11 @@ yuno,152,187,4	script	Kafra Employee::kaf_yuno	4_F_KAFRA8,{
 	mes "you with convenient services.";
 	mes "How may I be of assistance?";
 	callfunc "F_Kafra",5,0,0,40,800;
+<<<<<<< HEAD
 	savepoint "yuno",158,125;
+=======
+	savepoint "yuno",157,183;
+>>>>>>> atherea/master
 	callfunc "F_KafEnd",0,1,"in the city of Juno";
 }
 
@@ -382,7 +402,11 @@ comodo,195,150,4	script	Kafra Employee::kaf_comodo	4_F_KAFRA7,{
 	mes "service is always";
 	mes "on your side~";
 	callfunc "F_Kafra",5,0,1,80,1000;
+<<<<<<< HEAD
 	savepoint "comodo",204,143;
+=======
+	savepoint "comodo",188,148;
+>>>>>>> atherea/master
 	callfunc "F_KafEnd",0,1,"in the town of Comodo";
 }
 
@@ -430,7 +454,11 @@ moscovia,223,191,3	script	Kafra Employee::kaf_mosk	4_F_KAFRA4,{
 
 // Amatsu
 //============================================================
+<<<<<<< HEAD
 amatsu,102,149,4	script	Kafra Employee::kaf_amatsu	4_F_KAFRA2,{
+=======
+amatsu,123,156,3	script	Kafra Employee::kaf_amatsu	4_F_KAFRA2,{
+>>>>>>> atherea/master
 	cutin "kafra_02",2;
 	mes "[Kafra Employee]";
 	mes "Welcome to the";
@@ -439,7 +467,11 @@ amatsu,102,149,4	script	Kafra Employee::kaf_amatsu	4_F_KAFRA2,{
 	mes "always ready to serve you.";
 	mes "How can I help you today?";
 	callfunc "F_Kafra",5,3,1,50,700;
+<<<<<<< HEAD
 	savepoint "amatsu",116,94;
+=======
+	savepoint "amatsu",115,158;
+>>>>>>> atherea/master
 	callfunc "F_KafEnd",0,1,"in the city of Amatsu";
 }
 
@@ -454,7 +486,11 @@ ayothaya,212,169,5	script	Kafra Employee::kaf_ayothaya	4_F_KAFRA2,{
 	mes "always ready to serve you.";
 	mes "How can I help you today?";
 	callfunc "F_Kafra",5,3,1,50,700;
+<<<<<<< HEAD
 	savepoint "ayothaya",149,69;
+=======
+	savepoint "ayothaya",207,166;
+>>>>>>> atherea/master
 	callfunc "F_KafEnd",0,1,"in the city of Ayotaya";
 }
 
@@ -511,7 +547,11 @@ gonryun,159,122,4	script	Kafra Employee::kaf_gonryun	4_F_KAFRA2,{
 	mes "always ready to serve you.";
 	mes "How can I help you today?";
 	callfunc "F_Kafra",5,3,1,50,700;
+<<<<<<< HEAD
 	savepoint "gonryun",160,62;
+=======
+	savepoint "gonryun",160,117;
+>>>>>>> atherea/master
 	callfunc "F_KafEnd",0,1,"in the city of Kunlun";
 }
 

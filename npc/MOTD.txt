@@ -10,6 +10,10 @@
 //====================================================
 // run when any character logs in, attached to them.
 -	script	HerculesMOTD	-1,{
+<<<<<<< HEAD
 message strcharinfo(0),"Welcome to Hercules! Enjoy! Please report any bugs you find.";
+=======
+message strcharinfo(0),"Welcome to Atherea! Please report any bugs you find.";
+>>>>>>> atherea/master
 end;
 }

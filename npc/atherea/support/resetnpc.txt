@@ -1,0 +1,152 @@
+//===== Hercules Script ======================================
+//= Reset NPC
+//===== By: ==================================================
+//= Hercules Dev Team
+//===== Current Version: =====================================
+//= 1.3
+//===== Description: =========================================
+//= Resets skills, stats, or both.
+//===== Additional Comments: =================================
+//= 1.0 First Version
+//= 1.1 Optimized for the greater good. [Kisuka]
+//= 1.2 Cleaning [Euphy]
+//= 1.3 All statuses removed upon skill reset. [Euphy]
+//= 1.4 Add feature incremental price [Kichi]
+//= 1.5 Modified script to allow free reset and incrememts then on [Raziel]
+//= 1.6 Added reset stones as an alternative with item req increments [Raziel]
+//============================================================
+
+prontera,150,193,4	script	Reset Girl	940,{
+
+	set .npcname$,"Sheena:";
+	set .stoneid,6320; 
+	setarray .@stones[0], 1, 2, 3, 4, 5, 6, 7;
+	set .@stonesreq,.@stones[amountreq];
+	set .@stonesreq2,.@stones[amountreq2];
+	setarray .@skillsincrement[0],75000,150000,300000,600000,1200000,2400000;
+	set .@ResetSkill,.@skillsincrement[resetskcount];
+	setarray .@statsincrement[0],100000,200000,400000,800000,1600000,3200000;
+	set .@ResetStat,.@statsincrement[resetstcount];
+
+	mes .npcname$;
+	if( !Freereset ){
+	mes "Greetings adventurer,";
+	mes "are you satisfied with your current status and skills?";
+	mes "If you want to change it then listen on.";
+	next;
+	mes .npcname$;
+	mes "I use the power of the";
+	mes "^009900"+getitemname(.stoneid)+"^000000 to help adventurers such as yourself.";
+	mes "Of course, the more I use it on you, the more ^009900"+getitemname(.stoneid)+"s^000000 I need the perform the reset.";
+	next;
+	mes .npcname$;
+	mes "Since it is your first time.";
+	mes "I would like to offer a free reset of stats and skills.";
+	next;
+	menu "Yes, please reset my points",-,"No, maybe later.",R_later;
+	mes .npcname$;
+	mes "There you go!";
+	mes "The next time you want to reset, you may pay me in zeny for every ^009900"+getitemname(.stoneid)+"^000000 I use or you can just bring ^009900"+getitemname(.stoneid)+"^000000 that you have.";
+	specialeffect2 699;
+	set Freereset,1;
+	resetstatus;
+	resetskill;
+	close;
+	}else{
+	mes "Welcome back "+strcharinfo(0)+",";
+	mes "Would you like to pay for the ^009900"+getitemname(.stoneid)+"^000000 I have for a reset or do you have your own?";
+	next;
+	menu "Reset with Zeny",-,"Reset using Stones",R_stone;
+	mes .npcname$;
+	mes "Please choose if you want to reset your stats or skills. In your current state you will have to pay,";
+	mes "^FF3355"+ .@ResetStat +"^000000zeny for a stat reset.";
+	mes "^FF3355"+ .@ResetSkill +"^000000zeny for a skill reset.";
+	next;
+	switch(select("^FF3355Reset Stats:Reset Skills^000000:Nevermind")) {
+	case 1:
+		mes .npcname$;
+		if (Zeny < .@ResetStat) {
+		mes "It looks like you don't have enough Zeny.";
+		close;
+		}
+		set Zeny, Zeny-.@ResetStat;
+		sc_end SC_ALL;
+		resetstatus;
+		if (resetstcount <= (getarraysize(.@statsincrement)-2))set resetstcount,resetstcount+1;
+		specialeffect2 875;
+		mes "There you go "+strcharinfo(0)+"!";
+		close;
+
+	case 2:
+		mes .npcname$;
+		if (Zeny < .@ResetSkill) {
+		mes "It looks like you don't have enough Zeny.";
+		close;
+		}
+		set Zeny, Zeny-.@ResetSkill;
+		sc_end SC_ALL;
+		resetskill;
+		if (resetskcount <= (getarraysize(.@skillsincrement)-2))set resetskcount,resetskcount+1;
+		specialeffect2 875;
+		mes "There you go "+strcharinfo(0)+"!";
+		close;
+	case 3:
+		mes .npcname$;
+		mes "You know where to find me if you change your mind.";
+		close;
+	}
+
+R_stone:
+	mes .npcname$;
+	mes "It isn't easy to get ^009900"+getitemname(.stoneid)+"^000000.";
+	mes "I bet you got the pure and rare ones.";
+	mes "I can harness it's powers to peform a reset for you.";
+	next;
+	mes .npcname$;
+	mes "In your current state I will need:";
+	mes ""+.@stonesreq+" "+getitemname(.stoneid)+" to reset your stats.";
+	mes ""+.@stonesreq2+" "+getitemname(.stoneid)+" to reset your skills.";
+	next;
+	switch(select("^FF3355Reset my Stats:Reset my Skills^000000:Nevermind")) {
+	case 1:
+		mes .npcname$;
+		if(countitem(.stoneid) >= .@stonesreq) {
+		delitem .stoneid,.@stonesreq;
+		sc_end SC_ALL;
+		resetstatus;
+		if (amountreq <= (getarraysize(.@stones)-2))set amountreq,amountreq+1;
+		specialeffect2 875;
+		mes "There you go "+strcharinfo(0)+"!";
+		close;
+		}
+		else {
+		mes "You do not have enough ^009900"+getitemname(.stoneid)+"s^000000";
+		close;
+		}
+	case 2:
+		mes .npcname$;
+		if(countitem(.stoneid) >= .@stonesreq2) {
+		delitem .stoneid,.@stonesreq2;
+		sc_end SC_ALL;
+		resetskill;
+		if (amountreq2 <= (getarraysize(.@stones)-2))set amountreq2,amountreq2+1;
+		specialeffect2 875;
+		mes "There you go "+strcharinfo(0)+"!";
+		close;
+		}
+		else {
+		mes "You do not have enough ^009900"+getitemname(.stoneid)+"s^000000";
+		close;
+		}
+	case 3:
+		mes .npcname$;
+		mes "You know where to find me if you change your mind.";
+		close;
+		}
+
+R_later:
+	mes .npcname$;
+	mes "Come back when you change your mind.";
+	close;
+}
+}

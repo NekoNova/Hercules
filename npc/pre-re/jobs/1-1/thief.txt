@@ -430,6 +430,15 @@ moc_prydb1,42,133,2	script	Comrade	2_M_THIEFMASTER,{
 		if (countitem(1070) != 0) delitem 1070,countitem(1070); //Mushroom_Of_Thief_2
 		callfunc "Job_Change",Job_Thief;
 		callfunc "F_ClearJobVar";
+<<<<<<< HEAD
+=======
+		getitem 2224,1;
+		getitem 1204,1;
+		getitem 2303,1;
+		getitem 2501,1;
+		getitem 2401,1;
+		getitem 2101,1;
+>>>>>>> atherea/master
 		completequest 1013;
 		next;
 		mes "[Comrade]";
@@ -443,7 +452,11 @@ moc_prydb1,42,133,2	script	Comrade	2_M_THIEFMASTER,{
 		next;
 		mes "[Brad]";
 		mes "Here is a small subsidy for a Newbie like you. Spend it whereever you want. Alright then, I'll see you around~";
+<<<<<<< HEAD
 		Zeny += .@money_thief;
+=======
+		set Zeny, Zeny+.@money_thief;
+>>>>>>> atherea/master
 		close;
 	}
 }

@@ -1,0 +1,72 @@
+//Demon Story
+niflheim,212,169,1	script	Demon	726,{
+	//check transcent class
+	if((!UPPER)||(UPPER==2)){mes "What are you doing here? Get away, or I'll eat you.";}
+	mes "Hello powerful one... have you come here to join the demons?";
+	switch(select("Yes.","No.")){
+		case 1:
+			mes "I see.. are you sure you know what you're getting into? You must be a truely evil one..";
+			mes "Demons are born of evil and feast on the souls of the pure. We have powers no others can compare with.";
+			next;
+			mes "If you truely understand what being a demon is, then I won't stop you.";
+			mes "But I will ask again, would you like to be a demon, or continue living a normal life?" ;
+			close;
+			
+		case 2:
+			mes "I ask you again";
+		switch(select("No, I'd like to live normally.","Yes, I want join the Demons.")){
+			case 1:
+				mes "Wise decision, now leave before I decide to eat you.";
+				close;
+			case 2:
+				mes "Then I will take you to the clan leader. The Demon Goddess.";
+					warp "1@def03",79,71;
+				break;
+		
+		}
+	}
+}
+
+1@def03,80,106,4	script	DemonLeader	863,{
+	mes "So.. you really want to be come a demon? How brave of you.";
+	mes "You are exceptionally strong, I feel you will reap many souls to come.";
+	mes "With your help... we will be one step closer to reaching our goal...";
+	mes "of reaching the fabled land ^778877Atherea^000000.";
+	mes "So, you would really like to join us demons?";
+	switch(select("No, i'd like to live normally","Yes, I want join the Demons")){
+		case 1:
+			mes "Unfortunate.. I guess you really don't have what it takes.";
+			warp "niflheim",210,169;
+			close;
+		case 2:
+			mes "Welcome to the clan. To recieve your clan missions talk to the lost soul in Nifleheim.";
+			warp "niflheim",210,169;
+			close;
+	
+	}
+
+}
+
+
+bossnia_03,127,53,4	script	DemonTestSpawn	863,{
+
+
+set .num,5;
+monster "bossnia_03",133,55,"TRUE",1257,.num,strnpcinfo(0)+"::OnMyMobDead";
+monster "bossnia_03",139,55,"WRONG",1257,.num,strnpcinfo(0)+"::OnMyMobDead2";
+end;
+OnMyMobDead:
+	set .num,.num-1;
+	mapannounce "bossnia_03"," "+.num+" target left",bc_all;
+	if (.num<=0
+	mapannounce "congratulations "+strcharinfo(0)+" you've finish the test",bc_all;
+	killmonsterall "bossnia_03";
+	}
+end;
+OnMyMobDead2:
+	set .num,.num-1;
+	mapannounce "bossnia_03"," You kill the wrong target, the test is over",bc_all;
+	killmonsterall "bossnia_03";
+end;
+
+}

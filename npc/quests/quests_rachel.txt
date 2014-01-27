@@ -244,6 +244,10 @@ ra_in01,384,246,3	script	Vincent#ra_in01	1_M_01,{
 		mes "["+strcharinfo(0)+"]";
 		mes "You won't get in trouble";
 		mes "if I can find the jewel and";
+<<<<<<< HEAD
+=======
+
+>>>>>>> atherea/master
 		mes "Phobe before Sir Zhed";
 		mes "returns, so I'll try to find";
 		mes "them for you as soon as I can.";
@@ -3773,10 +3777,17 @@ OnInit:
 //============================================================
 ra_temple,119,180,0	script	Temple Entrance#ra_tem	WARPNPC,1,1,{
 OnTouch:
+<<<<<<< HEAD
 	if ($rachel_donate >= 10000) {
 		if (MISC_QUEST & 8192) { warp "ra_temin",169,23; end; }
 
 		if (ra_tem_q < 10) {
+=======
+	if (ra_have_donated == 1) {
+		if (MISC_QUEST & 8192) { warp "ra_temin",169,23; end; }
+
+		if (ra_tem_q < 14) {
+>>>>>>> atherea/master
 			mes "^3355FFThe temple's";
 			mes "entrance is locked.^000000";
 			next;
@@ -3786,6 +3797,7 @@ OnTouch:
 			mes "Please don't do that!";
 			close;
 		}
+<<<<<<< HEAD
 	}
 	warp "ra_temin",169,23;
 	end;
@@ -4146,11 +4158,98 @@ ra_temple,116,174,3	script	Nemma#ra_temple	4_F_TRAINEE,{
 		}
 		goto L_End;
 	}
+=======
+	warp "ra_temin",169,23;
+	end;
+	}
+}
+
+ra_temple,116,174,3	script	Nemma#ra_temple	4_F_TRAINEE,{
+	if(ra_have_donated == 0) {
+		// User has not donated 250k yet to the NPC, so ask the user to donate this money.
+		cutin "ra_nemma03",2;
+		mes "[Priestess Nemma]";
+		mes "Good day, adventurer.";
+		mes "May I ask what brings";
+		mes "you to the temple today?";
+		next;
+		
+		if (select("Just sight-seeing.:I want to explore the sanctuary.") == 1) {
+			// User is sight-seeing
+			cutin "ra_nemma01",2;
+			mes "[Priestess Nemma]";
+			mes "I guess most foreigners";
+			mes "aren't familiar with our";
+			mes "faith, so I suppose they";
+			mes "wouldn't come here to pray...";
+			mes "Well, I hope you enjoy your";
+			mes "time here, adventurer.";
+			goto L_End;
+		}
+		
+		// User wants to enter the dungeon, ask for the 250k donation.
+		mes "[Priestess Nemma]";
+		mes "That can be arranged, but this requires";
+		mes "a one-time donation of 250,000 zeny.";
+		mes "Are you okay with this?";
+		next;
+
+		if (select("No, thanks.:Sure.") == 1) {
+			// User does not want to donate.
+			cutin "ra_nemma01",2;
+			mes "[Priestess Nemma]";
+			mes "I understand. Well,";
+			mes "maybe some other time.";
+			mes "May Freya bless you on";
+			mes "all your journeys. May the";
+			mes "grace of the goddess always";
+			mes "support us in all that we do~";
+			goto L_End;
+		}
+		
+		mes "[Priestess Nemma]";
+		if (Zeny >= 250000) {
+			// Player has more than 250,000 zeny.
+			// set the quest flag and the variable so that it looks like the
+			// player has completed the total quest chain and his quest log
+			// is updated by the high priest.
+			Zeny -= 250000;
+			set ra_have_donated,1;				
+			//set MISC_QUEST,MISC_QUEST | 8192;
+			//set ra_tem_q,0;			
+			set ra_tem_q,14;
+			mes "You have permission to enter the Sanctuary.";
+			mes "Oh, let me pray";
+			mes "for your good fortune!";
+			next;
+			mes "^3355FFPriestess Nemma prayed";
+			mes "fervently for your good";
+			mes "fortune. It feels like";
+			mes "it's actually working...^000000";
+
+		} else {
+			mes "Oh, I see. Well, if you";
+			mes "don't have enough zeny with";
+			mes "you, then you can just come";
+			mes "back and pay later. Our";
+			mes "goddess Freya smiles on the";
+			mes "generous and rewards the patient!";
+		}
+	} else {
+		// User has donated 250k to the NPC.
+		cutin "ra_nemma01",2;
+		mes "[Priestess Nemma]";
+		mes "Welcome to our temple!";
+	}
+		
+	goto L_End;
+>>>>>>> atherea/master
 
 L_End:
 	close2;
 	cutin "",255;
 	end;
+<<<<<<< HEAD
 
 S_Donate:
 	cutin "ra_nemma01",2;
@@ -4237,6 +4336,8 @@ S_Donate:
 		mes "Well, maybe another time, yes?";
 		return;
 	}
+=======
+>>>>>>> atherea/master
 }
 
 rachel,243,37,3	script	Kid#Candy Addict	4_M_CHILD1,{

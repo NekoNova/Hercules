@@ -22,7 +22,23 @@ tha_t01,150,150,0	warp	WarpThana1a	1,1,tha_t02,149,130
 tha_t02,149,125,0	warp	WarpThana1b	1,1,tha_t01,150,145
 
 // Thanatos Tower Level 2 (tha_t02)
+<<<<<<< HEAD
 tha_t03,217,165,0	warp	WarpThana2a	1,1,tha_t02,227,157
+=======
+tha_t03,217,165,0	script	WarpThana2a	WARPNPC,1,1,{
+OnTouch:
+	mes "[Burled]";
+	mes "Hello "+strcharinfo(0)+"!";
+	mes "Are you sure you want to exit?";
+	if(select("No:Yes") == 1) {
+		close;
+	} else {
+		close2;
+		warp "tha_t02",227,157;
+		end;
+	}
+}
+>>>>>>> atherea/master
 
 // Thanatos Tower Level 3 (tha_t03)
 tha_t03,59,140,0	warp	WarpThana3a	1,1,tha_t04,60,142

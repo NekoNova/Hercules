@@ -1,0 +1,136 @@
+invek,151,172,3	script	Player Manager	904,{
+set .@n$,"[Player Manager]";
+
+mes .@n$;
+mes "Hello, "+strcharinfo(0);
+mes "I can change you settings";
+mes "for autoloot and #channels.";
+mes "Please select the setting you want to change.";
+menu "Autoloot ["+( (login_loot)? "^00BB22On^000000" : "^FF2200Off^000000")+"]",auto_loot,
+	 "Main Channel ["+( (login_main)? "^00BB22On^000000" : "^FF2200Off^000000")+"]",main_chat,
+	 "Trade Channel ["+( (login_trade)? "^00BB22On^000000" : "^FF2200Off^000000")+"]",trade_chat,
+	 "Show Expereince ["+( (login_sexp)? "^00BB22On^000000" : "^FF2200Off^000000")+"]",show_exp,
+	 "NO Kill Steal ["+( (login_nks)? "^00BB22On^000000" : "^FF2200Off^000000")+"]",no_ks;
+
+	auto_loot:
+	next;
+	mes .@n$;
+	mes "Status: "+( (login_loot) ? "^00BB22On^000000" : "^FF2200Off^000000");
+	menu "I want to "+((!login_loot) ? "^00BB22enable^000000" : "^FF2200disable^000000")+" it.",-,"Nothing",L_quit;
+
+	next;
+	mes .@n$;
+	if(login_loot == 0) {
+		mes "Autoloot is now ^00BB22On^000000.";
+		set login_loot,1;
+		atcommand "@autoloot";
+		
+	} else if(login_loot == 1) {
+		mes "Autoloot is now ^FF2200Off^000000.";
+		set login_loot,0;
+		atcommand "@autoloot";
+	}
+	close;
+	
+	main_chat:
+	next;
+	mes .@n$;
+	mes "Status: "+( (login_main) ? "^00BB22On^000000" : "^FF2200Off^000000");
+	menu "I want to "+((!login_main) ? "^00BB22enable^000000" : "^FF2200disable^000000")+" it.",-,"Nothing",L_quit;
+
+	next;
+	mes .@n$;
+	if(login_main == 0) {
+		mes "Main Chat is now ^00BB22On^000000.";
+		set login_main,1;
+		atcommand "@join #main";
+		
+	} else if(login_main == 1) {
+		mes "Main Chat is now ^FF2200Off^000000.";
+		set login_main,0;
+	}
+	close;
+	
+	trade_chat:
+	next;
+	mes .@n$;
+	mes "Status: "+( (login_trade) ? "^00BB22On^000000" : "^FF2200Off^000000");
+	menu "I want to "+((!login_trade) ? "^00BB22enable^000000" : "^FF2200disable^000000")+" it.",-,"Nothing",L_quit;
+
+	next;
+	mes .@n$;
+	if(login_trade == 0) {
+		mes "Trade Chat is now ^00BB22On^000000.";
+		set login_trade,1;
+		atcommand "@join #trade";
+		
+	} else if(login_trade == 1) {
+		mes "Trade Chat is now ^FF2200Off^000000.";
+		set login_trade,0;
+	}
+	close;
+
+	show_exp:
+	next;
+	mes .@n$;
+	mes "Status: "+( (login_sexp) ? "^00BB22On^000000" : "^FF2200Off^000000");
+	menu "I want to "+((!login_sexp) ? "^00BB22enable^000000" : "^FF2200disable^000000")+" it.",-,"Nothing",L_quit;
+
+	next;
+	mes .@n$;
+	if(login_sexp == 0) {
+		mes "Experience gained display is now ^00BB22On^000000.";
+		set login_sexp,1;
+		atcommand "@showexp";
+		
+	} else if(login_sexp == 1) {
+		mes "Experience gained display is now ^FF2200Off^000000.";
+		set login_sexp,0;
+		atcommand "@showexp";
+	}
+	close;
+
+	no_ks:
+	next;
+	mes .@n$;
+	mes "Status: "+( (login_nks) ? "^00BB22On^000000" : "^FF2200Off^000000");
+	menu "I want to "+((!login_nks) ? "^00BB22enable^000000" : "^FF2200disable^000000")+" it.",-,"Nothing",L_quit;
+
+	next;
+	mes .@n$;
+	if(login_nks == 0) {
+		mes "Kill Steal protection is now ^00BB22On^000000.";
+		set login_nks,1;
+		atcommand "@noks self";
+		
+	} else if(login_nks == 1) {
+		mes "Kill Steal protection is now ^FF2200Off^000000.";
+		set login_nks,0;
+		atcommand "@noks self";
+	}
+	close;
+	
+	L_quit:
+	next;
+	mes .@n$;
+	mes "See ya.";
+	close;
+
+OnPCLoginEvent:
+if(login_loot == 1)	{
+	atcommand "@autoloot";
+}
+if(login_main == 1) {
+	atcommand "@join #main";
+}
+if(login_trade == 1) {
+	atcommand "@join #trade";
+}
+if(login_sexp == 1) {
+	atcommand "@showexp";
+}
+if(login_nks == 1) {
+	atcommand "@noks self";
+}
+end;
+}

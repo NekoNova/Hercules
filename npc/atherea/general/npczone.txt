@@ -1,0 +1,64 @@
+//---- warper to Wolf Castle area ----
+prontera,147,174,5	script	Natsumi#enter	758,{
+cutin "jpn_natsumi01",2;
+mes "[Natsumi]";
+mes "Hello, I'm a representative of";
+mes "the new town where you will ";
+mes "find several quests and ";
+mes "item reward shops.";
+next;
+mes "[Natsumi]";
+mes "Would you like me to take you there?";
+next;
+menu	"Sure.",-,
+	"No, thank you",L_seeya;
+
+cutin "jpn_natsumi02",2;
+mes "[Natsumi]";
+mes "Here you go adventurer.";
+close2;
+cutin "", 255;
+warp "invek.gat",146,163;
+end;
+
+
+L_seeya:
+cutin "jpn_natsumi05",2;
+mes "[Natsumi]";
+mes "Come back if you change your mind.";
+close2;
+cutin "", 255;
+}
+
+//Exit Warper
+invek,137,165,5	script	Natsumi#exit	758,{
+cutin "jpn_natsumi01",2;
+mes "[Natsumi]";
+mes "Would you like me to take you back to Prontera?";
+next;
+menu	"Yes, please",-,
+	"No, I'm staying",L_seeya2;
+
+cutin "jpn_natsumi02",2;
+mes "[Natsumi]";
+mes "Here you go adventurer.";
+close2;
+cutin "", 255;
+warp "prontera.gat",155,186;
+end;
+
+
+L_seeya2:
+cutin "jpn_natsumi05",2;
+mes "[Natsumi]";
+mes "Let me know if you want to head back.";
+close2;
+cutin "", 255;
+}
+
+invek	mapflag	novending
+invek	mapflag	nopenalty
+invek	mapflag	noteleport
+invek	mapflag	nobranch
+invek	mapflag	nightenabled
+invek	mapflag	town

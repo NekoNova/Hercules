@@ -1,0 +1,23 @@
+-	script	xmasmobevent	-1,{
+
+OnMinute45:
+	announce "The Xmas Crystals have appeared in Prontera! Break the crystals for your Xmas gifts!",0;
+	sleep2 5000;
+	monster "prontera.gat",0,0,"Christmas Crystal",1951,5;
+	monster "prontera.gat",0,0,"Christmas Crystal",1952,5;
+	monster "prontera.gat",0,0,"Christmas Crystal",1953,5;
+	monster "prontera.gat",0,0,"Christmas Crystal",1954,5;
+	monster "prontera.gat",0,0,"Christmas Crystal",1877,5;
+	end;
+
+OnMinute15:
+	announce "The Xmas Crystals have appeared in Lutie! Break the crystals for your Xmas gifts!",0;
+	sleep2 5000;
+	monster "xmas.gat",0,0,"Christmas Crystal",1951,5;
+	monster "xmas.gat",0,0,"Christmas Crystal",1952,5;
+	monster "xmas.gat",0,0,"Christmas Crystal",1953,5;
+	monster "xmas.gat",0,0,"Christmas Crystal",1954,5;
+	monster "xmas.gat",0,0,"Christmas Crystal",1877,5;
+	end;
+
+}

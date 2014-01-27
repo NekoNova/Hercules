@@ -56,6 +56,7 @@ alde_dun03,171,127,4	script	ald015r	WARPNPC,1,1,{
 		case 2: warp "c_tower3",235,7; end;
 	}
 }
+<<<<<<< HEAD
 alde_dun04,80,273,0	warp	aldd016	2,2,alde_dun03,263,26
 alde_dun04,207,225,0	warp	ald017	1,1,c_tower3,7,34
 alde_dun04,215,192,0	warp	ald018	1,1,c_tower2,148,283
@@ -63,11 +64,82 @@ alde_dun04,32,74,0	warp	aldd19	1,1,alde_dun02,187,239
 alde_dun04,208,58,0	warp	aldd20	2,2,alde_dun04,268,74
 alde_dun04,272,74,0	warp	aldd021	2,2,alde_dun04,204,62
 alde_dun04,80,34,4	script	ald022r	WARPNPC,1,1,{
+=======
+//============================================================
+//= underground ==============================================
+alde_dun04,208,58,0	warp	aldd20	2,2,alde_dun04,268,74
+alde_dun04,272,74,0	warp	aldd021	2,2,alde_dun04,204,62
+alde_dun04,80,273,0	script	aldd016	WARPNPC,1,1,{
+OnTouch:
+	mes "[Gatekeeper Boy]";
+	mes "Hello "+strcharinfo(0)+"!";
+	mes "Are you sure you want to exit?";
+	if(select("No:Yes") == 1) {
+		close;
+	} else {
+		close2;
+		warp "alde_dun03",263,26;
+		end;
+	}
+}
+alde_dun04,207,225,0	script	ald017	WARPNPC,1,1,{
+OnTouch:
+	mes "[Gatekeeper Boy]";
+	mes "Hello "+strcharinfo(0)+"!";
+	mes "Are you sure you want to exit?";
+	if(select("No:Yes") == 1) {
+		close;
+	} else {
+		close2;
+		warp "c_tower3",7,34;
+		end;
+	}
+}
+alde_dun04,215,192,0	script	ald018	WARPNPC,1,1,{
+OnTouch:
+	mes "[Gatekeeper Boy]";
+	mes "Hello "+strcharinfo(0)+"!";
+	mes "Are you sure you want to exit?";
+	if(select("No:Yes") == 1) {
+		close;
+	} else {
+		close2;
+		warp "c_tower2",148,283;
+		end;
+	}
+}
+alde_dun04,32,74,0	script	aldd19	WARPNPC,1,1,{
+OnTouch:
+	mes "[Gatekeeper Boy]";
+	mes "Hello "+strcharinfo(0)+"!";
+	mes "Are you sure you want to exit?";
+	if(select("No:Yes") == 1) {
+		close;
+	} else {
+		close2;
+		warp "alde_dun02",187,239;
+		end;
+	}
+}
+alde_dun04,80,34,4	script	ald022r	WARPNPC,1,1,{
+OnTouch:
+	mes "[Gatekeeper Boy]";
+	mes "Hello "+strcharinfo(0)+"!";
+	mes "Are you sure you want to exit?";
+	if(select("No:Yes") == 1) {
+		close;
+	} else {
+		close2;
+>>>>>>> atherea/master
 	switch(rand(4)) {
 		case 0: warp "c_tower2",13,282; end;
 		case 1: warp "alde_dun03",175,131; end;
 		case 2: warp "c_tower3",235,7; end;
 		case 3: warp "alde_dun04",84,36; end;
+<<<<<<< HEAD
+=======
+		}
+>>>>>>> atherea/master
 	}
 }
 //============================================================

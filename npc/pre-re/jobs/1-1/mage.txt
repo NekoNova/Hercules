@@ -207,7 +207,16 @@ geffen_in,164,124,4	script	Mage Guildsman	2_F_MAGICMASTER,{
 		next;
 		callfunc "Job_Change",Job_Mage;
 		callfunc "F_ClearJobVar";
+<<<<<<< HEAD
 		Zeny += 50;
+=======
+		getitem 2232,1;
+		getitem 1601,1;
+		getitem 2501,1;
+		getitem 2401,1;
+		getitem 2101,1;
+		set Zeny,Zeny+50;
+>>>>>>> atherea/master
 		if(checkquest(1005) != -1) {
 			completequest 1005;
 		}

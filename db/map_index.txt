@@ -997,9 +997,48 @@ c_tower3_
 //test
 
 //======================================================================================
+<<<<<<< HEAD
 //Place your custom maps with a starting ID here.
 //======================================================================================
 //Example:
 //
 //mymap	1250
 //mymap-2
+=======
+//Place Atherea custom maps with a starting ID here.
+//======================================================================================
+
+invek	1250
+moonhaven	1251
+vip	1252
+wolfmap1	1253
+Altzibar	1254
+crystilia	1255
+Flaris	1256
+hellfire	1257
+ilyo_kwan	1258
+Jazeera	1259
+Lunette	1260
+market	1261
+royal_room3	1262
+warcage	1263
+Welgaia	1264
+event_01	1265
+athr_cav	1266
+sm_pri	1267
+lunar01	1268
+neko_isle	1269
+celestiaj	1270
+aev_fild	1271
+league	1272
+bastion01	1273
+eden	1274
+eden_dun01	1275
+eden_dun02	1276
+eden_dun03	1277
+eden_fild01	1278
+eden_fild02	1279
+eden_fild03	1280
+eden_in01	1281
+eden_pvp	1282
+>>>>>>> atherea/master

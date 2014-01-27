@@ -1,0 +1,81 @@
+// ---            ARTHistic's Property            ---
+// ---    Please visit http://thdesigns.co.nr     ---
+// ---           Scripted By: ARTHistic           ---
+// ---         Do Not Revomed the Credits         ---
+
+-	script	Ather Chest Spawn	-1,{
+
+OnClock0001:
+OnClock0200:
+OnClock0400:
+OnClock0600:
+OnClock0800:
+OnClock1000:
+OnClock1200:
+OnClock1400:
+OnClock1600:
+OnClock1800:
+OnClock2000:
+OnClock2200:
+	switch(rand(1,9)){
+	
+	case 1: //Prontera
+		announce "A rare Ather Chest has appeared in Prontera town. Find it and open it for your reward.",0;
+		sleep2 5000;
+		monster "prontera.gat",0,0,"Ather Chest",1845,1,"Ather Chest Spawn::OnTBoxKilled";
+		end;
+
+	case 2: //Payon
+		announce "A rare Ather Chest has appeared in Payon town. Find it and open it for your reward.",0;
+		sleep2 5000;
+		monster "payon.gat",0,0,"Ather Chest",1845,1,"Ather Chest Spawn::OnTBoxKilled";
+		end;
+		
+	case 3: //Rachel
+		announce "A rare Ather Chest has appeared in Rachel town. Find it and open it for your reward.",0;
+		sleep2 5000;
+		monster "rachel.gat",0,0,"Ather Chest",1845,1,"Ather Chest Spawn::OnTBoxKilled";
+		end;
+		
+	case 4: //Veins
+		announce "A rare Ather Chest has appeared in Veins town. Find it and open it for your reward.",0;
+		sleep2 5000;
+		monster "veins.gat",0,0,"Ather Chest",1845,1,"Ather Chest Spawn::OnTBoxKilled";
+		end;
+		
+	case 5: //Prontera
+		announce "A rare Ather Chest has appeared in Prontera town. Find it and open it for your reward.",0;
+		sleep2 5000;
+		monster "prontera.gat",0,0,"Ather Chest",1845,1,"Ather Chest Spawn::OnTBoxKilled";
+		end;
+		
+	case 6: //Lutie
+		announce "A rare Ather Chest has appeared in Lutie town. Find it and open it for your reward.",0;
+		sleep2 5000;
+		monster "xmas.gat",0,0,"Ather Chest",1845,1,"Ather Chest Spawn::OnTBoxKilled";
+		end;
+	
+	case 7: //gonryun
+		announce "A rare Ather Chest has appeared in Gonryun town. Find it and open it for your reward.",0;
+		sleep2 5000;
+		monster "gonryun.gat",0,0,"Ather Chest",1845,1,"Ather Chest Spawn::OnTBoxKilled";
+		end;
+		
+	case 8: //dewata
+		announce "A rare Ather Chest has appeared in Dewata town. Find it and open it for your reward.",0;
+		sleep2 5000;
+		monster "dewata.gat",0,0,"Ather Chest",1845,1,"Ather Chest Spawn::OnTBoxKilled";
+		end;
+		
+	case 9: //Prontera
+		announce "A rare Ather Chest has appeared in Prontera town. Find it and open it for your reward.",0;
+		sleep2 5000;
+		monster "prontera.gat",0,0,"Ather Chest",1845,1,"Ather Chest Spawn::OnTBoxKilled";
+		end;
+	}
+		
+OnTBoxKilled:
+	announce "Atherea: "+strcharinfo(0)+" has opened the rare Ather Chest !",0;
+	getitem 7000, 1;
+	end;
+}

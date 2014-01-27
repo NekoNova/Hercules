@@ -419,6 +419,14 @@ gef_tower,111,37,4	script	Wizard Guildsman	1_F_GYPSY,{
 		completequest 9018;
 		callfunc "Job_Change",Job_Wizard;
 		callfunc "F_ClearJobVar";		// clears all job variables for the current player
+<<<<<<< HEAD
+=======
+		getitem 2403,1;
+		getitem 2503,1;
+		getitem 1611,1;
+		getitem 2333,1;
+		getitem 2252,1;
+>>>>>>> atherea/master
 		mes "[Catherine]";
 		mes "Since you're a Wizard now, act like a Wizard, got it?";
 		mes "Us wizards have to be careful since we possess the ultimate power of magic.";

@@ -1,0 +1,53 @@
+moro_cav,51,70,3	script	Spirit	802,{
+	
+	mes "[Spirit]";
+	mes "Another eon has passed since I have been summoned into this world.";
+	next;
+	mes "Greetings " + strcharinfo(0) + ", I'm ^5EAE9EElys^000000, a spirit of Atherea and I have come here to answer your calling.";
+	next;
+	mes "[" + strcharinfo(0) + "]";
+	mes "How do you know my name and what do you mean by answer my calling?";
+	next;
+	mes "[Elys]";
+	mes "Ahh, I see that you have no knowledge of who you really are and your true purpose. The course of time has changed so much for your kind to have lost faith in the ancient promises.";
+	next;
+	menu "Enlighten me Elys.",-,"I've heard enough. Lead the way Elys.",L_exit;
+	mes "[Elys]";
+	mes "You seem rather unsure of how and why you have summoned me to this ghastly place. I'm a spirit that dwells in the sacred lands of Atherea, far beyond the high heavens and I've long waited this day when you would call for me.";
+	next;
+	mes "[" + strcharinfo(0) + "]";
+	mes "But... Why me? What is this place you speak of?";
+	next;
+	mes "[Elys]";
+	mes "I understand that you have a lot of questions " +strcharinfo(0) + ". Allow me to guide you in your journey, for the answers you seek lies in the path ahead. I shall take you to a place where you might be able to start looking for answers.";
+	next;
+	mes "[" + strcharinfo(0) + "]";
+	mes "Alright Elys... lead the way.";
+	next;
+	goto L_exit;
+	end;
+
+L_exit:
+	warp "new_1-1",49,110;
+	close;
+	end;
+}
+
+
+new_1-1,49,110,1	script	Spirit#new	111,1,1,{
+	mes "[Elys]";
+	mes "I know you might be wondering why I have brought you here " + strcharinfo(0) + ". Your will is not strong enough for you to go any further.";
+	next;
+	mes "[Elys]";
+	mes "You need to train yourself and learn to defend yourself from harms way. Our journey will be difficult and you need to be prepared for it.";
+	next;
+	mes "[Elys]";
+	mes "Choose your path wisely " + strcharinfo(0) + ", as it is you who is will to carve the fate of this world.";
+	next;
+	mes "[" + strcharinfo(0) + "]";
+	mes "When will I find these answers you speak of Elys?";
+	next;
+	mes "[Elys]";
+	mes "In due time " + strcharinfo(0) + "... in due time...";
+	close;
+}

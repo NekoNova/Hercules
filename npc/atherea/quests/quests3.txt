@@ -1,0 +1,1050 @@
+
+// === Meet with the Refiner, the Socket Enchanter, and the Hidden Enchanter ===
+// These NPCs are also pre-existing. Add the messages to their script.
+// Quest will start with Hollgrehenn
+
+//the real location of this NPC is prt_in 63,60, it has been changed for testing purposes.
+prontera,157,184,1	script	Hollgrehenn	85,{
+
+	if (@questpront2==1){
+		mes "[Hollgrehenn]";
+		mes "Hello " + strcharinfo(0) + ", I am the refiner of Prontera. Hollgrehenn is my name.";
+		mes "You may have heard of me.";
+		next;
+		mes "[Hollgrehenn]";
+		mes "So I see you'd like to refine something huh? Well, would you like to know how it's done?";
+		next;
+		menu "Yes, please explain!",-,"No thanks, please move on.",continue1;
+		mes "[Hollgrehenn]";
+		mes "I see, you're hungry for knowledge aren't you?";
+		mes "Well, it's simple.";
+		next;
+		mes "[Hollgrehenn]";
+		mes "Refining level 1 weapons is safe until +7. It uses Pharcon.";
+		mes "Refining level 2 weapons is safe until +6. It uses Emveretarcon.";
+		next;
+		mes "[Hollgrehenn]";
+		mes "Refining level 3 weapons is safe until +5. It uses Oridecon.";
+		mes "Refining level 4 weapons is safe until +4. It uses Oridecon as well.";
+		next;
+		mes "[Hollgrehenn]";
+		mes "For each refine, your weapons ATK will increase, but be careful, refining above the safe limit is dangerous and could break your weapon.";
+		mes "We are not liable for any broken equipment, it is at your own risk.";
+		next;
+		mes "[Hollgrehenn]";
+		mes "Armor is a little different. All of it is safe until +4, and it uses Elunium.";
+		mes "Over upgrading your armor will give you bonus DEF.";
+		mes "Also, as a general note beware if your equipment is broken, any card slotted inside will not be returned.";
+		next;
+		mes "[Hollgrehenn]";
+		mes "With that, I believe that is all I have to tell you.";
+		mes "I will now refer you to Seiyablem who is in the next room on your left. He will tell you about socket enchanting.";
+		set @questpront2,2;
+		close;
+		end;
+	
+	continue1:
+		mes "[Hollgrehenn]";
+		mes "Fair enough.";
+		mes "I will now refer you to Seiyablem who is in the next room on your left. He will tell you about socket enchanting.";
+		set @questpront2,2;
+		close;
+		end;
+	}else {
+	callfunc "refinemain","Hollgrehenn",0;
+	end;
+	}
+	close;
+}
+
+//the real location of this NPC is prt_in 34,69, it has been changed for testing purposes.
+prt_in,34,70,5	script	Seiyablem	84,{
+
+	if(@questpront2==2){
+		mes "[Seiyablem]";
+		mes "Hi, so you'd like to learn about socket enchanting?";
+		mes "Simple work, really. There are 4 classes of items:";
+		mes "Class C.";
+		mes "Class B.";
+		mes "Class A.";
+		mes "and Class S.";
+		next;
+		mes "[Seiyablem]";
+		mes "C is the easiest to slot, while S is the hardest.";
+		mes "If I fail to slot your item, it will be lost, and your zeny will not be refunded.";
+		next;
+		mes "[Seiyablem]";
+		mes "Lastly, my brother, Leablem, also socket enchants items.";
+		mes "Both of us can be found in Prontera, Payon, Lighthalzen, and Morroc.";
+		next;
+		mes "[Seiyablem]";
+		mes "That's pretty much it. You should go down to the south Prontera exit and meet with the Apprentice Craftsman.";
+		mes "She can put a hidden enchantment onto your armor. Go talk to her to find out how!";
+		set @questpront2,3;
+		close;
+		end;
+	}else {
+	mes "test";
+	close;
+	// put Seiyabelm's default script here.
+	}
+	
+}
+
+//the real location of this NPC is prontera 166,59, it has been changed for testing purposes.	
+prontera,166,59,4	script	Apprentice Craftsman	73,{
+
+	if(@questpront2==3){
+		mes "[Apprentice Craftsman]";
+		mes "Hello there! So you'd like to learn about armor enchanting?";
+		mes "Well, listen here and let me explain.";
+		next;
+		mes "[Apprentice Craftsman]";
+		mes "There are 3 types of armor that you can enchant. Not all armors can be enchanted.";
+		mes "There are non-slotted armors, slotted armors, and high grade armors.";
+		next;
+		mes "[Apprentice Craftsman]";
+		mes "Non-slotted is the easiest, while slotted armors are a bit harder.";
+		mes "High grade armors are exceedingly rare armors, and the hardest to enchant.";
+		mes "Keep in mind, if I do fail while enchanting your armor, it will be lost for good.";
+		next;
+		mes "[Apprentice Craftsman]";
+		mes "While enchanting, there is a chance that your armor will gain a random stat.";
+		mes "Most likely, it will only be +1, however on rare occasions, there can be +2 or +3.";
+		next;
+		mes "[Apprentice Craftsman]";
+		mes "The last thing to note, is that if your armor is refined, or has any cards slotted into it, it will be lost.";
+		mes "Make sure the armor you are enchanting is not well refined, or has any rare cards in it. That would be unfortunate to lose!";
+		next;
+		mes "[Apprentice Craftsman]";
+		mes "Anyway, it seems like we're done here. You now know about refining, socket enchanting, and now armor enchanting!";
+		mes "You're such a smart one!";
+		next;
+		mes "[Apprentice Craftsman]";
+		mes "For all that listening, you must deserve a reward huh? Well, here you go.";
+		mes "See ya around!";
+		set @questpront2,4;
+		// Give the exp reward here
+		close;
+		end;
+	}else {
+	mes "test";
+	close;
+	// Put Apprentice craftsman's default script here.
+	}
+	
+}
+
+// === Deliver a Letter to the Assassin Guild ===
+// The "Assassin" is a pre-existing NPC
+
+morocc,81,182,4	script	Messenger	998,{
+
+if(@assassinquest==1){
+	mes "[Messenger]";
+	mes "Keep walking....";
+	close;
+	end;
+		}else {
+		if(countitem(7557)>=1){
+			mes "[Messenger]";
+			mes "Just deliver it to the assassin guild, would you?";
+			mes "Talk to the white haired assassin, inside their hideout.";
+			close;
+			end;
+		}else {
+			mes "[Messenger]";
+			mes "You look like an able body, could you take this letter for me?";
+			next;
+			menu "Sure!",-,"You look suspicious.. I don't know.",idontknow;
+			mes "[Messenger]";
+			mes "You didn't even question it? Well, that's fine.. I appreciate your willingness.";
+			getitem 7557,1;
+			mes "STOP! Don't open the letter.";
+			mes "You cannot be allowed to read the contents inside..";
+			next;
+			mes "[Messenger]";
+			mes "Just deliver it to the assassin guild, would you?";
+			mes "Talk to the white haired assassin, inside their hideout.";
+			close;
+			end;
+		
+			idontknow:
+			mes "[Messenger]";
+			mes "You don't trust me? Fine, I will have somebody else hear my request.";
+			close;
+			end;
+	
+		}
+	
+	}
+
+}
+
+//the real location of this NPC is in_moc_16,14,27, it has been changed for testing purposes.	
+in_moc_16,14,28,5	script	Assassin	884,{
+
+
+	if(countitem(7557)>=1){
+		mes "[Assassin]";
+		mes "What's this, a letter for us?";
+		mes "Thank you, I've been expecting this.";
+		next;
+		mes "[Assassin]";
+		// EXP Reward goes here
+		mes "Now walk out that door.";
+		set @assassinquest,1;
+		delitem 7557,1;
+		next;
+		menu "Leave.",-,"Question him.",question;
+		close;
+		end;
+	
+		question:
+		// if you are an assassin:
+		if(Class == Job_Assassin) {
+			mes "[Assassin]";
+			mes "Normally, I'd demand that you leave...";
+			mes "However, you are a member of the Assassin Guild, I will share with you a little information.";
+			next;
+			mes "[Assassin]";
+			mes "Are you aware that the Assassin Guild is composed of many Demon Clan members?";
+			next;
+			mes "[Assassin]";
+			mes "This letter is from the Demon Clan. It is about tonight's event....";
+			next;
+			mes "...where we will sneak into Morroc, and feast on unsuspecting travellers and villagers.";
+			close;
+			end;
+			// if you are not an assassin:
+		}else {
+			mes "[Assassin]";
+			mes "You think you have the right to question me?";
+			mes "Get out of here, or we'll kill you and drag you out.";
+			close;
+			end;
+			}
+	}else {
+	// Put the assassin's default script here
+	mes "Test";
+	close;
+	}
+}
+
+// === The Legend of Satan Morroc ===
+
+morocc,222,265,5	script	Crusader	751,{
+	
+	if(@satanquest==2){
+		mes "[Hil]";
+		mes "I hope these restorations will go quickly. There are so many homeless because of that demon..";
+		close;
+		end;
+	}else if(@satanquest==1) {
+		mes "[Hil]";
+		mes "Maybe you could ask another villiger in morroc about the legend? I do not know any more about it...";
+		close;
+		end;
+	}else {
+		mes "[Hil]";
+		mes "This town is such a wreak, I as a Crusader must carry out my duty.";
+		mes "I must volunteer my service, and help those in need.";
+		next;
+		mes "[Hil]";
+		mes "Hello dear traveller, what is it you're looking for?";
+		next;
+		menu "What happened here?",-,"Nothing.",2nothing;
+		mes "[Hil]";
+		mes "Well, I don't know if you're heard the legend, but the evil demon Satan Morroc has broken from it's seal.";
+		mes "It has done a very large amount of damage to Morroc, leaving many villagers homeless, injured, or dead.";
+		next;
+		menu "Do you know more?",-,"(Say Nothing)",2nothing;
+		mes "[Hil]";
+		mes "Unfortunately, that is the best of my knowledge...";
+		mes "I do not know much more than that, perhaps you could ask another villager here in Morroc?";
+		set @satanquest,1;
+		close;
+		end;
+	
+		2nothing:
+		close;
+		end;
+	
+	}
+	
+}
+
+morocc,91,52,4	script	Demon Clan Member	667,{
+	
+	if(@satanquest==0){
+		mes "[Adalita]";
+		mes "This town isn't safe you know.. you shouldn't be wandering around aimlessly.";
+		close;
+		end;
+	}else if(@satanquest==1){
+		mes "[Adalita]";
+		mes "Hmm? You seem confused.. are you looking for something?";
+		next;
+		menu "Tell me about Satan Morroc.",-,"(Say Nothing.)",morroc1;
+		mes "[Adalita]";
+		mes "About Satan Morroc?";
+		mes "Well, as a Demon Clan member, this legend has much to do with my upbringing.";
+		next;
+		mes "[Adalita]";
+		mes "Would you like to hear the legend, traveller?";
+		next;
+		menu "Yes.",-,"No.",no2;
+		mes "[Adalita]";
+		mes "It begins with the Mage Knight, Thanatos. He was the one who sealed the great demon under this city.";
+		mes "Thanatos brought down the greater demon in a heated battle.";
+		next;
+		mes "[Adalita]";
+		mes "Legend has it that the fallout from the battle destroyed the south eastern part of the Rune-Midgard Kingdom, creating what is now known as the Sograt Desert.";
+		mes "In order to protect the seal and keep the demon locked away, the people of Rune-Midgard constructed a castle above the seal.";
+		next;
+		mes "[Adalita]";
+		mes "Before long, buildings and tents were built around the castle, and this new-founded city took the name of the demon and was called Morroc.";
+		mes "Some say that this Mage Knight Thanatos still exists, and that he is now a demon involved in the tragedies taking place in Thanatos Tower.";
+		next;
+		mes "[Adalita]";
+		mes "The demon clan worships Thanatos as a god among demons, however this now Wounded Morroc must be stopped, for he is a demon out of control.";
+		next;
+		mes "[Adalita]";
+		mes "If only the great demon knight Thanatos could come and put an end to this chaos once and for all.";
+		next;
+		mes "[Adalita]";
+		mes "So, curious one, now you know the legend. Run along now, this town isn't safe..";
+		// EXP reward goes here.
+		set @satanquest,2;
+		close;
+		end;
+	
+		no2:
+		mes "[Adalita]";
+		mes "As you wish, now run along.";
+		close;
+		end;
+	
+		morroc1:
+		close;
+		end;
+		
+	}else {
+		mes "[Adalita]";
+		mes "If only the great demon knight Thanatos could come and put an end to this chaos once and for all.";
+		close;
+		end;
+	}
+	
+}
+
+
+	
+// === Investigate the Orc Village ===
+
+geffen,133,65,3	script	Magician	669,{
+
+if (@orcquest==2){
+	mes "[Eve]";
+	mes	"How much do you know about magic? I believe magic is the most effective way to influence the world.";
+	next;
+	mes "[Eve]";
+	mes "With magic, you can change the world. You know that, right?";
+	close;
+	end;
+	}else if ((countitem(931) >= 30)&&(countitem(7002) >= 10)) {
+		if (@orcquest==1){
+			mes "[Eve]";
+			mes "Well done, you surely do have the power to influence the world. Your talents are humbly regarded.";
+			next;
+			mes "[Eve]";
+			mes "Surely, you deserve a reward for that. I hope this will help you influence the world even more.";
+			next;
+			mes "[Eve]";
+			// Reward EXP goes here
+			mes "Goodluck, adventurer";
+			set @orcquest,2;
+			close;
+			end;
+		}else {
+			mes "[Eve]";
+			mes	"How much do you know about magic? I believe magic is the most effective way to influence the world.";
+			next;
+			mes "[Eve]";
+			mes "With magic, you can change the world. You know that, right?";
+			next;
+			mes "[Eve]";
+			mes "Are you brave? Do you think you can change the world?";
+			next;
+			mes "[Eve]";
+			mes "Would you like to take on a challenge?";
+			next;
+			menu "I can take on any challenge.",-,"No, I am not brave enough.",notbrave;
+			mes "You think you can change the world? If you think you can make a difference, exit Geffen and seek the Orc Village.";
+			next;
+			mes "[Eve]";
+			mes "Change the future with magic and defeat the Orcs. Come back to me once you have brought back 30 Orcish Vouchers and 10 Ogre Tooths.";
+			set @orcquest,1;
+			close;
+			end;
+			}
+			
+	}else {
+		mes "[Eve]";
+		mes	"How much do you know about magic? I believe magic is the most effective way to influence the world.";
+		next;
+		mes "[Eve]";
+		mes "With magic, you can change the world. You know that, right?";
+		next;
+		mes "[Eve]";
+		mes "Are you brave? Do you think you can change the world?";
+		next;
+		mes "[Eve]";
+		mes "Would you like to take on a challenge?";
+		next;
+		menu "I can take on any challenge.",-,"No, I am not brave enough.",notbrave;
+		mes "[Eve]";
+		mes "You think you can change the world? If you think you can make a difference, exit Geffen and seek the Orc Village.";
+		next;
+		mes "[Eve]";
+		mes "Change the future with magic and defeat the Orcs. Come back to me once you have brought back 30 Orcish Vouchers and 10 Ogre Tooths.";
+		set @orcquest,1;
+		close;
+		end;
+	
+		notbrave:
+		mes "[Eve]";
+		mes "That's alright.. we all get there eventually.";
+		close;
+		end;
+	}
+	
+}
+	
+// === Learn About Geffen Magic Practitioners ===
+
+geffen,41,111,8	script	Rowland	798,{
+
+	if (@geffenhistory >= 1){
+		mes "[Rowland]";
+		mes "Did you ever consider how magic in this city came to be?";
+		mes "I always wonder that...";
+		close;
+		end;
+	}else {
+		mes "[Rowland]";
+		mes "Did you ever consider how magic in this city came to be?";
+		mes "I always wonder that...";
+		next;
+		mes "[Rowland]";
+		mes "Do you know what I mean? How did this city become involved with such powerful magic.. and even more powerful wizards..";
+		next;
+		mes "[Rowland]";
+		mes "I've always wanted to find out, but I could never bring myself to talk to the wizards in Geffen tower.";
+		mes "They're not very friendly.";
+		set @geffenhistory,1;
+		close;
+		end;
+		}
+		// Quset is received. If you are a mage, wizard, or a sage, he will say this also:
+		
+	}
+
+// The actual coordinates for this NPC are 102,24, but it has been changed for testing purposes.
+gef_tower,102,25,4	script	Gloomy Wizard	735,{
+	
+// Simply edit his script, so that if you have received this quest from Rowland, you will be able to ask him about Geffen's history.
+
+	if (@geffenhistory==1){
+		mes "[Raulel]";
+		mes "What do you want? Jeez...just get lost, won't you?";
+		next;
+		menu "Can you tell me about Geffen's history?",-,"(Say Nothing.)",nothing5;
+		mes "[Raulel]";
+		mes "You would like to know about Geffen's history...? Although I really can't be bothered to share my knowledge with you, you are another magic user. Maybe you could put this knowledge to use.";
+		next;
+		mes "[Raulel]";
+		mes "Would you like to listen to the story?";
+		next;
+		menu "Yes, please tell me.",-,"I've changed my mind.",nothing5;
+		mes "[Raulel]";
+		mes "Be grateful for this.";
+		next;
+		mes "[Raulel]";
+		mes "Geffen was actually built by very powerful wizards who believed in magic, some of them were my own ancestors.";
+		next;
+		mes "[Raulel]";
+		mes "These wizards believed that their study of magic could change the world. They thought that if they learned enough, they could sway the gods themselves.";
+		next;
+		mes "[Raulel]";
+		mes "Although the magic practitioners of this town are quite ambitious, highly skilled, and very intelligent, I have little confidence that anyone will ever succeed in creating greater magic.";
+		next;
+		mes "[Raulel]";
+		mes "Truth be told, I have a bad feeling that something even more powerful is lurking behind all of our backs. I can feel a sinister plan going on, and soon, something is going to happen that will change Midgard forever.";
+		next;
+		mes "[Raulel]";
+		mes "I'm babbling on now.. anyway, you got what you came for right? Leave me in peace.";
+		set @geffenhistory,2;
+		// EXP reward goes here
+		close;
+		end;
+		nothing5:
+		close;
+		end;
+	}else {
+		mes "test";
+		close;
+		// Raulel's default script goes here.
+	}
+	
+}
+	
+// After both scenarios, you may return to Rowland whether you failed or not.
+// If you are a mage class and you did manage to get info out of him, you will receive more EXP.
+
+// === Create the Solution ===
+
+alde_alche,150,11,3	script	Alchemist	805,{
+
+if (@solutionquest==2) {
+		mes "[Robin]";
+		mes "One day, I'll make a solution that will change the world!";
+		close;
+		end;
+}else {
+	if ((countitem(912) >= 20)&&(countitem(511) >= 20)&&(countitem(990) >= 5)&&(countitem(911) >= 5)) {
+		mes "[Robin]";
+		mes "Hey you have the materials I need to create my solution!";
+		next;
+		mes "[Robin]";
+		mes "So, you're willing to help me out and give me the materials?";
+		next;
+		menu "Yes, take them!",-,"No, I've changed my mind.",no8;
+		delitem 912,20;
+		delitem 511,20;
+		delitem 990,5;
+		delitem 911,5;
+		mes "[Robin]";
+		mes "So generous of you! Thanks!";
+		next;
+		mes "[Robin]";
+		mes "It's not much, but I can give you a sample of the solution...";
+		next;
+		mes "[Robin]";
+		mes "One moment please.";
+		next;
+		mes "...";
+		next;
+		mes "...";
+		next;
+		mes "...";
+		next;
+		mes "[Robin]";
+		// EXP reward goes here.
+		// Player will receive some EXP and ITEM ID: 7917, Magic Potion which can be used in future quests.
+		getitem 7917,1;
+		set @solutionquest,2;
+		mes "Done! Here you are, thanks for your help!";
+		close;
+		end;
+		no8:
+		mes "[Robin]";
+		mes "Thats alright.. they are rare items afterall.";
+		close;
+		end;
+	}else {
+		mes "[Robin]";		
+		mes "Gosh, I cannot seem to figure out this solution.. the components simply aren't matching up!";
+		next;
+		menu "Do you need some help?",-,"(Walk away.)",walkaway;
+		mes "[Robin]";
+		mes "Some help? You know about chemistry?";
+		next;
+		mes "[Robin]";
+		mes "Hmm.. well actually, you could help me. I'm trying to make a solution, if it works it'll be a breakthrough.. but I'm lacking the materials.";
+		next;
+		mes "[Robin]";
+		mes "If you think you could help, you could go gather them for me.";
+		next;
+		mes "[Robin]";
+		mes "I need:";
+		mes "20x Zargon";
+		mes "20x Green Herb";
+		mes "5x Red Blood";
+		mes "5x Scell";
+		next;
+		mes "[Robin]";
+		mes "If you have those items, please return to me!";
+		close;
+		end;
+		walkaway:
+		close;
+		end;
+		}
+	}
+}
+	
+	
+// === A Pact with the Merchant Guild ===
+
+alberta_in,75,39,3	script	Merchant	881,{
+
+if (@merchantquest==2) {
+	mes "[Nate]";
+	mes "You know the true secret to becoming rich?";
+	next;
+	mes "[Nate]";
+	mes "Being a merchant!";
+	close;
+	end;
+}else if (countitem(1965) >= 1) {
+	mes "[Nate]";
+	mes "Hey! You have a ^FF0000Red Flame Whip^000000! Do you think you could give it to me?";
+	next;
+	menu "Yes, it's yours.",-,"I've changed my mind.",no20;
+	mes "[Nate]";
+	mes "Thank you very much! You've really helped me out.";
+	next;
+	mes "[Nate]";
+	mes "Heres a bit of a reward for you... although it's not much.";
+	delitem 1965,1;
+	// Player gets some EXP
+	next;
+	mes "[Nate]";
+	mes "I'll be seeing you!";
+	close;
+	end;
+}else if (countitem(1916) >= 1) {
+	mes "[Nate]";
+	mes "Hey! You have a ^FF0000Green Acre Guitar^000000! Do you think you could give it to me?";
+	next;
+	menu "Yes, it's yours.",-,"I've changed my mind.",no20;
+	mes "[Nate]";
+	mes "Thank you very much! You've really helped me out.";
+	next;
+	mes "[Nate]";
+	mes "Heres a bit of a reward for you... although it's not much.";
+	delitem 1916,1;
+	// Player gets some EXP
+	next;
+	mes "[Nate]";
+	mes "I'll be seeing you!";
+	close;
+	end;
+}else if (countitem(2355) >= 1) {
+	mes "[Nate]";
+	mes "Hey! You have an ^FF0000Angelic Protection^000000! Do you think you could give it to me?";
+	next;
+	menu "Yes, it's yours.",-,"I've changed my mind.",no20;
+	mes "[Nate]";
+	mes "Thank you very much! You've really helped me out.";
+	next;
+	mes "[Nate]";
+	mes "Heres a bit of a reward for you... although it's not much.";
+	delitem 2355,1;
+	// Player gets some EXP
+	next;
+	mes "[Nate]";
+	mes "I'll be seeing you!";
+	close;
+	end;
+}else {
+	mes "[Nate]";
+	mes "Hello traveller! Would you by any chance have some of the loot I'm looking for?";
+	next;
+	mes "[Nate]";
+	mes "There are some items I am in desperate need of selling...";
+	next;
+	menu "Which items?",-,"Sorry, I do not have anything..",no22;
+	mes "[Nate]";
+	mes "Specifically, I'm looking for:";
+	mes "Red Flame Whip.";
+	mes "Green Acre Guitar.";
+	mes "Angelic Protection.";
+	next;
+	mes "[Nate]";
+	mes "I have customers ready and waiting... but no items to give them. If you could possibly bring me one of these, I would be very thankful!.";
+	next;
+	menu "I will get right on it!",-,"Sorry, I do not have the time.",no22;
+	mes "[Nate]";
+	mes "Awesome, I do appreciate it.";
+	mes "Come back with any of those items I listed, ok?";
+	close;
+	end;
+	
+no22:
+	mes "[Nate]";
+	mes "That's alright. If you come by any rare items, bring them to me ok?";
+	close;
+	end;
+	
+no20:
+	mes "[Nate]";
+	mes "Disappointing.. well if you change your mind, please come back to me.";
+	close;
+	end;
+	}
+	
+}
+
+// === Investigate the Bio Laboratory ===
+
+lighthalzen,320,201,1	script	Scared Man	996,{
+
+if (@biolabquest==2) {
+	mes "[Billiam]";
+	mes "Maybe one day we can stop being afraid and get out of this place..";
+	close;
+	end;
+}else if ((countitem(7345) > 9)&&(countitem(7347) > 9)&&(@biolabquest==1)) {
+	mes "[Billiam]";
+	mes "So you investigated the lab? I see you have the items I requested.";
+	next;
+	mes "[Billiam]";
+	mes "Would you mind giving them to me?";
+	next;
+	menu "Sure.",-,"No.",nono;
+	delitem 7345,10; //Handcuff
+	delitem 7347,10; //Research_Chart
+	// EXP reward goes here.
+	mes "[Billiam]";
+	mes "Thank you, maybe with these we can figure out what they're doing in there..";
+	set @biolabquest,2;
+	close;
+	end;
+	
+	nono:
+	mes "[Billiam]";
+	mes "We'll never know then...";
+	close;
+	end;
+	
+	}else {
+	mes "[Billiam]";
+	mes "I'm afraid... of the Bio Labs. I hear they're doing very strange things in there...";
+	next;
+	menu "Offer help.",-,"Say nothing.",nothing5;
+	mes "[Billiam]";
+	mes "Traveller, you'll help? Will you investigate the biolabs?";
+	next;
+	mes "[Billiam]";
+	mes "Bring back the following items:";
+	mes "10x Handcuffs";
+	mes "10x Research Chart";
+	set @biolabquest,1;
+	close;
+	end;
+	
+nothing5:
+	close;
+	end;
+	}
+}
+	
+// === Ungoliant and the Gemstone ===
+
+einbroch,176,260,4	script	Matthew	878,{
+
+if (@gemstonequest==2) {
+	mes "[Matthew]";
+	mes "Hmm, where to go.... where can I find the rarest gemstone of all?";
+	close;
+	end;
+}else {
+	mes "[Matthew]";
+	mes "Hey, did you know I'm a rare gemstone collector?";
+	next;
+	mes "[Matthew]";
+	mes "Yep, and I'm currently in Einbroch searching for one of the rarest gems....";
+	next;
+	mes "[Matthew]";
+	mes "It's called ^3355FFPeridot^000000, and I hear that it drops from a legendary creature named Ungoliant..";
+	set @gemstonequest,1;
+	next; 
+	if ((countitem(7289) > 0)&&(@gemstonequest==1)) {
+	mes "[Matthew]";
+	mes "Oh wow! You have one! You have a ^3355FFPeridot^000000! Could I please have it?";
+	next;
+	menu "Yes.",-,"No.",no12;
+	mes "[Matthew]";
+	delitem 7289,1; //Peridot
+	mes "That's so generous of you! Thank you traveller.. ";
+	next;
+	mes "[Matthew]";
+	mes "I hope this will be rewarding enough.. thank you for this spectacular gem!";
+	set @gemstonequest,2;
+	// EXP reward goes here.
+	close;
+	end;
+	
+no12:
+	mes "[Matthew]";
+	mes "That's too bad... oh well. Maybe you'll reconsider.";
+	close;
+	end;
+	
+	}else {
+	mes "[Matthew]";
+	mes "If you have ^3355FFPeridot^000000, please bring it to me.";
+	close;
+	end;
+	}
+	
+}
+
+}
+
+// === The Broken Sword ===
+
+izlude,138,157,4	script	Swordsman	635,{
+
+if (@dainsleifquest==2) {
+	mes "[Artemis]";
+	mes "The legendary sword Dainsleif will be in our grasp soon..";
+	close;
+	end;
+}else {
+	mes "[Artemis]";
+	mes "Have you heard of the legendary sword Dainsleif?";
+	next;
+	mes "[Artemis]";
+	mes "I don't know if you have... but the Swordsman guild is trying to create one.";
+	next;
+	mes "[Artemis]";
+	mes "It is a historic sword, known to have great power. Unfortunately, we are lacking the materials we need.";
+	next;
+	mes "[Artemis]";
+	mes "Maybe if somebody could bring me the materials..";
+	mes "A ^FF0000Garnet^000000.";
+	mes "and a ^FF0000Cursed Ruby^000000.";
+	set @dainsleifquest,1;
+	next; 
+	if ((countitem(724) >= 1)&&(countitem(718) >= 1)&&(@dainsleifquest==1)) {
+	mes "[Artemis]";
+	mes "Hey, you have the materials I need!";
+	next;
+	mes "[Artemis]";
+	mes "Would you mind handing them over?";
+	next;
+	menu "Of course.",-,"Never.",never;
+	delitem 724,1; //Cursed_Ruby
+	delitem 718,1; //Garnet
+	set @dainsleifquest,2;
+	mes "[Artemis]";
+	mes "How generous of you, traveller....";
+	next;
+	mes "[Artemis]";
+	mes "As a thank you gift, the swordsman guild will award you with this.";
+	next;
+	mes "[Artemis]";
+	mes "I hope it will help you on your travels. Thank you.";
+	// EXP reward goes here.
+	close;
+	end;
+	
+	never:
+	mes "[Artemis]";
+	mes "No? You realize this issue is very important to the Swordsman guild don't you?";
+	close;
+	end;
+	
+	}else {
+	close;
+	end;
+
+	}
+	
+}
+
+}
+
+
+comodo,142,167,5	script	Collector	883,{
+
+if (@rareorequest==2) {
+	mes "[Robert]";
+	mes "Rare ores! Honestly, if rare ores were human I might just marry them...";
+	close;
+	end;
+}else {
+	mes "[Robert]";
+	mes "Hey, I collect rare ores you know.";
+	next;
+	mes "[Robert]";
+	mes "If you bring me 30 ^FF0000Brigan^000000, I can give you a reward.";
+	set @rareorequest,1;
+	next; 
+	if ((countitem(7054) >= 30)&&(@rareorequest==1)) {
+	mes "[Robert]";
+	mes "Hey, you have 30 ^FF0000Brigan^000000!";
+	next;
+	mes "[Robert]";
+	mes "If you feel like parting with them, I can reward you with some EXP. What do you think?";
+	next;
+	menu "Sure, I don't mind.",-,"Sorry, I cannot",sorryno;
+	delitem 7054,1; //Brigan
+	set @rareorequest,2;
+	// EXP reward goes here.
+	mes "[Robert]";
+	mes "Thank you! Here's your reward. I hope it will help you out.";
+	close;
+	end;
+	
+	sorryno:
+	mes "[Robert]";
+	mes "That's alright. I'm always collecting ore.. so if you change your mind come back.";
+	close;
+	end;
+	}else {
+	close;
+	end;
+
+	}
+	
+}
+
+}
+
+// === The Witch's Request ===
+
+yuno_in03,239,98,5	script	Witch	650,{
+
+if (@witchquest==0) {
+	mes "[The Witch]";
+	mes "What is a traveller like you doing here?";
+	next;
+	mes "[The Witch]";
+	mes "Now that you've seen me.. I will have to erase your memory.";
+	menu "Erase my memory?! Why!?",-,"(Try to escape.",escape5;
+	mes "[The Witch]";
+	mes "Of course.. unless you can follow through with my request..";
+	next;
+	mes "[The Witch]";
+	mes "If you can bring me the materials for a Witch's Tonic, I will set you free.";
+	next;
+	mes "[The Witch]";
+	mes "But you must come back quickly, or I will find you.";
+	next;
+	mes "[The Witch]";
+	mes "Now hurry, go and find me:";
+	mes "20x ^FF0000Witch Starsand^000000.";
+	mes "1x ^FF0000Unknown Test Tube^000000.";
+	next;
+	mes "[The Witch]";
+	mes "Now.. do NOT forget this.";
+	mes "[The Witch]";
+	mes "^FF0000Unknown Test Tube^000000 instructions:";
+	mes "10 ^32CD32Fluff^000000.";
+	mes "10 ^D3D3D3Milk^000000.";
+	mes "Serial # of Magic Power:";
+	mes "^4B00821334^000000.";
+	mes "Catalyst Stone:";
+	mes "^C0C0C01 Carat Diamond^000000.";
+	mes "No solvent.";
+	next; 
+	mes "[The Witch]";
+	mes "Got that? You better come back with the ingredients..";
+	set @witchquest,1;
+	close;
+	end;
+	
+	escape5:
+	mes "[The Witch]";
+	mes "Trying to escape? I don't think so..";
+	percentheal -100,0;	
+	skilleffect 96,0;
+	close;
+	end;
+
+	}else if (@witchquest==2) {
+		mes "[The Witch]";
+		mes "You may go free now.. and please use what I have shown you wisely..";
+		close;
+		end;
+		}else if (@witchquest==1) {
+			mes "[The Witch]";
+			mes "If you can bring me the materials for a Witch's Tonic, I will set you free.";
+			next;
+			mes "[The Witch]";
+			mes "But you must come back quickly, or I will find you.";
+			next;
+			mes "[The Witch]";
+			mes "Now hurry, go and find me:";
+			mes "20x ^FF0000Witch Starsand^000000.";
+			mes "1x ^FF0000Unknown Test Tube^000000.";
+			next;
+			mes "[The Witch]";
+			mes "Now.. do NOT forget this.";
+			mes "[The Witch]";
+			mes "^FF0000Unknown Test Tube^000000 instructions:";
+			mes "10 ^32CD32Fluff^000000.";
+			mes "10 ^D3D3D3Milk^000000.";
+			mes "Serial # of Magic Power:";
+			mes "^4B00821334^000000.";
+			mes "Catalyst Stone:";
+			mes "^C0C0C01 Carat Diamond^000000.";
+			mes "No solvent.";
+			next; 
+			mes "[The Witch]";
+			mes "Got that? You better come back with the ingredients..";
+		if ((countitem(1090) >= 1)&&(countitem(1061) >= 20)&&(@witchquest==1)) {
+			next;
+			mes "[The Witch]";
+			mes "I see you have obtained the ingredients for the tonic..";
+			next;
+			mes "[The Witch]";
+			mes "Just in time, too.";
+			next;
+			mes "[The Witch]";
+			mes "So, would you like to make the tonic?";
+			next;
+			menu "Yes.",-,"No.",no12;
+			mes "[The Witch]";
+			delitem 1061,20;
+			delitem 1090,1;
+			mes "Good.. allow me to create the tonic now.";
+			next;
+			mes "[The Witch]";
+			skilleffect 179,0;
+			mes "...";
+			next;
+			mes "[The Witch]";
+			skilleffect 179,0;
+			mes "...";
+			next;
+			mes "[The Witch]";
+			skilleffect 179,0;
+			mes "...";
+			next;
+			skilleffect 464,0;
+			mes "[The Witch]";
+			mes "It is done!";
+			next;
+			mes "[The Witch]";
+			mes "For complying with me so nicely.. I will grant you a reward.";
+			next;
+			mes "[The Witch]";
+			mes "Please... use it wisely.";
+			getitem 7308,1;
+			set @witchquest,2;
+			// EXP reward goes here.
+			close;
+			end;
+			
+			no12:
+			mes "[The Witch]";
+			mes "No? After my warnings you still refuse?";
+			next;
+			mes "[The Witch]";
+			mes "You must perish, then!";
+			percentheal -100,0;
+			skilleffect 96,0;
+			close;
+			end;
+			
+			}else {
+			close;
+			end;
+		}
+	}
+}

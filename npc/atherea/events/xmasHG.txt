@@ -1,0 +1,113 @@
+prontera,153,170,5	script	Santa's Assistant	714,{
+
+mes "[Santa's Assistant]";
+mes "I come all the way from the north Pole.";
+mes "This Christmas season, Santa has sent me to gift those special children.";
+mes "If you would help me out, I'll reward you with a gift.";
+next;
+menu "Hey there.",-,"Bug off kiddo.",HG_exit;
+		mes "[Santa's Assistant]";
+		mes "Let's see what we have in my bag.";
+		mes "Remember that you will have to help me out based on the gift you pick.";
+			next;
+			mes "[Santa's Assistant]";
+			mes "Here, I'll let you pick your Gift.";
+			menu "Santa Poring Hat",HG_poring,"Rudolph Santa Hat",deer,"Cute Santa Hat",snow,"No sorry, I changed my mind.",HG_exit;
+
+HG_poring:
+mes "[Santa's Assistant]";
+mes "Alright bring me ";
+mes "5x Special Gold,";
+mes "1x Poring Egg, and";
+mes "1x Santa Hat.";
+next;
+	mes "[Santa's Assistant]";
+	mes "Can you bring me those Special items for this Santa Poring Hat?";
+	next;
+		menu "Here you go!",HG_porings,"I changed my mind",HG_exit;
+HG_porings:	
+if(countitem(7863)<5) goto l_noitem;
+if(countitem(9001)<1) goto l_noitem;
+if(countitem(2236)<1) goto l_noitem;
+delitem 7863,5;
+delitem 9001,1;
+delitem 2236,1;
+mes "[Santa's Assistant]";
+mes "Okay.";
+next;
+	mes "[Santa's Assistan]";
+	mes "Here is your Special Christmas Gift!";
+	getitem 5381,1;
+	getitem 14550,5;
+	close;
+
+
+deer:
+mes "[Santa's Assistant]";
+mes "Alright bring me ";
+mes "1x Special Gold,";
+mes "25x Horn, and";
+mes "1x Santa Hat.";
+next;
+	mes "[Santa's Assistant]";
+	mes "Can you bring me those Special items for this Rudolf Santa Hat?";
+	next;
+		menu "Here you go!",deers,"I changed my mind",HG_exit;
+deers:	
+if(countitem(7863)<1) goto l_noitem;
+if(countitem(947)<25) goto l_noitem;
+if(countitem(2236)<1) goto l_noitem;
+delitem 7863,1;
+delitem 947,25;
+delitem 2236,1;
+mes "[Santa's Assistant]";
+mes "Okay.";
+next;
+	mes "[Santa's Assistan]";
+	mes "Here is your Special Christmas Gift!";
+	getitem 5742,1;
+	getitem 14550,5;
+	close;
+
+
+snow:
+mes "[Santa's Assistant]";
+mes "Alright bring me ";
+mes "2x Special Gold,";
+mes "10x Fur, and";
+mes "1x Santa Hat.";
+next;
+	mes "[Santa's Assistant]";
+	mes "Can you bring me those Special items for this Cute Santa Hat?";
+	next;
+		menu "Here you go!",snows,"I changed my mind",HG_exit;
+snows:	
+if(countitem(7863)<2) goto l_noitem;
+if(countitem(6020)<10) goto l_noitem;
+if(countitem(2236)<1) goto l_noitem;
+delitem 7863,2;
+delitem 6020,10;
+delitem 2236,1;
+mes "[Santa's Assistant]";
+mes "Okay.";
+next;
+	mes "[Santa's Assistan]";
+	mes "Here is your Special Christmas Gift!";
+	getitem 5488,1;
+	getitem 14550,5;
+	close;
+
+
+l_noitem:
+mes "[Santa's Assistant]";
+mes "Don't forget to bring me all the items i need.";
+mes "I'm counting on you.";
+close;
+
+HG_exit:
+mes "[Santa's Assistant]";
+mes "I knew you were a bad Child this season...";
+mes "You won't be getting any gifts.";
+close;
+
+}

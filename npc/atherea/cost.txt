@@ -1,0 +1,6 @@
+vip,276,269,3	script	costume remover	405,{
+mes "Raziel is mean :c";
+changebase Class;
+close;
+end;
+}

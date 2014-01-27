@@ -445,6 +445,13 @@ OnTouch:
 			completequest 6008;
 			callfunc "Job_Change",Job_Soul_Linker;
 			callfunc "F_ClearJobVar";	// clears all job variables for the current player
+<<<<<<< HEAD
+=======
+			getitem 2232,1;
+			getitem 1619,1;
+			getitem 2321,1;
+			getitem 2101,1;
+>>>>>>> atherea/master
 			set SOUL_Q,0;
 			mes "[Maia]";
 			mes "I wish the best of luck";

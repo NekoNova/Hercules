@@ -285,6 +285,15 @@ prt_castle,45,169,5	script	Senior Crusader	4_M_CRU_OLD,{
 		completequest 3015;
 		callfunc "Job_Change",Job_Crusader;
 		callfunc "F_ClearJobVar";		//clears all job variables for the current player
+<<<<<<< HEAD
+=======
+		getitem 1129,1;
+		getitem 2107,1;
+		getitem 2230,1;
+		getitem 2341,1;
+		getitem 2505,1;
+		getitem 2411,1;
+>>>>>>> atherea/master
 		mes "[Michael Halig]";
 		mes "Behold...!";
 		mes "You are now a Crusader!";

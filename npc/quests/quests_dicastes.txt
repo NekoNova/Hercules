@@ -1,0 +1,1494 @@
+//===== Hercules Script ======================================
+//= El Dicastes Quest NPCs
+//===== By: ==================================================
+//= Gennosuke Kouga, Muad_Dib
+//===== Current Version: =====================================
+//= 2.3
+//===== Description: =========================================
+//= [Official Conversion]
+//= Quest NPCs related to Dewata:
+//== Sapha's Visit, Doha's Secrect Order, Frede's Request,a
+//== Department Quests, Document Quests,
+//== Chesire's Call, Cat Hands Enchantment
+//== Cat Hand Agent
+//===== Additional Comments: =================================
+//= 1.0 First version. 14107 lines, oh, the pain...
+//= 1.1 Standardized and reduced by 7000+ lines. [Euphy]
+//= 1.2 Further optimization. [Euphy]
+//= 1.2a Small bug fix. [Euphy]
+//= 1.3 Temporarly disabled Izlude Fish Tail?#33 NPC because of
+//= 	the new Izlude Town Map. [Masao]
+//= 1.4 Fixed minor typos. [Joseph]
+//= 1.5 Removed "Mysterious Documents" duplicated in magic_books. [Euphy]
+//= 1.6 Fixed missing checks for quest: Sapha's Visit. [Joseph]
+//= 1.7 Updated to match the official script. [Joseph]
+//= 1.8 Optimized and fixed invalid checkquest. [Joseph]
+//= 1.8a Disabled "Fish Tails" until Izlude RE coordinates are found. [Euphy]
+//= 1.8b Updated "Calyon" NPC and fixed a check. [Euphy]
+//= 1.9 Updated "Fish Tails" with RE coordinates.
+//= 1.9a Minor fix. [Joseph]
+//= 2.0 Fixed variables. [Joseph]
+//= 2.1 Added reset option to "Kareka". [Euphy]
+//= 2.2 Added Izlude duplicates. [Euphy]
+//= 2.3 Added GM management NPCs. [Euphy]
+//============================================================
+
+// Entrance
+//============================================================
+manuk,321,182,5	script	Entrance Manager#ep133	4_MAN_GALTUN,{
+	if (!isequipped(2782)) {
+		mes "[Average Galten]";
+		mes "¢¤¡ð¡ú? ¢£ ¡ù¡ð...";
+		mes "¡ï¡ò¡Ð ¢¤ ?";
+		mes "¡ñ¡ï..?";
+		close;
+	}
+	if (ep13_3_invite >= 4) {
+		mes "[Entrance Manager]";
+		mes "Are you visiting the capital city, El Dicastes?";
+		next;
+		if(select("Yes.:No.") == 2) {
+			mes "[Entrance Manager]";
+			mes "Then use the tunnel next time.";
+			close; 
+		}
+		mes "[Entrance Manager]";
+		mes "Be careful.";
+		close2;
+		warp "dic_dun01",33,212; 
+		end; 
+	}
+	mes "[Entrance Manager]";
+	mes "Sorry.";
+	mes "I cannot let you pass because you are not a Sapha.";
+	close;
+}
+
+dic_dun01,266,113,5	script	Curious Sapha#ep13_3_	4_MAN_BENKUNI,{
+	if (!isequipped(2782)) {
+		mes "[Curious Sapha]";
+		mes "¡ö¡ñ¡Ð ¡ò ¡õ?";
+		next;
+		mes "- Cannot understand a word. -";
+		close;
+	}
+	mes "[Curious Sapha]";
+	mes "Hello?";
+	next;
+	switch(select("What are you doing here?:Buy research items.:Hello!:I want to help your research.")) {
+	case 1:
+		mes "[Curious Sapha]";
+		mes "Do you see that dirty vigilante over there?";
+		next;
+		mes "[Curious Sapha]";
+		mes "He was attacked by Scarabas after falling into Scaraba Hall.";
+		mes "And he was the only one attacked even with others around him.";
+		next;
+		mes "[Curious Sapha]";
+		mes "I think he slipped and fell on some secretion of the Queen Scaraba. I thought it was an accident was looking into it.";
+		next;
+		mes "[Curious Sapha]";
+		mes "If the research results are correct, the Scarabas are very sensitive to the smell.";
+		mes "Or else say they go crazy over it. Almost as if they were losing it...";
+		next;
+		mes "[Curious Sapha]";
+		mes "I came to research the relationship between the Queen secretion component and the Scarabas.";
+		mes "So I created this into a perfume to carry it easily.";
+		next;
+		mes "[Curious Sapha]";
+		mes "I might be able to use this perfume's reaction to Scarabas and make progress in research.";
+		close;
+	case 2:
+		if (checkweight(1201,1) == 0) {
+			mes "[Curious Sapha]";
+			mes "You don't seem to have enough space.";
+			close;
+		}
+		if (MaxWeight - Weight < 2000) {
+			mes "[Curious Sapha]";
+			mes "Your bags already seem too heavy.";
+			close;
+		}
+		mes "[Curious Sapha]";
+		mes "You want to buy the Scaraba Perfume? A gift for home?";
+		mes "Well, it has become a rare perfume.";
+		next;
+		mes "[Curious Sapha]";
+		mes "I'll give you a deal and sell it by 500 Zeny each. But, try not to carry it with you into Scaraba Hall.";
+		mes "How many do you want? You can buy up to 100.";
+		next;
+		input .@input;
+		set .@deal, 500 * .@input;
+		if (.@deal == 0) {
+			mes "[Curious Sapha]";
+			mes "You changed your mind?";
+			close; 
+		}
+		if (Zeny < .@deal) {
+			mes "[Curious Sapha]";
+			mes "You don't have enough money.";
+			close; 
+		}
+		mes "[Curious Sapha]";
+		mes "Will you buy "+.@input+"?";
+		next;
+		if(select("Yes:No") == 2) {
+			mes "[Curious Sapha]";
+			mes "You changed your mind?";
+			close;
+		}
+		Zeny -= .@deal;
+		getitem 6437,.@input; //Scaraba_Perfume
+		mes "[Curious Sapha]";
+		mes "Here you go. Scaraba might flock around you so don't use it near Scaraba Hall.";
+		close;
+	case 3:
+		mes "[Curious Sapha]";
+		mes "Hello? You must be a traveler. This place is dangerous so please find your way out of this tunnel.";
+		close;
+	case 4:
+		mes "[Curious Sapha]";
+		mes "Do you have any useful information?";
+		mes "Please let me know!";
+		input .@str$;
+		next;
+		mes "[Curious Sapha]";
+		mes "It says ^0000FF"+.@str$+"^000000.";
+		next;
+		switch(rand(1,3)) {
+		case 1:
+			mes "[Curious Sapha]";
+			mes "That is great information!";
+			mes "I must start on the research.";
+			close;
+		case 2:
+			mes "[Curious Sapha]";
+			mes "I already know about that information but I'm really grateful for you to come all the way here to tell me.";
+			close;
+		case 3:
+			mes "[Curious Sapha]";
+			mes "Hmm... do you think so?";
+			mes "I have some doubts about your information. I'll think it over.";
+			close;
+		}
+	}
+}
+
+sec_in02,16,43,5	script	Scaraba Dungeon Entrance	4_MAN_BENKUNI,{
+	callfunc "F_GM_NPC";
+	mes "Setting you for dungeon entry.";
+	mes "You will be able to go through if the password is correct.";
+	if (callfunc("F_GM_NPC",1854,0) == 1) {
+		set ep13_3_secret,6;
+		getitem 2782,1; //Ring_Of_Wise_King
+		getitem 6437,2; //Scaraba_Perfume
+		mes "Setting Complete";
+	} else
+		mes "Wrong Password";
+	close;
+}
+
+// Vigilantes
+//============================================================
+-	script	Vigilante#main	-1,{
+	if (compare(strnpcinfo(0),"ep133_26")) {
+		if (!isequipped(2782)) {
+			mes "[Vigilante]";
+			mes "¡ô¡ó¡ö ¡÷ ¡þ¡ù¡ó?";
+			mes "¢¤¡ö¡ø ¢³ ¡÷¢£¡ü ¡ø ¡Ð¡õ¡û...";
+			next;
+			mes "The Vigilante says something and then shakes his head.";
+			mes "Looks like a negative reaction from the looks of his firm pose holding his shield in front of him.";
+			close;
+		}
+		mes "[Vigilante]";
+		mes "Manuk is just before us.";
+		mes "Are you heading to Manuk?";
+		next;
+		if (select("Yes.:No.") == 1) {
+			mes "[Vigilante]";
+			mes "I will send you to Manuk.";
+			close2;
+			warp "manuk",326,180;
+			end;
+		}
+		mes "[Vigilante]";
+		mes "Good luck.";
+		close;
+	}
+	if (!isequipped(2782)) {
+		mes "[Vigilante]";
+		mes "¡ô¡ó¡ö ¡÷ ¡þ¡ù¡ó?";
+		mes "¢¤¡ö¡ø ¢³ ¡÷¢£¡ü ¡ø ¡Ð¡õ¡û...";
+		mes "¡ð¡ú¢± ¡ô ¡ò¡õ¡ú ¡õ..! ";
+		next;
+		mes "Cannot communicate with him.";
+		close;
+	}
+	if (ep13_3_secret < 6) {
+		mes "The area below is restricted because it is dangerous.";
+		mes "I cannot let you pass because you are here as guests.";
+		mes "Please follow the tunnel to get to the capital city.";
+		close;
+	}
+	mes "[Vigilante]";
+	mes "Do you need something from the cave?";
+	next;
+	if (select("Yes.:No.") == 1) {
+		mes "[Vigilante]";
+		mes "Be careful.";
+		close2;
+		warp "dic_dun02",101,142;
+		end;
+	}
+	mes "[Vigilante]";
+	mes "Please step aside because it is dangerous.";
+	mes "You won't know when those Scarabas will start rampaging..";
+	close;
+
+}
+dic_dun01,286,104,5	duplicate(Vigilante#main)	Vigilante#ep133_23	4_MAN_GALTUN
+dic_dun01,294,106,3	duplicate(Vigilante#main)	Vigilante#ep133_24	4_MAN_GALTUN1
+dic_dun01,30,216,5	duplicate(Vigilante#main)	Vigilante#ep133_26	4_MAN_GALTUN1
+
+dic_dun01,284,102,5	script	Dirty Vigilante#ep13_3	4_MAN_GALTUN,{
+	if (!isequipped(2782)) {
+		mes "[Vigilante]";
+		mes "¡ô¡ó¡ö ¡÷ ¡þ¡ù¡ó¢¤¡ö¡ø ¢³ ¡÷¢£¡ü ¡ø ¡Ð¡õ¡û.";
+		mes "¡ð¡ú¢± ¡ô ¡ò¡õ¡ú ¡õ..! ";
+		next;
+		mes "Cannot understand a word.";
+		close;
+	}
+	if (ep13_3_secret < 6) {
+		mes "[Vigilante]";
+		mes "Hey! This is no place for a rookie like you.";
+		mes "Those Scaraba can snatch you away!";
+		close;
+	}
+	if (countitem(6437)) {
+		mes "[Vigilante]";
+		mes "Do you need something from the cave?";
+		next;
+		if (select("Yes.:No.") == 1) {
+			mes "[Vigilante]";
+			mes "Ewww, what's this smell?";
+			mes "Be careful. The smell from the Scaraba Secretion was picked up by other Scarabas.";
+			next;
+			if (select("Enter after spraying perfume.:Do not enter because it's dangerous.") == 1) {
+				if (!countitem(6437)) {
+					mes "- Your Scaraba Perfume disappeared. -";
+					close;
+				}
+				mes "[Vigilante]";
+				mes "Okay. Then good luck to you. Be careful.";
+				delitem 6437,1; //Scaraba_Perfume
+				close2;
+				warp "dic_dun03",101,142;
+				end;
+			}
+		}
+		mes "[Vigilante]";
+		mes "Please step aside because it is dangerous.";
+		mes "You won't know when those Scarabas will start to rampage.";
+		close;
+	}
+	mes "[Vigilante]";
+	mes "Phew, what happened?! Why are they all over me?";
+	next;
+	mes "[Vigilante]";
+	mes "I already had bad luck in falling into Scaraba Hall and being drenched with this awful ^FF0000stench^000000 my head is starting to ache!";
+	next;
+	mes "- The vigilante complained while brushing off the traces of the Scarabas.";
+	close;
+}
+
+mid_camp,216,246,0	script	#ep133_event03	HIDDEN_WARP_NPC,2,2,{
+	end;
+OnTouch:
+	if (ep13_3_secret == 23) {
+		donpcevent "Suspicious Guy#ep133_::OnEnable";
+		cutin "ep13_loki01",2;
+		mes "[Low Voice]";
+		mes "Hey.";
+		mes "Are you the human that met the newly appointed minister of Dicastes?";
+		mes "What does he look like?";
+		next;
+		mes "You feel yourself pressured by this";
+		mes "suspicious guy and starts to talk about Ahat voluntarily.";
+		next;
+		cutin "ep13_loki02",2;
+		mes "[Black Clothed Guy]";
+		mes "...Really?";
+		mes "You've found it at last.";
+		set ep13_3_secret, 24;
+		next;
+		cutin "",255;
+		donpcevent "Suspicious Guy#ep133_::OnDisable";
+		mes "The guy in all black disappeared suddenly.";
+		mes "Who was that?";
+		close;
+	}
+	end;
+}
+
+mid_camp,218,250,3	script	Suspicious Guy#ep133_	4_M_ROKI,{
+	mes "[Suspicious Guy]";
+	mes ".....";
+	hideonnpc strnpcinfo(0);
+	close;
+OnInit:
+OnDisable:
+	hideonnpc strnpcinfo(0);
+OnEnable:
+	hideoffnpc "Suspicious Guy#ep133_";
+	end;
+}
+
+-	script	Guard#ep133_11	4_MAN_GALTUN1,{
+	if (!isequipped(2782)) {
+		mes "[Capital City Guard]";
+		mes "¡ô¡ó¡ö ¡÷ ¡þ¡ù¡ó?";
+		mes "¡ð¡ú¢± ¡ô ¡ò¡õ¡ú ¡õ..!";
+		next;
+		mes "- Cannot communicate with him. -";
+		close;	
+	}
+	if (ep13_3_invite < 4) {
+		mes "[Capital City Guard]";
+		mes "Access to the city is restricted from other races without permits.";
+		mes "Please go back.";
+		close;
+	}
+	else if (ep13_3_invite == 5) {
+		mes "[Capital City Guard]";
+		mes "Access to the city is restricted from other races without permits.";
+		mes "Please go back.";
+		next;
+		mes "[Capital City Guard]";
+		mes "Hmmm? You are human.";
+		mes "If you went through that tunnel, you are here by Ravail's invitation?";
+		next;
+		select("Yes.");
+		mes "[Capital City Guard]";
+		mes "No wonder Vyhannus approved you.";
+		mes "Understood.";
+		mes "I approve your entrance and will guide you on what you should first do in El Dicastes.";
+		next;
+		mes "[Capital City Guard]";
+		mes "First enter the fortress,";
+		mes "and register yourself at Dicastes Diel located at the highest location in the north.";
+		mes "You must first register to b able to move freely.";
+		next;
+		mes "[Capital City Guard]";
+		mes "You'll see Diel if you follow here towards the north.";
+		mes "You won't get lost.";
+		mes "You need to find the register window at the Diel public service center.";
+		close2;
+		warp "dicastes01",199,41;
+		end;
+	}
+	else if (ep13_3_invite > 5) {
+		mes "[Capital City Guard]";
+		mes "Are you returning to El Dicastes?";
+		next;
+		set .@m, select("Yes. Going to the castle.:No.") - 1;
+		mes "[Capital City Guard]";
+		mes "Good luck.";
+		close2;
+		if (!.@m) warp "dicastes01",199,41;
+		end;
+	}
+	mes "[Capital City Guard]";
+	mes "Unknown situation occurred. Case " + strnpcinfo(2);
+	mes "Please inquiry with a GM.";
+	close;
+}
+dic_fild01,146,281,5	duplicate(Guard#ep133_11)	Capital City Guard#1	4_MAN_GALTUN1
+dic_fild01,153,281,3	duplicate(Guard#ep133_11)	Capital City Guard#2	4_MAN_GALTUN
+
+dic_in01,254,119,0	script	Item Storage#01	CLEAR_NPC,{
+	mes "This is the item storage.";
+	mes "There is some writing on the paper.";
+	next;
+	mes "+ Shay's precious safe +";
+	mes "For those you want to use this safe!";
+	mes "1. Is my cooking delicious?";
+	mes "2. You have enough basic skills, right?";
+	mes "3. It will be ^0000FF500 Zeny^000000, please!";
+	next;
+	mes "You'll have to put in some coins to use it.";
+	mes "Insert Coins: Will you";
+	mes "put in 500 Zeny?";
+	next;
+	if(select("Use safe:No way.")==2) {
+		mes "["+strcharinfo(0)+"]";
+		mes "I will use it later.";
+		close; 
+	}
+	if (Zeny < 500) {
+		mes "Not enough Zeny.";
+		close; 
+	}
+	Zeny -= 500;
+	close2;
+	openstorage;
+	end;
+}
+
+sec_in02,10,42,1	script	13.3 Related Reset	4_MAN_BENKUNI,{
+	callfunc "F_GM_NPC";
+	mes "[Reset]";
+	mes "Resets all quest windows including daily and map quests for 13.3.";
+	freeloop(1);
+	for(set .@i,12099; .@i<=12216; set .@i,.@i+1) {
+		if (checkquest(.@i) > -1)
+			erasequest .@i;
+	}
+	freeloop(0);
+	close;
+}
+
+
+// Sapha's Visit
+//============================================================
+-	script	Expedition#ep133_is	-1,{
+	if (ep13_3_invite) {
+		if (compare(strnpcinfo(1),"Maha")) {
+			mes "[Maha]";
+			mes "But I do think the Sapha race is overly kind, almost unnaturally.";
+			mes "Guess it'll be fine.";
+			close; 
+		}
+		mes "[Ben]";
+		mes "There is nothing strange!";
+		mes "I'd love to be like you and respected by many people.";
+		next;
+		mes "[Ben]";
+		mes "I can also visit the Sapha if I work well here, can't I?";
+		close; 
+	}
+	mes "[Ben]";
+	mes "Hmm. Hey, Maha,";
+	mes "what do you think?";
+	mes "Why do you think he is here?";
+	next;
+	mes "[Maha]";
+	mes "Don't know. Not interested.";
+	next;
+	mes "[Ben]";
+	mes "Don't you find that guy strange?";
+	mes "I've never seen his race before I joined the expedition.";
+	next;
+	mes "[Maha]";
+	mes "Ah. Really?";
+	mes "Then it's only you.";
+	mes "There must be a reason why he is here.";
+	next;
+	mes "[Ben]";
+	mes "................";
+	mes "Oh no you don't...";
+	next;
+	mes "[Maha]";
+	mes "They may make an announcement soon.";
+	mes "All we need to do is wait for the announcement.";
+	mes "It will give us the answers.";
+	next;
+	if(select("What is it?:Stay silent and listen.") == 2) {
+		mes "[Ben]";
+		mes "Hmm...";
+		mes "That can be true but aren't you thinking too much?";
+		next;
+		mes "[Maha]";
+		mes "I don't like to get into trouble.";
+		mes "I only follow orders.";
+		mes "Besides, there is nothing out of the ordinary.";
+		next;
+		mes "[Maha]";
+		mes "From what I can tell";
+		mes "That tree-like giant race called Sapha are kind.";
+		mes "There won't be any trouble. Relax.";
+		close;
+	}
+	mes "[Ben]";
+	mes "Huh? Did you hear us?";
+	mes "Nothing really or maybe something...";
+	mes "So...";
+	next;
+	mes "[Ben]";
+	mes "Research members dispatched to Manuk just came back.";
+	mes "But...";
+	next;
+	select("But?");
+	mes "[Ben]";
+	mes "Well... they came back with a Manuk messenger!";
+	mes "...Sapha of Manuk.";
+	next;
+	if (select("Where is he?!:Is this top secret information?!") == 1) {
+		mes "[Ben]";
+		mes "He's in the command center right now.";
+		mes "We should go there.";
+		close;
+	}
+	mes "[Ben]";
+	mes "Excuse me.";
+	mes "There was no order to restrict or keep it a secret.";
+	mes "And it looks like they are making an official visit.";
+	next;
+	mes "[Ben]";
+	mes "We might be able to know something if we go to the command center now";
+	mes "Try seeing ^4d4dffAello^000000.";
+	close;
+}
+mid_camp,220,246,5	duplicate(Expedition#ep133_is)	Expedition Guard Ben	4_M_RACHMAN2
+mid_camp,223,246,4	duplicate(Expedition#ep133_is)	Expedition Guard Maha	4_M_LGTGUARD
+
+mid_campin,93,114,3	script	Guard Aello#ep133_is03	4_M_RUSMAN1,{
+	if (ep13_ryu > 99 || ep13_start > 99) {
+		if (ep13_3_invite == 0) {
+			mes "[Aello]";
+			mes "Ah, you. Good timing.";
+			mes "I have something urgent to tell you.";
+			next;
+			mes "[Aello]";
+			mes "Do you happen to know that a messenger from Manuk is here?";
+			mes "Not a big secret but..";
+			next;
+			mes "[Aello]";
+			mes "The Sapha from Manuk wants to talk to you.";
+			mes "Agiff says anyone of from the expedition can meet him but..";
+			mes "I think someone with more experience should go.";
+			next;
+			mes "[Aello]";
+			mes "I know your abilities";
+			mes "and trust you.";
+			mes "The delegation is in the room at the right on the second floor.";
+			next;
+			mes "[Aello]";
+			mes "There will be a guard standing in front";
+			mes "just tell him you got authorization.";
+			mes "He is interested in humans, so try to be courteous while talking to him.";
+			set ep13_3_invite, 1;
+			setquest 7182;
+			close;
+		}
+		else if (ep13_3_invite == 1) {
+			mes "[Aello]";
+			mes "It's the room at the right on the second floor.";
+			mes "There is a guard in front of the room.";
+			mes "He'll let you pass if you tell him you have authorization.";
+			next;
+			mes "[Aello]";
+			mes "Try not to give unnecessary information";
+			mes "and only do small talk.";
+			close;
+		}
+		mes "[Aello]";
+		mes "I knew I could count on you.";
+		mes "You're activities will help us tremendously in expanding our territory.";
+		close;
+	}
+	mes "[Aello]";
+	mes "I am only interested in the most skillful";
+	mes "and trustworthy person among the Ash-Vacuum expedition.";
+	next;
+	mes "[Aello]";
+	mes "But.. you are a new face around here.";
+	mes "Hmm... sorry but you won't do.";
+	mes "You'll have to get yourself familiar with this camp first.";
+	close;
+}
+
+mid_campin,111,120,3	script	Soldier#ep133_is04	4_M_EIN_SOLDIER,{
+	if (ep13_3_invite == 1) {
+		mes "[Soldier]";
+		mes "Sorry, but this room is currently restricted from visitors.";
+		next;
+		if (select("I have authorization.:Is that so.") == 1) {
+			mes "[Soldier]";
+			mes "You do?";
+			mes "What is your name.";
+			mes "Thank you.";
+			mes "So you are " + strcharinfo(0) + ".";
+			next;
+			mes "[Soldier]";
+			mes "You may go in now.";
+			close2;
+			warp "mid_campin",165,126;
+			end;
+		}
+		mes "[Soldier]";
+		mes "You mustn't enter without Aello's permission.";
+		mes "No exceptions.";
+		close;
+	}
+	else if (ep13_3_invite > 1) {
+		mes "[Soldier]";
+		mes "You're back.";
+		mes "Are you acquainted with the Sapha messenger now?";
+		mes "We have high expectations from you.";
+		close2;
+		warp "mid_campin",165,126;
+		end;
+	}
+	mes "[Soldier]";
+	mes "Sorry.";
+	mes "This room is restricted from visitors.";
+	close;
+}
+
+function	script	eldicastes_c	{
+	switch(getarg(0)) {
+		case 1:
+			mes "[Hound]";
+			mes "Let's continue..";
+			mes "Although the details are already settled.";
+			next;
+			mes "[Vyhannus]";
+			mes "Ah, yes.";
+			mes "Where was I?";
+			mes "Ah, yes.";
+			mes "El Dicastes!";
+			mes "El Dicastes is the capital city of Sapha.";
+			next;
+			mes "[Vyhannus]";
+			mes "A city like a sparkling jewel in white snow.";
+			mes "Manuk was originally a village created to mine Bradium.";
+			mes "El Dicastes has now grown to be the Sapha home ground.";
+			next;
+			mes "[Vyhannus]";
+			mes "Ravail holds all authority in El Dicastes";
+			mes "and makes decisions on reports from Manuk.";
+			next;
+			mes "[Vyhannus]";
+			mes "Kind race born from a world other than ours";
+			mes "we are grateful for your kindness";
+			mes "in helping and cooperating with us.";
+			next;
+			mes "[Vyhannus]";
+			mes "Ravail, representative of Sapha";
+			mes "would like to invite humans to El Dicastes,";
+			mes "Sapha's capital city.";
+			next;
+			select("Invite? Visit? City?!:What is that suppose to mean, Hound?");
+			mes "[Hound]";
+			mes "Just as he said.";
+			mes "Our expedition team has helped the Saphas for some time.";
+			mes "Collect Bradium for their survival or";
+			next;
+			mes "[Hound]";
+			mes "Eliminate vicious beasts that threaten them.";
+			mes ".. ......";
+			next;
+			mes "[Hound]";
+			mes "So they have given us an official invitation to visit their capital city in return.";
+			mes "That is why I've been selecting expedition members to send to El Dicastes, the capital city of Sapha.";
+			next;
+			select("..You mean..");
+			mes "[Vyhannus]";
+			mes "Yes.";
+			mes "That is what he meant.";
+			mes "Agiff also approved before he left.";
+			mes "" + strcharinfo(0) + ", you are invited.";
+			next;
+			mes "[Vyhannus]";
+			mes "You are kind and respect others";
+			mes "polite and trustworthy and most of all, fun in character.";
+			next;
+			mes "[Vyhannus]";
+			mes "You are perfect. Ravail will approve too.";
+			mes "That is why I'm here.";
+			next;
+			mes "[Vyhannus]";
+			mes "I invite you to El Dicastes, our capital city.";
+			mes "" + strcharinfo(0) + "";
+			next;
+			select("Never would have imagined.");
+			mes "[Hound]";
+			mes "Shouldn't you already be used to the unexpected by now?";
+			mes "Come on... you're not a rookie.. haha.";
+			next;
+			mes "[Hound]";
+			mes "If you are going to leave, better be now.";
+			mes "Come back to me once you are ready to leave.";
+			mes "I will let you know your mission.";
+			set ep13_3_invite, 3;
+			close;
+		case 2:
+			mes "[Vyhannus]";
+			mes "First go to Manuk and meet General Guard Avalanche.";
+			mes "Avalanche will be heavily armed because he is Galten.";
+			mes "You can't miss him.";
+			next;
+			mes "[Vyhannus]";
+			mes "Once you tell Avalanche that you are a guest of the city, he will let you pass the path to El Dicastes.";
+			next;
+			mes "[Vyhannus]";
+			mes "You cannot go pass without his approval so make sure you get his permission.";
+			mes "He will let you pass with my recommendations.";
+			next;
+			mes "[Vyhannus]";
+			mes "I'm a little excited.";
+			mes "on what our meeting will bring in the future.";
+			mes "Only hope it won't be like a blizzard in the middle of the night.";
+			set ep13_3_invite, 4;
+			changequest 7182,7183;
+			close;
+		case 3:
+			mes "[Hound]";
+			mes "My name is Hound.";
+			mes "Are you here by Aello's request?";
+			next;
+			select("Yes. He told me to meet the Sapha.");
+			mes "[Hound]";
+			mes "Okay. You should be able to talk to him, right?";
+			mes "Shall we start with introducing ourselves?";
+			mes "This is...";
+			mes ""+strcharinfo(0)+"...";
+			next;
+			mes "[Vyhannus]";
+			mes "My name is Vyhannus.";
+			mes strcharinfo(0)+"..?";
+			mes "Glad to meet you.";
+			next;
+			if(select("Same here.:A tree monster!")==1) {
+				mes "[Vyhannus]";
+				mes "Amazing.";
+				mes "Like with Hound, that ring you humans made...";
+				mes "is like a ring of wisdom."; 
+			}
+			else {
+				mes "[Hound]";
+				mes "What are you saying?";
+				mes "That was rude!";
+				next;
+				mes "[Vyhannus]";
+				mes "Oh. Monster?";
+				mes "That is something new.";
+				mes "Hound. I'm fine. You humans are amusing.";
+				next;
+			}
+			mes "[Vyhannus]";
+			mes "Shall we skip to the point?";
+			mes "The reason why I am here..."; 
+			next;
+			mes "[Someone's voice]";
+			mes "Excuse me, hold on a second.";
+			enablenpc "Hibba Agip#ep133_is07";
+			next;
+			mes "[Hound]";
+			mes "Commander!";
+			mes "You've come at such short notice.";
+			mes "Is there a situation?";
+			emotion e_omg,0,"Hound#ep133_is06";
+			next;
+			mes "[Hibba Agip]";
+			mes "Huh? Nothing.";
+			mes "Was there anything.";
+			mes "You said you wanted to send a trustworthy person, right?";
+			mes "I wanted to see the person Aello chosen to send.";
+			next;
+			mes "[Hibba Agip]";
+			mes "Hm... Ah.";
+			mes "Is it you?";
+			mes "I see, just as Aello explained.";
+			mes "Well, I think we are in good hands if it is you.";
+			next;
+			select("What are you implying?");
+			mes "[Vyhannus]";
+			mes "So... It's like this.";
+			mes "Both Saphas and humans had many differences in the past.";
+			next;
+			mes "[Vyhannus]";
+			mes "We've worried about becoming enemies with your race after you've suddenly appeared";
+			mes "and were afraid of your abilities.";
+			next;
+			mes "[Vyhannus]";
+			mes "But you have respected us Saphas";
+			mes "and helped Manuk with many deeds.";
+			mes "We've come to recognize humans as good people.";
+			next;
+			mes "[Hibba Agip]";
+			mes "Yes, we made efforts.";
+			mes "We also tried to keep a neutral attitude.";
+			mes "Because it is always better to strengthen amnity as a third party then taking sides in a conflict.";
+			next;
+			mes "[Hound]";
+			mes "Well..";
+			mes "Not totally wrong, I guess...";
+			next;
+			mes "[Vyhannus]";
+			mes "(Vyhannus smiles)";
+			mes "We have told Ravail about you humans.";
+			mes "Ravail is the highest elder of glorious ^4d4dffEl Dicastes^000000.";
+			next;
+			select("El Dicastes?:Ravail?");
+			mes "[Hibba Agip]";
+			mes "Ah, sorry for interrupting.";
+			mes "I have to go now.";
+			mes "Hound, I approve.";
+			mes "I think he will do just fine.";
+			next;
+			mes "[Hibba Agip]";
+			mes "Then it's settled with him.";
+			mes "And... ah yes, you.";
+			mes "Please go meet the inspector in the next room after this.";
+			mes "Got it?";
+			next;
+			mes "[Hibba Agip]";
+			mes "I'm leaving now.";
+			mes "Vyhannus? I'll come by to see you again.";
+			mes "And you should ^4d4dffmeet Inspector Doha after talking with Vyhannus^000000.";
+			mes "Then bye everyone.";
+			set ep13_3_invite, 2;
+			set ep13_3_secret, 1;
+			setquest 7185;
+			next;
+			disablenpc "Hibba Agip#ep133_is07";
+			emotion e_swt2,0,"Hound#ep133_is06";
+			emotion e_swt2,0,"Sapha from Manuk";
+			mes "Commander Hibba Agip quickly left the room after saying what he wanted to say.";
+			mes "First, let's listen to Vyhannus's story.";
+			close;
+		}
+}
+
+mid_campin,168,128,3	script	Sapha from Manuk	4_MAN_JERUTOO,{
+	if (isequipped(2782)) {
+		if (!ep13_3_invite) {
+			mes "-Looks like the Sapha messenger from Manuk.-";
+			next;
+			mes "[Hound]";
+			mes "Sorry but will you leave now?";
+			mes "You don't seem to have authorization from the captain or Aello?";
+			close;
+		}
+		if (ep13_3_invite == 1) {
+			mes "[Sapha]";
+			mes "- This person look like the Sapha messenger from Manuk. -";
+			mes "You just stand there without";
+			mes "knowing what he says, so the";
+			mes "expedition guard next to you starts to talk. -";
+			next;	
+			callfunc "eldicastes_c",3;
+		}
+		else if (ep13_3_invite == 2) {
+			mes "[Vyhannus]";
+			mes "Your commander is like the wind.";
+			mes "We have someone like that in Manuk, too.";
+			mes "He's name is Galten. He is so quick, you won't notice the weight of his armor.";
+			next;
+			callfunc "eldicastes_c",1;
+		} 
+		else if (ep13_3_invite == 3) {
+			callfunc "eldicastes_c",2;
+		}
+		else if (ep13_3_invite == 4) {
+			mes "[Vyhannus]";
+			mes "Avalanche will be at the Manuk Operations building.";
+			mes "Once he approves, you can use the tunnel that leads to the capital city.";
+			mes "The tunnel might be a little scary.";
+			mes "But I'm sure you will reach the end of it since you are strong.";
+			close;
+		} 
+		else if (ep13_3_invite == 5) {
+			mes "[Vyhannus]";
+			mes "Oh, the tunnel?";
+			mes "It was originally a mineral mine.";
+			mes "But we found ourselves on the opposite side while mining away.";
+			next;
+			mes "[Vyhannus]";
+			mes "We found better mines afterwards and that is how Manuk came about.";
+			mes "The tunnel is reorganized with paths between the capital city and Manuk.";
+			next;
+			mes "[Vyhannus]";
+			mes "That is it.";
+			close; 
+		} 
+		else if (ep13_3_invite == 6) {
+			mes "[Vyhannus]";
+			mes "You received the Light of El Dicastes.";
+			mes "With this, you can return to Diel from anywhere, anytime.";
+			mes "Looks like an item made for your convenience.";
+			next;
+			mes "[Vyhannus]";
+			mes "Ravail seems to like you very much.";
+			mes "The Light of El Dicastes is convenient to use instead of moving through long tunnels.";
+			next;
+			mes "[Vyhannus]";
+			mes "Oh, the tunnel?";
+			mes "It was originally a mineral mine.";
+			mes "But we found ourselves on the opposite side while mining away.";
+			next;
+			mes "[Vyhannus]";
+			mes "We found better mines afterwards and that is how Manuk came about.";
+			mes "The tunnel is reorganized with paths between the capital city and Manuk.";
+			next;
+			mes "[Vyhannus]";
+			mes "That is it.";
+			close;
+		}
+		mes "[Vyhannus]";
+		mes "The tunnel that connects Manuk and the capital city.";
+		mes "It was originally a mineral mine.";
+		mes "But we found ourselves on the opposite side while mining away.";
+		next;
+		mes "[Vyhannus]";
+		mes "We found better mines afterwards and that is how Manuk came about.";
+		mes "The tunnel is reorganized with paths between the capital city and Manuk.";
+		next;
+		mes "[Vyhannus]";
+		mes "That is it.";
+	}
+	mes "[Sapha]";
+	mes "¢¤¡ð¡ú? ¢£ ¡ù¡ð...";
+	mes "¡ï¡ò¡Ð ¢¤ ?";
+	mes "¡ñ¡ï..?";
+	next;
+	mes "[Hound]";
+	mes "Where is your interpreter ring?";
+	mes "I'm not going to be your personal translator.";
+	close;
+}
+
+mid_campin,168,125,3	script	Hound#ep133_is06	4_M_MOCASS1,{
+	if (!isequipped(2782)) {
+		mes "[Hound]";
+		mes "Where is the interpreter ring?";
+		mes "We should create it if we don't have one.";
+		mes "I would like to speak in person.";
+		close;
+	}
+	if (!ep13_3_invite) {
+		mes "[Hound]";
+		mes "Sorry but will you leave now?";
+		mes "You don't seem to have authorization from the captain or Aello?";
+		close2;
+	}
+	else if (ep13_3_invite == 1) {
+		callfunc "eldicastes_c",3;
+	}
+	else if (ep13_3_invite == 2) {
+		callfunc "eldicastes_c",1;
+	} 
+	else if (ep13_3_invite == 3) {
+		callfunc "eldicastes_c",2;
+	} 
+	else if (ep13_3_invite == 4) {
+		mes "[Hound]";
+		mes "First thing you need to do when you reach Manuk is to meet General Guard Avalanche.";
+		mes "Tell Avalanche that you are the one invited by Vyhannus.";
+		next;
+		mes "[Hound]";
+		mes "Then you'll go through a simply process of confirmation and will be permitted to go through the tunnel to the capital city.";
+		mes "Passing through the tunnel is easy as long as you are polite.";
+		next;
+		mes "[Hound]";
+		mes "And don't forget what the captain said.";
+		mes "Inspector Doha is in the next room.";
+		close; 
+	}
+	else if (ep13_3_invite > 4) {
+		mes "[Hound]";
+		mes "I've just returned from Manuk from a long term dispatch";
+		mes "and haven't gotten any rest yet.";
+		mes "El Dicastes.. I will find the time to visit once your advance party settles in.";
+		next;
+		mes "[Hound]";
+		mes "I have to take care of Vyhannus here.";
+		mes "We might see the day when Saphas like Vyhannus will be living with us on our continent.";
+		close;
+	}
+	mes "[Hound]";
+	mes "I've just returned from Manuk from a long term dispatch";
+	mes "and haven't gotten any rest yet.";
+	mes "El Dicastes.. I will find the time to visit once your advance party settles in.";
+	next;
+	mes "[Hound]";
+	mes "I have to take care of Vyhannus here.";
+	mes "We might see the day when Saphas like Vyhannus will be living with us on our continent.";
+	close;
+}
+
+mid_campin,165,127,5	script	Hibba Agip#ep133_is07	4_M_REDSWORD,{
+	mes "[Hibba Agip]";
+	mes "Hmm..?";
+	mes "I should go now.";
+	close2;
+OnInit:
+	disablenpc strnpcinfo(0);
+	end;	
+}
+
+man_in01,315,52,3	script	Guard Captain Avalanche	4_MAN_GALTUN,{
+	mes "[Guard Captain Avalanche]";
+	if (!isequipped(2782)) {
+		mes "¢¤¡ð¡ú? ¢£ ¡ù¡ð...";
+		mes "¡ï¡ò¡Ð ¢¤ ?";
+		mes "¡ñ¡ï..?";
+		close;	
+	}
+	if (ep13_3_invite == 4) {
+		mes "[Avalanche]";
+		mes "You are human.";
+		mes "What do you want here?";
+		next;
+		select("I've come with Vyhannus's invitation.");
+		mes "[Avalanche]";
+		mes "Ah. Jarute Vyhannus.";
+		mes "I thought it would be better for him to take a guard with him but.";
+		next;
+		mes "[Avalanche]";
+		mes "I guess Vyhannus had trust in you humans.";
+		mes "I'm fine as long as Vyhannus approved you.";
+		next;
+		mes "[Avalanche]";
+		mes "I authorize you to pass through to El Dicastes, the capital city.";
+		mes "There is a tunnel that leads to the capital city right outside this building which goes down by the east mountain range of this village.";
+		next;
+		mes "[Avalanche]";
+		mes "It is a tunnel that reaches the capital city. There is no other detour because Kamidal mountain is so huge.";
+		next;
+		mes "[Avalanche]";
+		mes "The tunnel is well maintained but there was a time when part of the tunnel which connects";
+		mes "with the lowest cave of the mountain collapsed and reports of wild monsters was received.";
+		next;
+		mes "[Avalanche]";
+		mes "So I recommend that you move in a group.";
+		mes "It is dangerous and can be a long journey.";
+		mes "That is all I have to say for now.";
+		next;
+		mes "[Avalanche]";
+		mes "Please let me know any news about the capital city when you come back.";
+		mes "Hahaha..";
+		set ep13_3_invite, 5;
+		changequest 7183,7184;
+		close2;
+	}
+	else if (ep13_3_invite == 5) {
+		mes "[Avalanche]";
+		mes "Go out of this building and straight below the mountain east from the village.";
+		mes "You will know where it is if you see soldiers guarding the tunnel.";
+		next;
+		mes "[Avalanche]";
+		mes "I hope that the Light of El Dicastes will show you the way.";
+		close;
+	}
+	else if (ep13_3_invite == 6) {
+		mes "[Avalanche]";
+		mes "Oh... You have the Light of El Dicastes.";
+		mes "it would be helpful for your travel.";
+		next;
+		mes "[Avalanche]";
+		mes "The path to the capital city was previously a mine.";
+		mes "so we have reports of wild monsters appearing although the tunnel is well maintained.";
+		next;
+		mes "[Avalanche]";
+		mes "Always take care of yourself at all times.";
+		mes "Haha.. but then you humans are very strong.";
+		close;
+	}
+	mes "[Avalanche]";
+	mes "The path to the capital city was previously a mine.";
+	mes "so we have reports of wild monsters appearing although the tunnel is well maintained.";
+	next;
+	mes "[Avalanche]";
+	mes "Always take care of yourself at all times.";
+	mes "Haha... but then you humans are very strong.";
+	close;
+}
+
+dic_in01,42,264,3	script	Adventurer Clerk#ep133	4_MAN_NITT,{
+	if (!isequipped(2782)) {
+		mes "[Clerk Knit]";
+		mes "¡ð¡ñ¡ô ¡õ ¡ü¢±¢³ ¡ö ¡ò...?";
+		mes "¢¤¡ö¡ø ... ¢³ ¡÷¢£¡ü ¡ø ¡Ð¡õ¡û...";
+		next;
+		mes "- Cannot communicate with him. -";
+		close;
+	}
+	mes "[Clerk Rhawyne]";
+	mes "How can I help you?";
+	next;
+	switch (select("Register as an adventurer.:Talk.:Cancel.")) {
+		case 1:
+			if (ep13_3_invite < 5) {
+				mes "[Clerk Rhawyne]";
+				mes "Do you want to register as an adventurer?";
+				mes "Strange.";
+				mes "You are not on our list of visitors.";
+				mes "Did you enter without permission?";
+				next;
+				mes "[Clerk Rhawyne]";
+				mes "All other races without official permission are restricted.";
+				mes "I will send for a Galten right away.";
+				next;
+				mes "The Sapha clerk is ready to call on a Guard Galten any time.";
+				mes "It's best to avoid this situation.";
+				close;
+			}
+			else if (ep13_3_invite == 5) {
+				mes "[Clerk Rhawyne]";
+				mes "Do you want to register as an adventurer?";
+				mes "I will compare with the invitation list from Manuk.";
+				mes "What is your name?";
+				next;
+				mes "[" + strcharinfo(0) + "]";
+				mes "It is " + strcharinfo(0) + ".";
+				next;
+				mes "[Clerk Rhawyne]";
+				mes "Yes.. " + strcharinfo(0) + "...";
+				mes "I found it.";
+				mes "Welcome to El Dicastes, capital city of Sapha.";
+				next;
+				mes "[Clerk Rhawyne]";
+				mes "You will be treated the same as other Saphas here";
+				mes "and is allowed to do as you wish";
+				mes "and can have contracts with official requests from Dicastes.";
+				next;
+				mes "[Clerk Rhawyne]";
+				mes "This is a little souvenir for visiting El Dicastes.";
+				mes "You can use it to return to El Dicastes whenever you wish.";
+				next;
+				set ep13_3_invite, 6;
+				getitem 2844,1; //El_Dicastes_Light
+				completequest 7184;
+				mes "[Clerk Rhawyne]";
+				mes "There is a special place for humans located beneath the residential area of Pioms.";
+				mes "It is called in your language...";
+				mes "Pub. Hope you get to visit there.";
+				close;
+			}
+			mes "[Clerk Rhawyne]";
+			mes "Strange.";
+			mes "Aren't you already registered?";
+			mes "I see your name in the records.";
+			close;
+		case 2:
+			if (ep13_3_secret == 12) {
+				mes "[Clerk Rhawyne]";
+				mes "I recognize you.";
+				mes "How can I help you?";
+				next;
+				if (select("I want to meet the minister.:Nothing particular.") == 1) {
+					mes "[Clerk Rhawyne]";
+					mes "You want to meet the minister?";
+					mes "Which minister?";
+					mes "Ravail cannot be met in person even with exploit certifications.";
+					next;
+					if (select("Ahat:Another minister") == 1) {
+						if (countitem(6304) > 2) {
+							mes "[Clerk Rhawyne]";
+							mes "You've really collected 3 exploit certification of Sapha already.";
+							mes "Alright. I will send a request.";
+							next;
+							mes "[Clerk Rhawyne]";
+							mes "Please take the elevator up to the Administrative Office.";
+							mes "There is another elevator in the corridor next to the Administrative Office.";
+							next;
+							mes "[Clerk Rhawyne]";
+							mes "It is a separate elevator that leads to the high minister's office";
+							mes "You will be guided in front of the office.";
+							delitem 6304,3; //Sapa_Feat_Cert
+							set ep13_3_secret, 13;
+							changequest 7197,7198;
+							close;
+						}
+						mes "[Clerk Rhawyne]";
+						mes "You need 3 exploit certification of Sapha to meet Ahat.";
+						mes "You know what exploit certification of Sapha is, right?";
+						mes "Well, please try to help around El Dicastes to collect them.";
+						close;
+					}
+					mes "[Clerk Rhawyne]";
+					mes "Another minister? Who?";
+					next;
+					select("Sorry, but I know no one else.");
+					mes "[Clerk Rhawyne]";
+					mes "You are difficult.";
+					mes "Unlike other Saphas, ministers are very busy.";
+					close;
+				}
+				mes "[Clerk Rhawyne]";
+				mes "What are you curious about today?";
+				close;
+			}
+			else if (ep13_3_secret == 13) {
+				mes "[Clerk Rhawyne]";
+				mes "Ahat is on the same floor as high minister Ravail.";
+				mes "Take the elevator up to the Administrative Office and then you will be guided in front of the separate elevator.";
+				close;
+			}
+			mes "[Clerk Rhawyne]";
+			mes "What are you curious about today?";
+			next;
+			switch (select("About official requests:About the adventurer's pub:Ahat?:Exploit certification of Sapha?:End conversation.")) {
+				case 1:
+					mes "[Clerk Rhawyne]";
+					mes "If Diel or ministers need help on operations in the capital";
+					mes "they post a notice on the public board.";
+					next;
+					mes "[Clerk Rhawyne]";
+					mes "Anyone who can take the job can take up the request.";
+					mes "Adventurers who are officially registered can also take jobs.";
+					next;
+					mes "[Clerk Rhawyne]";
+					mes "After you handle a request";
+					mes "you are given an exploit certification for helping El Dicastes.";
+					next;
+					mes "[Clerk Rhawyne]";
+					mes "It is better spend spare time on these official requests.";
+					mes "Because you are contributing to the community.";
+					next;
+					mes "[Clerk Rhawyne]";
+					mes "Due to the increase of visitors from other worlds,";
+					mes "some requests are targeted for you.";
+					mes "You can take your pick.";
+					close;
+				case 2:
+					mes "[Clerk Rhawyne]";
+					mes "The adventurer's pub is open for the convenience of visitors like you.";
+					mes "It is located in the Piom residential area below the mine and factory zone.";
+					next;
+					mes "[Clerk Rhawyne]";
+					mes "We thought the living environment here would be unfamiliar and inconvenient for you.";
+					mes "So we tried to make a place that is similar to what you have back home with a little help from adventurers.";
+					mes "I hope you like it.";
+					close;
+				case 3:
+					mes "[Clerk Rhawyne]";
+					mes "Ahat is the next minister in line after Ravail.";
+					mes "Why?";
+					mes "Because we respect her.";
+					next;
+					mes "[Clerk Rhawyne]";
+					mes "What should I say, we would like to protect her.";
+					mes "But I'm not sure how respect is used in your language.";
+					next;
+					mes "[Clerk Rhawyne]";
+					mes "Ahat is popular.";
+					mes "Not many have seen him and he works in her room all the time.";
+					next;
+					mes "[Clerk Rhawyne]";
+					mes "If you want to meet Ahat..well.";
+					mes "He is really good at his work but is very shy of strangers..";
+					next;
+					mes "[Clerk Rhawyne]";
+					mes "He doesn't like to be in places where a lot of people are gathered.";
+					mes "That is why we barely see her.";
+					close;
+				case 4:
+					mes "[Clerk Rhawyne]";
+					mes "Exploit certification?";
+					mes "Exploit certifications are made for outsiders like you.";
+					mes "They are given out as rewards when adventurers help with requests from Saphas throughout the city.";
+					next;
+					mes "[Clerk Rhawyne]";
+					mes "The exploit certification is used to meet ministers.";
+					mes "I guess in order to meet busy ministers, you must at least contribute to our society.";
+					close;
+				case 5:
+					mes "[Clerk Rhawyne]";
+					mes "Please feel free to ask questions when you need help.";
+					close;
+			}
+		case 3:
+			mes "[Clerk Rhawyne]";
+			mes "Please feel free to ask questions when you need help.";
+			close;
+	}
+}
+
+
+// Cat Hand Agent
+//============================================================
+moc_para01,44,19,3	script	Cat Hand Agent#gekk	4_M_MERCAT2,{
+	if (BaseLevel < 70)	{
+		mes "[Cat Hand Agent]";
+		mes "Hey, human! Did you come to make a request, too? When will it be my turn?";
+		next;
+		mes "[Cat Hand Agent]";
+		mes "Our Cat Hand Merchant group really needs any help it can get. But by the looks of all those requests that Ebenor is holding in his hand, Cat Hand Merchant will be closed by the time my request is put up on the board!";
+		next;
+		mes "[Cat Hand Agent]";
+		mes "It breaks my heart to think my colleagues will be shivering in the blizzard. I hope I don't get into trouble since I can't do anything about it, right?";
+		close;
+	}
+	if (ep13_start != 100) {
+		mes "[Cat Hand Agent]";
+		mes "Hey, human! Did you come to make a request, too? When will it be my turn?";
+		next;
+		mes "[Cat Hand Agent]";
+		mes "Our Cat Hand Merchant group really needs any help it can get. But by the looks of all those requests that Ebenor is holding in his hand, Cat Hand Merchant will be closed by the time my request is put up on the board!";
+		next;
+		mes "[Cat Hand Agent]";
+		mes "It breaks my heart to think my colleagues will be shivering in the blizzard. I hope I don't get into trouble since I can't do anything about it, right?";
+		next;
+		if (select ("Why don't you collect it yourself?:I'm sorry to hear that.") == 1) {
+				emotion e_omg;
+				mes "[Cat Hand Agent]";
+				mes "Human!! You're a genius!!";
+				mes "How did you come up with that?";
+				next;
+				mes "[Agent Geck]";
+				mes "I'm Agent Geck from the Cat Hand Merchant.";
+				mes "Car Paw Merchant has been wandering for a long time in this Midgard world ever since we lost our homeland.";
+				next;
+				mes "[Agent Geck]";
+				mes "But now we realize there is no place for our group here in Midgard.";
+				mes "Geck, Gyareuk and Gorureung did a lot of thinking about it.";
+				next;
+				mes "[Agent Geck]";
+				mes "But we finally found a place to settle!";
+				mes "It may be a bit cold but there are no Kafra or Jonda there!";
+				mes "We will gain ground in our new land!";
+				next;
+				mes "[Agent Geck]";
+				mes "But of course, we don't have any influence over there to start with.";
+				mes "However, we plan to spare no efforts on it.";
+				next;
+				mes "[Agent Geck]";
+				mes "Human!! Did you know there is a huge hole near the Morroc village and nearby area?";
+				mes "They say you can travel to a new area through the hole!";
+				next;
+				mes "[Agent Geck]";
+				mes "But you will have to go through tests and research to get to a place before trying it out.";
+				mes "To me, I think its all nonsense to go through the trouble!";
+				next;
+				mes "[Agent Geck]";
+				mes "We must send someone as soon as possible to start exploring the area.";
+				mes "While the humans are frittering away, our Cat Hand Merchant should settle first and continue with our research.";
+				next;
+				if (select ("I also want to go and help the merchants.:I'm not interested.") == 1) {
+						mes "[Agent Geck]";
+						mes "You are better than other humans!";
+						mes "If you really mean it, then sign here.";
+						mes "I'm collecting signs to get on Gyareuk's good side... never mind. I will let them know you are my sponsor!";
+						next;
+						input .@inputstr$;
+						mes "[Agent Geck]";
+						mes "" + strcharinfo(0) + "? Human names are strange to me.";
+						next;
+						mes "[Agent Geck]";
+						mes "Now you are Geck's personal slav... sponsor.";
+						mes "Don't ask why you aren't Merchant sponsor.";
+						mes "A good human does not poke around where they are not supposed to.";
+						next;
+						mes "[Agent Geck]";
+						mes "Now since you've signed, all we need to do is leave for the other world.";
+						mes "I heard humans call it Ash-Vacuum.";
+						mes "Nobody explained to Geck why it was called that.";
+						next;
+						mes "[Agent Geck]";
+						mes "But human.";
+						mes "You will need to pay to get to the Ash-Vacuum.";
+						mes "There wouldn't be any expense for Geck to send you there myself but we must ask for help from other agents.";
+						next;
+						mes "[Agent Geck]";
+						mes "So you will need some money to buy fish for agents who help you.";
+						mes "I will introduce you to an agent who will send you to the other world with no questions asked for only 50,000 zeny.";
+						next;
+						if (select ("Pay 50,000 zeny.:No way!") == 1) {
+								if (Zeny < 50000) {
+									mes "[Agent Geck]";
+									mes "Geck learned not to deal with people who can't pay.";
+									close;
+								}
+								mes "[Agent Geck]";
+								mes "With this, our contract is now complete.";
+								mes "Geck will help you to get to Ash-Vacuum in one piece.";
+								Zeny -= 50000;
+								set ep13_start, 100;
+								next;
+								mes "[Agent Geck]";
+								mes "Don't forget, human. The reason why Geck is helping you is to help the Cat Hand Merchant working hard in the other world.";
+								next;
+								mes "[Agent Geck]";
+								mes "Now, I will transport you. Go meet our agent in the right corner.";
+								close2;
+								warp "moc_fild20", 342, 198;
+								end;
+						}
+						mes "[Agent Geck]";
+						mes "Geck doesn't force humans.";
+						mes "But I think you will change your mind.";
+						close;
+				}
+				mes "[Agent Geck]";
+				mes "Did you meet the Cat Hand Merchant in Ash-Vacuum, human?";
+				close;
+		}
+		mes "[Cat Hand Agent]";
+		mes "But our Cat Hand Merchant will overcome any obstacle!";
+		close;
+	}
+	mes "[Agent Geck]";
+	mes "Did you meet the Cat Hand Merchant in Ash-Vacuum, human?";
+	next;
+	if (select ("Send me back:I'm busy") == 1) {
+		mes "[Agent Geck]";
+		mes "There is no time to waste, human!";
+		mes "I'll send you back right away!";
+		warp "moc_fild20", 342, 198;
+		close;
+	}
+	mes "[Agent Geck]";
+	mes "Hey, human! Didn't you say you will help the Cat Hand Merchant!";
+	close;
+}
+
+moc_fild20,368,197,3	script	Cat#to22	4_CAT,{
+	if (ep13_start != 100) {
+		mes "[Cat]";
+		mes "Meow~";
+		close;
+	}
+	mes "A small Cat Hand Agent looks at you and nods its head towards the back.";
+	mes "Looks like it wants you to step up on its back to climb over the wall.";
+	next;
+	if (select ("But you are so cute...:Let's do this!") == 1) {
+		mes "The small Cat Hand Agent has small black patterns as if it were stamped on it's white fur.";
+		next;
+		mes "The small body isn't as tall as your ankle and its small but thick paws look like little cushions. The ears that bent backwards when it looked at how big you were stirred up your protective instinct.";
+		next;
+		mes "You don't seem to have the nerve to step on the Cat Hand Agent.";
+		emotion e_sob;
+		close;
+	}
+	mes "You look at the Cat Hand Agent's small back and climb over the wall as quick as possible so that it wouldn't notice your weight.";
+	close2;
+	warp "moc_fild22b", 175, 159;
+	end;
+}
+
+moc_fild22b,182,179,3	script	Cat Hand Agent#Tat	4_M_MERCAT1,{
+	if (ep13_start != 100) {
+		mes "[Cat Hand Agent]";
+		mes "This place as no meaning for us.";
+		close;
+	}
+	mes "[Cat Hand Agent]";
+	mes "Heard from Geck.";
+	mes "I'm the Cat Hand Merchant's rising star, Tat.";
+	next;
+	mes "[Tat]";
+	mes "I heard you are offering high-quality fish to pay for our passage.";
+	mes "I also heard the fish is very fresh and has shiny golden scales.";
+	next;
+	mes "[Tat]";
+	mes "I usually only allow our Cat Hand Merchant agents to go through but since you are here on Geck's behalf and seeing you are reliable, I'll let you through.";
+	next;
+	mes "[Tat]";
+	mes "Are you ready?";
+	next;
+	if (select ("To the other world!:I need some time.") == 1) {
+		mes "[Tat]";
+		mes "Don't forget you are in debt to the Cat Hand Merchant, human!";
+		close2;
+		warp "mid_camp", 210, 291;
+		end;
+	}
+	mes "[Tat]";
+	mes "Aren't you suppose to be done getting ready before you come here?";
+	close;
+}

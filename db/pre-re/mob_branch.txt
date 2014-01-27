@@ -87,7 +87,10 @@
 1095,Andre,357142
 1096,Angeling,71428
 1097,Ant Egg,71428
+<<<<<<< HEAD
 1098,Anubis,71428
+=======
+>>>>>>> atherea/master
 1099,Argiope,71428
 1100,Argos,214285
 1101,Baphomet Jr.,71428
@@ -316,7 +319,11 @@
 1512,Yao Jun,71428
 1513,Mao Guai,71428
 1514,Zhu Po Long,71428
+<<<<<<< HEAD
 1515,Baby Hatii,71428
+=======
+1515,Garm Baby,71428
+>>>>>>> atherea/master
 1516,Mi Gao,71428
 1517,Jing Guai,71428
 1519,Green Maiden,71428
@@ -412,6 +419,7 @@
 1781,Drosera,71428
 1782,Roween,71428
 1783,Galion,71428
+<<<<<<< HEAD
 1784,Stapo,142857
 1789,Iceicle,71428
 1796,Aunoe,142857
@@ -467,3 +475,7 @@
 2021,Phylla,71428
 2023,Dark Shadow,71428
 2024,Bradium Golem,71428
+=======
+1784,Stapo,71428
+1789,Iceicle,71428
+>>>>>>> atherea/master
