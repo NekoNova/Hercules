@@ -917,7 +917,7 @@ int party_send_xy_clear(struct party_data *p)
 int party_exp_share(struct party_data* p, struct block_list* src, unsigned int base_exp, unsigned int job_exp, int zeny)
 {
 	struct map_session_data* sd[MAX_PARTY];
-	unsigned int i, c;
+	unsigned int i, c, limit;
 #ifdef RENEWAL_EXP
 	unsigned int job_exp_bonus, base_exp_bonus;
 #endif
@@ -936,14 +936,16 @@ int party_exp_share(struct party_data* p, struct block_list* src, unsigned int b
 	// If the amount of shares exceeds the maximum limit, set it to the
 	// maximum limit, which is defined by MAX_SHARE_LIMIT
 	if (c > MAX_SHARE_LIMIT)
-		c = MAX_SHARE_LIMIT;
+		limit = MAX_SHARE_LIMIT;
+	else
+		limit = c;
 
 	base_exp/=c;
 	job_exp/=c;
 	zeny/=c;
 
 	if (battle_config.party_even_share_bonus && c > 1) {
-		double bonus = 100 + battle_config.party_even_share_bonus*(c-1);
+		double bonus = 100 + battle_config.party_even_share_bonus*(limit-1);
 		if (base_exp)
 			base_exp = (unsigned int) cap_value(base_exp * bonus/100, 0, UINT_MAX);
 		if (job_exp)
