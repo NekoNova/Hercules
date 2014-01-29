@@ -933,6 +933,11 @@ int party_exp_share(struct party_data* p, struct block_list* src, unsigned int b
 	if (c < 1)
 		return 0;
 
+	// If the amount of shares exceeds the maximum limit, set it to the
+	// maximum limit, which is defined by MAX_SHARE_LIMIT
+	if (c > MAX_SHARE_LIMIT)
+		c = MAX_SHARE_LIMIT;
+
 	base_exp/=c;
 	job_exp/=c;
 	zeny/=c;
