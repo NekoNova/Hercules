@@ -1697,15 +1697,12 @@ alde_alche,101,184,4	script	Master Alchemist#am	2_M_DYEINGER,{
 		set .@jlevel,JobLevel;
 		callfunc "Job_Change",Job_Alchemist;
 		callfunc "F_ClearJobVar";
-<<<<<<< HEAD
-=======
 		getitem 2405,1;
 		getitem 2505,1;
 		getitem 2103,1;
 		getitem 1123,1;
 		getitem 2314,1;
 		getitem 2230,1;
->>>>>>> atherea/master
 		mes "[Vincent Carsciallo]";
 		mes "Henceforth, you are";
 		mes "now a member of our";
