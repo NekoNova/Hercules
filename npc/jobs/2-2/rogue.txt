@@ -172,15 +172,12 @@ in_rogue,363,122,4	script	Rogue Guildsman#rg	4_F_ROGUE,{
 				callfunc "Job_Change",Job_Rogue;
 				callfunc "F_ClearJobVar";
 				completequest 2027;
-<<<<<<< HEAD
-=======
 				getitem 1222,1;
 				getitem 2230,1;
 				getitem 2505,1;
 				getitem 2405,1;
 				getitem 2103,1;
 				getitem 2335,1;
->>>>>>> atherea/master
 				next;
 				mes "[Markie]";
 				mes "Now...";
