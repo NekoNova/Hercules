@@ -677,13 +677,10 @@ comodo,172,230,3	script	Wandering Master#job_sta	4_M_JOB_ASSASSIN,{
 			completequest 7011;
 			callfunc "Job_Change",Job_Star_Gladiator;
 			callfunc "F_ClearJobVar";		//clears all job variables for the current player
-<<<<<<< HEAD
-=======
 			getitem 2405,1;
 			getitem 2505,1;
 			getitem 2222,1;
 			getitem 1551,1;
->>>>>>> atherea/master
 			next;
 			mes "[Moogang]";
 			mes "From now on, please";
