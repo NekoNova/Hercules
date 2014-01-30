@@ -511,14 +511,11 @@ prt_church,16,41,4	script	High Bishop#prst	1_M_PASTOR,{
 		completequest 8016;
 		callfunc "Job_Change",Job_Priest;
 		callfunc "F_ClearJobVar";		// clears all job variables for the current player
-<<<<<<< HEAD
-=======
 		getitem 1619,1;
 		getitem 5092,1;
 		getitem 2325,1;
 		getitem 2403,1;
 		getitem 2503,1;
->>>>>>> atherea/master
 		mes "[Bishop Paul]";
 		mes "Now you are born again as a Priest. I congratulate you, and hope you will greatly help other people for the rest of your life.";
 		next;
@@ -1378,7 +1375,7 @@ OnTouch:
 		mes "[Deviruchi]";
 		mes "But how about this...? Now, isn't this an attractive sight? A nice, shiny new card. Mint condition. Not too many people have this you know. But I happen to have soooo many, my pockets hurt.";
 		next;
-		cutin "¹Ì½ºÆ®·¹½ºÄ«µå.bmp",4; // Mistress Card
+		cutin "ï¿½Ì½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½Ä«ï¿½ï¿½.bmp",4; // Mistress Card
 		mes "[Deviruchi]";
 		mes "Isn't it everyone's dream to have one of these? Think about it, being a Priest can only bring you suffering...";
 		next;
@@ -1388,7 +1385,7 @@ OnTouch:
 			mes "This card can";
 			mes "can be yours...";
 			next;
-			cutin "¹Ì½ºÆ®·¹½ºÄ«µå.bmp",255; // Mistress Card
+			cutin "ï¿½Ì½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½Ä«ï¿½ï¿½.bmp",255; // Mistress Card
 			mes "[Deviruchi]";
 			mes "Theoretically!";
 			mes "BWAHAHAHAHAHAHAHA!";
@@ -1397,7 +1394,7 @@ OnTouch:
 			warp "mjolnir_05",200,200;
 			end;
 		}
-		cutin "¹Ì½ºÆ®·¹½ºÄ«µå.bmp",255; // Mistress Card
+		cutin "ï¿½Ì½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½Ä«ï¿½ï¿½.bmp",255; // Mistress Card
 		mes "[Deviruchi]";
 		mes "Did...";
 		mes "Did you just tell";
