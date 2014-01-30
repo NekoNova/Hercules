@@ -191,11 +191,7 @@
 // Bloody Edge --> 600 Sharp Arrows, 200 Cursed Arrows
 7024,1764,600,1761,200
 // Lucifer's Lament --> 800 Stun Arrows, 400 Mute Arrows, 800 Sleep Arrows
-<<<<<<< HEAD
-7025,1758,800,1769,400,1768,800
-=======
 //7025,1758,800,1769,400,1768,800
->>>>>>> atherea/master
 // Key of the Clock Tower --> 50 Oridecon Arrows
 7026,1765,50
 // Key of the Underground --> 100 Shadow Arrows
