@@ -843,15 +843,12 @@ monk_in,99,58,1	script	Sensei Moohae#mk	1_M_PASTOR,{
 			completequest 3032;
 			callfunc "Job_Change",Job_Monk;
 			callfunc "F_ClearJobVar";
-<<<<<<< HEAD
-=======
 			getitem 2216,1;
 			getitem 2403,1;
 			getitem 2503,1;
 			getitem 2325,1;
 			getitem 1522,1;
 			getitem 2103,1;
->>>>>>> atherea/master
 			mes "[Sensei Moohae]";
 			mes "....You are a monk.";
 			next;
