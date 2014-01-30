@@ -179,14 +179,11 @@ que_ng,152,167,3	script	Master Miller	4_M_HUOLDARMY,{
 			mes "power of the earth protect";
 			mes "you in all of your adventures~";
 			callfunc "Job_Change",Job_Gunslinger;
-<<<<<<< HEAD
-=======
 			getitem 13102,1;
 			getitem 2503,1;
 			getitem 2403,1;
 			getitem 2309,1;
 			getitem 2220,1;
->>>>>>> atherea/master
 			set GUNS_Q,6;
 			completequest 6024;
 			if (rand(1,2) == 1) {
