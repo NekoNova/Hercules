@@ -15,9 +15,6 @@
 //1161,67,50 //Balmung: No drop, No trade, No Guild Store (1+2+64 =67),
 //only groups of group-level 50 and up can override the setting.
 
-<<<<<<< HEAD
-=======
-
 // Atherea customs
 7000,475,60 // Ather
 8000,475,60 // Vote tickets
@@ -59,7 +56,6 @@
 5597,9,100	// Bubble Gum In Mouth
 5654,9,100	// Holy Marching Hat
 
->>>>>>> atherea/master
 // Wedding Related items
 2634,507,100	// Wedding Ring
 2635,507,100	// Wedding Ring
@@ -286,10 +282,6 @@
 2704,467,100	// Golden Accessories
 2705,467,100	// Golden Accessories
 5295,467,100	// Golden Bandana
-<<<<<<< HEAD
-7863,467,100	// Special Gold
-=======
->>>>>>> atherea/master
 
 // Thailand Event-Environment Day Items
 7865,499,100	// Gold Pouch
@@ -414,10 +406,6 @@
 2740,507,100	// Rusty Coin
 2751,467,100	// Academy Of Badge
 2752,507,100	// Praccsinos
-<<<<<<< HEAD
-5357,475,100	// Wings Of Victory
-=======
->>>>>>> atherea/master
 5368,475,100	// White Wing
 5369,475,100	// Dark Wing
 5386,384,100	// Ayam
@@ -428,10 +416,6 @@
 6006,499,100	// Rice Cake Delivery Box
 6007,499,100	// New Year Rice Cake Soup
 6009,499,100	// Big Fan Of Magic
-<<<<<<< HEAD
-7623,507,100	// Ticket Of Identification
-=======
->>>>>>> atherea/master
 
 // Falicious Okolnir
 7839,499,100	// Crystal Key
@@ -501,13 +485,8 @@
 7950,499,100	// Ayothaya Fest Ticket
 
 // Episode 13.1
-<<<<<<< HEAD
-6039,507,100	// Piece of Fish
-6048,507,100	// Unidentified Mineral
-=======
 6039,459,100	// Piece of Fish
 6048,459,100	// Unidentified Mineral
->>>>>>> atherea/master
 6051,499,100	// Gray Hollow
 
 // Battleground Rewards (Krieger Von Midgard)
@@ -748,10 +727,6 @@
 5266,507,100	// Bunny Band
 5267,507,100	// Sakkat
 5268,507,100	// Grand Circlet
-<<<<<<< HEAD
-5277,73,100	// Yellow Bandana
-=======
->>>>>>> atherea/master
 5283,73,100	// Chick Hat
 5286,73,100	// Pecopeco Hairband
 5288,73,100	// Red Glasses
@@ -768,33 +743,10 @@
 5377,73,100	// Gentleman's Pipe
 5378,73,100	// Bunny Top Hat
 5380,73,100	// Fish Head Hat
-<<<<<<< HEAD
-5381,73,100	// Santa Poring Hat
-=======
->>>>>>> atherea/master
 5382,73,100	// Bell Ribbon
 5391,507,100	// Toast
 5420,73,100	// Mask Of Ifrit
 5421,73,100	// Ears Of Ifrit
-<<<<<<< HEAD
-5462,457,100	// Spiked Scarf
-5463,457,100	// Rainbow Scarf
-5502,457,100	// Necromancer's Hood
-5503,73,100	// Magic Rabit Hat
-5505,73,100	// Asara Fairy Hat
-5529,457,100	// Satanic Bone Helm
-5596,507,100	// 4Leaf Clover In Mouth
-5597,507,100	// Bubble Gum In Mouth
-6046,507,100	// Clothing Dye Coupon
-6047,507,100	// Clothing Dye Coupon II
-7619,475,100	// Enriched Elunium
-7620,475,100	// Enriched Oridecon
-7621,475,100	// Token Of Siegfried
-7622,73,100	// Hairstyle Coupon
-7766,475,100	// Bok Choy
-7767,475,100	// Green Maiden's Cake
-7776,475,100	// Gym Pass
-=======
 5502,457,100	// Necromancer's Hood
 5503,73,100	// Magic Rabit Hat
 5505,73,100	// Asara Fairy Hat
@@ -803,7 +755,6 @@
 7622,73,100	// Hairstyle Coupon
 7766,475,100	// Bok Choy
 7767,475,100	// Green Maiden's Cake
->>>>>>> atherea/master
 7821,475,100	// Green Apple
 7822,475,100	// Whole Barbecue
 7823,475,100	// Meat Veg Skewer
@@ -1338,10 +1289,6 @@
 14165,475,100	// Kafra Card Box
 14166,475,100	// Giant Fly Wing Box
 14167,475,100	// Neuralizer Box
-<<<<<<< HEAD
-14168,475,100	// Convex Mirror Box
-=======
->>>>>>> atherea/master
 14169,475,100	// Blessing 10 Scroll Box
 14170,475,100	// Increase AGI 10 scroll Box
 14171,475,100	// Aspersio 5 Scroll Box
@@ -1392,11 +1339,6 @@
 14216,475,100	// Bubble Gum 5 Box
 14217,475,100	// Megaphone Box
 14218,475,100	// Megaphone 5 Box
-<<<<<<< HEAD
-14219,475,100	// Enriched Elunium 5 Box
-14220,475,100	// Enriched Oridecon 5 Box
-=======
->>>>>>> atherea/master
 14221,475,100	// Mystical Amplification Scroll 10 Box
 14222,475,100	// Mystical Amplification Scroll 30 Box
 14223,475,100	// Mystical Amplification Scroll 50 Box
@@ -1461,10 +1403,6 @@
 14508,73,100	// Zeny Pet Egg Scroll
 14521,475,100	// Repair Weapon Scroll
 14527,475,100	// Dungeon Teleport Scroll
-<<<<<<< HEAD
-14533,475,100	// Field Manual 100%
-=======
->>>>>>> atherea/master
 14534,475,100	// Small Life Potion
 14535,475,100	// Medium Life Potion
 14536,475,100	// Abrasive
@@ -1553,10 +1491,6 @@
 5243,73,100	// Shafka
 5256,73,100	// Valkyrie Feather Band
 5257,73,100	// Soul Ring
-<<<<<<< HEAD
-5278,73,100	// Yellow Ribbon
-=======
->>>>>>> atherea/master
 5284,73,100	// Water Lily Crown
 5285,73,100	// Vane Hairpin
 5287,73,100	// Vacation Hat
@@ -1581,10 +1515,6 @@
 5371,73,100	// Judge Hat
 5383,73,100	// Hunter's Cap
 5387,73,100	// Neko Mimi Kafra
-<<<<<<< HEAD
-5389,73,100	// Angel Spirit
-=======
->>>>>>> atherea/master
 5395,73,100	// Striped Hat
 5403,73,100	// Fish In Mouth
 5428,475,100	// RWC Anniversary Bread Envelope
@@ -1624,10 +1554,6 @@
 5579,73,100	// Wanderer's Sakkat
 5584,73,100	// Majestic Evil Horns
 5587,499,100	// Mosquito Coil
-<<<<<<< HEAD
-5654,73,100	// Holy Marching Hat
-=======
->>>>>>> atherea/master
 5667,73,100	// Skull Hood
 5668,499,100	// Weird Pumpkin Hat
 5738,73,100	// Snowman Hat
