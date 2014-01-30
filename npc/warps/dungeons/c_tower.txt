@@ -74,16 +74,6 @@ c_tower3,252,24,4	script	clt016r	WARPNPC,1,1,{
 }
 //============================================================
 //= Level 4 ==================================================
-<<<<<<< HEAD
-c_tower4,37,70,0	warp	clt017	1,1,alde_dun03,277,54
-c_tower4,51,156,0	warp	clt018	1,1,alde_dun01,171,158
-c_tower4,68,46,0	warp	clt019	1,1,c_tower4,73,154
-c_tower4,70,19,0	warp	clt020	2,2,c_tower3,151,8
-c_tower4,79,49,0	warp	clt021	2,2,c_tower4,204,60
-c_tower4,133,202,0	warp	clt022	1,1,c_tower4,140,149
-c_tower4,153,107,0	warp	clt023	1,1,c_tower2,228,267
-c_tower4,171,179,0	warp	clt024	1,1,alde_dun03,276,53
-=======
 c_tower4,37,70,0	script	clt017	WARPNPC,1,1,{
 OnTouch:
 	mes "[Gatekeeper Boy]";
@@ -152,14 +142,12 @@ OnTouch:
 		end;
 	}
 }
->>>>>>> atherea/master
+
 c_tower4,198,59,0	warp	clt025	1,1,c_tower4,152,98
 c_tower4,204,57,0	warp	clt026	1,1,c_tower4,65,77
 //============================================================
 //= Random 4-1 ===============================================
 c_tower4,75,156,4	script	clt027r	WARPNPC,0,0,{
-<<<<<<< HEAD
-=======
 OnTouch:
 	mes "[Gatekeeper Boy]";
 	mes "Hello "+strcharinfo(0)+"!";
@@ -168,23 +156,18 @@ OnTouch:
 		close;
 	} else {
 		close2;
->>>>>>> atherea/master
+		
 	switch(rand(4)) {
 		case 0: warp "c_tower3",168,252; end;
 		case 1: warp "alde_dun02",262,41; end;
 		case 2: warp "c_tower4",73,154; end;
 		case 3: warp "c_tower4",140,149; end;
-<<<<<<< HEAD
-=======
 		}
->>>>>>> atherea/master
 	}
 }
 //============================================================
 //= Random 4-2 ===============================================
 c_tower4,68,79,4	script	clt028r	WARPNPC,0,0,{
-<<<<<<< HEAD
-=======
 OnTouch:
 	mes "[Gatekeeper Boy]";
 	mes "Hello "+strcharinfo(0)+"!";
@@ -193,23 +176,18 @@ OnTouch:
 		close;
 	} else {
 		close2;
->>>>>>> atherea/master
+
 	switch(rand(4)) {
 		case 0: warp "c_tower2",13,282; end;
 		case 1: warp "alde_dun03",175,131; end;
 		case 2: warp "c_tower3",235,7; end;
 		case 3: warp "c_tower4",65,77; end;
-<<<<<<< HEAD
-=======
 		}
->>>>>>> atherea/master
 	}
 }
 //============================================================
 //= Random 4-3 ===============================================
 c_tower4,142,151,4	script	clt029r	WARPNPC,0,0,{
-<<<<<<< HEAD
-=======
 OnTouch:
 	mes "[Gatekeeper Boy]";
 	mes "Hello "+strcharinfo(0)+"!";
@@ -218,23 +196,17 @@ OnTouch:
 		close;
 	} else {
 		close2;
->>>>>>> atherea/master
 	switch(rand(4)) {
 		case 0: warp "c_tower3",168,252; end;
 		case 1: warp "alde_dun02",262,41; end;
 		case 2: warp "c_tower4",73,154; end;
 		case 3: warp "c_tower4",140,149; end;
-<<<<<<< HEAD
-=======
 		}
->>>>>>> atherea/master
 	}
 }
 //============================================================
 //= Random 4-4 ===============================================
 c_tower4,151,96,4	script	clt030r	WARPNPC,0,0,{
-<<<<<<< HEAD
-=======
 OnTouch:
 	mes "[Gatekeeper Boy]";
 	mes "Hello "+strcharinfo(0)+"!";
@@ -243,23 +215,17 @@ OnTouch:
 		close;
 	} else {
 		close2;
->>>>>>> atherea/master
 	switch(rand(4)) {
 		case 0: warp "c_tower2",228,267; end;
 		case 1: warp "alde_dun03",130,130; end;
 		case 2: warp "c_tower3",252,29; end;
 		case 3: warp "c_tower4",152,95; end;
-<<<<<<< HEAD
-=======
 		}
->>>>>>> atherea/master
 	}
 }
 //============================================================
 //= Random 4-5 ===============================================
 c_tower4,189,40,4	script	clt031r	WARPNPC,2,2,{
-<<<<<<< HEAD
-=======
 OnTouch:
 	mes "[Gatekeeper Boy]";
 	mes "Hello "+strcharinfo(0)+"!";
@@ -268,15 +234,11 @@ OnTouch:
 		close;
 	} else {
 		close2;
->>>>>>> atherea/master
 	switch(rand(4)) {
 		case 0: warp "c_tower2",228,267; end;
 		case 1: warp "alde_dun03",130,130; end;
 		case 2: warp "c_tower3",252,29; end;
 		case 3: warp "c_tower4",152,95; end;
-<<<<<<< HEAD
-=======
 		}
->>>>>>> atherea/master
 	}
 }
