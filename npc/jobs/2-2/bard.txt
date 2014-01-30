@@ -879,15 +879,12 @@ comodo,226,123,5	script	Wandering Bard	2_M_BARD_ORIENT,{
 					completequest 3003;
 					callfunc "Job_Change",Job_Bard;
 					callfunc "F_ClearJobVar";		//clears all job variables for the current player
-<<<<<<< HEAD
-=======
 					getitem 2224,1;
 					getitem 2405,1;
 					getitem 2503,1;
 					getitem 1909,1;
 					getitem 2103,1;
 					getitem 2330,1;
->>>>>>> atherea/master
 					mes "[Lalo]";
 					mes "Very well! Hope you sing happy enjoyable songs.";
 					mes "Live like the wind and the clouds!";
