@@ -7201,7 +7201,6 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			case SC_PLUSATTACKPOWER:
 			case SC_PLUSMAGICPOWER:
 			case SC_ENCHANTARMS:
-			case SC_ARMORPROPERTY:
 			case SC_ARMOR_RESIST:
 				break;
 			case SC_GOSPEL:
@@ -8889,9 +8888,32 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 				unit->skillcastcancel(bl, 0);
 			break;
 			/* */
+		case SC_ARMORPROPERTY:
+			// vall = water | val2 = earth | val3 = fire | val4 = wind
+			if(sd) {
+				if(val1 > 0)
+					clif->status_change(bl,SI_PROPERTY_WATER,1,tick,0,0,0);
+				else
+					clif->sc_end(&sd->bl, sd->bl.id, SELF, SI_PROPERTY_WATER);
+				
+				if(val2 > 0)
+					clif->status_change(bl,SI_PROPERTY_EARTH,1,tick,0,0,0);
+				else
+					clif->sc_end(&sd->bl, sd->bl.id, SELF, SI_PROPERTY_EARTH);
+					
+				if(val3 > 0)
+					clif->status_change(bl,SI_PROPERTY_FIRE,1,tick,0,0,0);
+				else
+					clif->sc_end(&sd->bl, sd->bl.id, SELF, SI_PROPERTY_FIRE);
+					
+				if(val4 > 0)
+					clif->status_change(bl,SI_PROPERTY_WIND,1,tick,0,0,0);
+				else
+					clif->sc_end(&sd->bl, sd->bl.id, SELF, SI_PROPERTY_WIND);
+			}
 		case SC_ITEMSCRIPT:
 			if( sd ) {
-				switch( val1 ) {
+				switch( sce->val1 ) {
 					//case ITEMID_PHREEONI_CARD:
 					//case ITEMID_GHOSTRING_CARD:
 					case ITEMID_TAO_GUNKA_CARD:

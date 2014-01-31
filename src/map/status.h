@@ -1462,7 +1462,15 @@ enum si_type {
 	SI_HEAT_BARREL_AFTER = 778,
 	SI_DECORATION_OF_MUSIC = 779,
 	SI_MAX,
+	// Custom property icons
+	// These are the properties applied to weapons with scrolls, we will
+	// set them to same values as using endow.
+	SI_PROPERTY_FIRE = 90,		// SI_PROPERTYFIRE		= 90,
+	SI_PROPERTY_WATER = 91,		// SI_PROPERTYWATER		= 91,
+	SI_PROPERTY_WIND = 92,		// SI_PROPERTYWIND		= 92,
+	SI_PROPERTY_EARTH = 93,		// SI_PROPERTYGROUND	= 93,
 };
+
 // JOINTBEAT stackable ailments
 enum e_joint_break
 {
