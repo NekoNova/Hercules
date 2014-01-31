@@ -1,7 +1,7 @@
 Hercules
 ========
 
-Build Status: [![Build Status](https://travis-ci.org/HerculesWS/Hercules.png?branch=master)](https://travis-ci.org/HerculesWS/Hercules) 
+Build Status: [![Build Status](https://api.travis-ci.org/NekoNova/atherea-ro.png?branch=master)](https://travis-ci.org/NekoNova/atherea-ro) 
 
 Table of Contents
 ---------
