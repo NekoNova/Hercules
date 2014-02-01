@@ -1035,7 +1035,7 @@ bool pc_authok(struct map_session_data *sd, int login_id2, time_t expiration_tim
 	sd->cansendmail_tick = tick;
 	sd->hchsysch_tick = tick;
 
-	sd->idletime = sockt->last_tick;
+	sd->idletime = last_tick;
 	
 	for(i = 0; i < MAX_SPIRITBALL; i++)
 		sd->spirit_timer[i] = INVALID_TIMER;
@@ -6964,7 +6964,7 @@ int pc_dead(struct map_session_data *sd,struct block_list *src) {
 			clif->resurrection(&sd->bl, 1);
 			if(battle_config.pc_invincible_time)
 				pc->setinvincibletimer(sd, battle_config.pc_invincible_time);
-			sc_start(&sd->bl,status->skill2sc(MO_STEELBODY),100,1,skill->get_time(MO_STEELBODY,1));
+			sc_start(&sd->bl,status->skill2sc(MO_STEELBODY),100,1,skill->get_time(MO_STEELBODY,5));
 			if(map_flag_gvg2(sd->bl.m))
 				pc->respawn_timer(INVALID_TIMER, timer->gettick(), sd->bl.id, 0);
 			return 0;
@@ -9746,14 +9746,14 @@ void pc_read_skill_tree(void) {
 		{ "Rebellion", JOB_REBELLION },
 	};
 	
-	if (libconfig->read_file(&skill_tree_conf, config_filename)) {
+	if (conf_read_file(&skill_tree_conf, config_filename)) {
 		ShowError("can't read %s\n", config_filename);
 		return;
 	}
 	
 	jnamelen = ARRAYLENGTH(jnames);
 	
-	while( (skt = libconfig->setting_get_elem(skill_tree_conf.root,i++)) ) {
+	while( (skt = config_setting_get_elem(skill_tree_conf.root,i++)) ) {
 		int k, idx;
 		const char *name = config_setting_name(skt);
 		
@@ -9765,12 +9765,12 @@ void pc_read_skill_tree(void) {
 		}
 		
 		
-		if( ( skills = libconfig->setting_get_member(skt,"skills") ) ) {
+		if( ( skills = config_setting_get_member(skt,"skills") ) ) {
 			int c = 0;
 			
 			idx = pc->class2idx(jnames[k].id);
 			
-			while( ( sk = libconfig->setting_get_elem(skills,c++) ) ) {
+			while( ( sk = config_setting_get_elem(skills,c++) ) ) {
 				const char *sk_name = config_setting_name(sk);
 				int skill_id;
 				
@@ -9790,23 +9790,23 @@ void pc_read_skill_tree(void) {
 					
 					if( config_setting_is_group(sk) ) {
 						int max = 0, jlevel = 0;
-						libconfig->setting_lookup_int(sk, "MaxLevel", &max);
-						libconfig->setting_lookup_int(sk, "MinJobLevel", &jlevel);
+						config_setting_lookup_int(sk, "MaxLevel", &max);
+						config_setting_lookup_int(sk, "MinJobLevel", &jlevel);
 						pc->skill_tree[idx][skidx].max = (unsigned char)max;
 						pc->skill_tree[idx][skidx].joblv = (unsigned char)jlevel;
-						rlen = libconfig->setting_length(sk);
+						rlen = config_setting_length(sk);
 						offset += jlevel ? 2 : 1;
 					} else {
-						pc->skill_tree[idx][skidx].max = (unsigned char)libconfig->setting_get_int(sk);
+						pc->skill_tree[idx][skidx].max = (unsigned char)config_setting_get_int(sk);
 						pc->skill_tree[idx][skidx].joblv = 0;
 					}
 					
 					for( h = offset; h < rlen && h < MAX_PC_SKILL_REQUIRE; h++ ) {
-						config_setting_t *rsk = libconfig->setting_get_elem(sk,h);
+						config_setting_t *rsk = config_setting_get_elem(sk,h);
 						if( rsk && ( rskid = skill->name2id(config_setting_name(rsk)) ) ) {
 							pc->skill_tree[idx][skidx].need[h].id  = rskid;
 							pc->skill_tree[idx][skidx].need[h].idx = skill->get_index(rskid);
-							pc->skill_tree[idx][skidx].need[h].lv  = (unsigned char)libconfig->setting_get_int(rsk);
+							pc->skill_tree[idx][skidx].need[h].lv  = (unsigned char)config_setting_get_int(rsk);
 						} else if( rsk ) {
 							ShowWarning("pc_read_skill_tree: unknown requirement '%s' for '%s' in '%s'\n",config_setting_name(rsk),sk_name,name);
 						} else {
@@ -9822,7 +9822,7 @@ void pc_read_skill_tree(void) {
 	}
 	
 	i = 0;
-	while( (skt = libconfig->setting_get_elem(skill_tree_conf.root,i++)) ) {
+	while( (skt = config_setting_get_elem(skill_tree_conf.root,i++)) ) {
 		int k, idx, v = 0;
 		const char *name = config_setting_name(skt);
 		const char *iname;
@@ -9836,8 +9836,8 @@ void pc_read_skill_tree(void) {
 		}
 		idx = pc->class2idx(jnames[k].id);
 
-		if( ( inherit = libconfig->setting_get_member(skt,"inherit") ) ) {
-			while( ( iname = libconfig->setting_get_string_elem(inherit, v++) ) ) {
+		if( ( inherit = config_setting_get_member(skt,"inherit") ) ) {
+			while( ( iname = config_setting_get_string_elem(inherit, v++) ) ) {
 				int b = 0, a, d, f, fidx;
 
 				ARR_FIND(0, jnamelen, b, strcmpi(jnames[b].name,iname) == 0 );
@@ -9869,7 +9869,7 @@ void pc_read_skill_tree(void) {
 		
 	}
 	
-	libconfig->destroy(&skill_tree_conf);
+	config_destroy(&skill_tree_conf);
 
     /* lets update all players skill tree */
     iter = mapit_getallusers();
@@ -10435,7 +10435,7 @@ void pc_autotrade_prepare(struct map_session_data *sd) {
  **/
 void pc_autotrade_populate(struct map_session_data *sd) {
 	struct autotrade_vending *data;
-	int i, j, k, cursor = 0;
+	int i, j, cursor = 0;
 
 	if( !(data = idb_get(pc->at_db,sd->status.char_id)) )
 		return;
@@ -10444,16 +10444,7 @@ void pc_autotrade_populate(struct map_session_data *sd) {
 		if( !data->vending[i].amount )
 			continue;
 		
-		for(j = 0; j < MAX_CART; j++) {
-			if( !memcmp((char*)(&data->list[i]) + sizeof(data->list[0].id), (char*)(&sd->status.cart[j]) + sizeof(data->list[0].id), sizeof(struct item) - sizeof(data->list[0].id)) ) {
-				if( cursor ) {
-					ARR_FIND(0, cursor, k, sd->vending[k].index == j);
-					if( k != cursor )
-						continue;
-				}
-				break;
-			}
-		}
+		ARR_FIND(0, MAX_CART, j, !memcmp((char*)(&data->list[i]) + sizeof(data->list[0].id), (char*)(&sd->status.cart[j]) + sizeof(data->list[0].id), sizeof(struct item) - sizeof(data->list[0].id)));
 		
 		if( j != MAX_CART ) {
 			sd->vending[cursor].index = j;
