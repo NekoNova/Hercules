@@ -13,9 +13,9 @@
 //= 1.2 Optimized. [Euphy]
 //= 1.3 Fixed some typos and optimized a little more. [Daegaladh]
 //= 1.3a Added 'disable_items' command. [Euphy]
+//= 1.4 Changed the NPC into a function.
 //============================================================
-
-prontera,165,60,2	script	Apprentice Craftsman	1_F_MERCHANT_01,{
+function	script	enchant_armor {
 	disable_items;
 	mes "[Apprentice Craftsman]";
 	if (Zeny >= 400000) {
@@ -63,7 +63,7 @@ prontera,165,60,2	script	Apprentice Craftsman	1_F_MERCHANT_01,{
 	mes "[Apprentice Craftsman]";
 	mes "If by any chance, you would want to enchant your armor, bring me 400,000 zeny and the armor you want to enchant and you are all set to go.";
 	close;
-
+	
 S_EnchantArmor:
 	set .@itemid,getarg(0);
 	set .@failrate,getarg(1);
