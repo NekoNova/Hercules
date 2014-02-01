@@ -1,0 +1,184 @@
+//===== Hercules Script ======================================
+//= Kafras (Cities/Dungeons/Fields)
+//===== By: ==================================================
+//= Joseph
+//===== Current Version: =====================================
+//= 1.1b
+//===== Description: =========================================
+//= Argument settings for callfunc "F_Kafra":
+//=  arg(0): 0 - Default Kafra message
+//=          1 - Niflhiem Kafra message
+//=          2 - Guild Kafra message
+//=  arg(1): 1 - Disable teleport menu 
+//=  arg(2): 1 - Disable info menu
+//=  arg(3): Cost of Storage service
+//=  arg(4): Cost of Rent a Pushcart service
+//===== Additional Comments: =================================
+//= 0.x Previous Authors: 
+//=     - L0ne_W0lf, kobra_k88, Samuray22, Evera, Lupus
+//= 1.0 Merged and cleaned up Kafras. [Joseph]
+//= 1.1 Added Izlude RE coordinates. [Euphy]
+//= 1.1a Fixed Pre-RE Call and some leftovers. [Lemongrass]
+//= 1.1b Enabled saving in Izlude duplicates (RE). [Euphy]
+//============================================================
+
+// Aldebaran
+//============================================================
+aldeba_in,96,181,4	script	Kafra Service	4_F_KAFRA5,{
+	cutin "kafra_05",2;
+	mes "[Kafra Leilah]";
+	mes "Hm...?";
+	mes "Oh, welcome to";
+	mes "the Kafra Corporation";
+	mes "Headquarters. Did you";
+	mes "need something?";
+	next;
+	switch(select("Save:Use Storage:Rent a Pushcart:Cancel")) {
+	case 1:
+		mes "[Kafra Leilah]";
+		mes "Your Respawn Point has";
+		mes "been saved here, inside";
+		mes "of the Kafra Corporation";
+		mes "Headquarters. Thank you.";
+		next;
+		savepoint "aldeba_in",96,179;
+		mes "[Kafra Leilah]";
+		mes "Please make use of";
+		mes "the Kafra Services that are";
+		mes "available throughout all of";
+		mes "Rune Midgard. Thank you for";
+		mes "visiting the Kafra Headquarters.";
+		close2;
+		break;
+	case 2:
+		if (Zeny < 20) {
+			mes "[Kafra Leilah]";
+			mes "Excuse me, but it";
+			mes "seems that you don't";
+			mes "have the 20 zeny to pay";
+			mes "the Storage access fee...";
+			close;
+		}
+		mes "[Kafra Leilah]";
+		mes "Although this facility is";
+		mes "exclusively intended for";
+		mes "the training of Kafra Employee";
+		mes "and administrative functions,";
+		mes "I'll access your Storage for you.";
+		next;
+		set Zeny, Zeny-20;
+		set RESRVPTS, RESRVPTS + (20/5);
+		mes "[Kafra Leilah]";
+		mes "In the future, please";
+		mes "ask the Kafra Employee on";
+		mes "duty if you wish to use";
+		mes "any of the Kafra Services.";
+		mes "Thank you for your patronage.";
+		callfunc("F_CheckKafCode");    //check your storage password, if set
+		close2;
+		openstorage;
+		break;
+	case 3:
+		mes "[Kafra Leilah]";
+		mes "My apologies, but I'm";
+		mes "not on duty. I'd assist you";
+		mes "if I could, but actually don't";
+		mes "have any available Pushcarts.";
+		mes "Why don't you ask another Kafra";
+		mes "Employee for assistance?";
+		next;
+		mes "[Kafra Leilah]";
+		mes "Kafra Employees are";
+		mes "stationed all over the";
+		mes "Rune Midgard continent,";
+		mes "and you should be able to find";
+		mes "plenty outside in Al De Baran.";
+		close2;
+		break;
+	case 4:
+		mes "[Kafra Leilah]";
+		mes "^666666*Whew...*^000000";
+		mes "Great, because I'm";
+		mes "actually on my break";
+		mes "right now. Choosing";
+		mes "''Cancel'' was a good";
+		mes "move on your part.";
+		close2;
+		break;
+	}
+	cutin "",255;
+	end;
+}
+
+//================================================================
+//= Generic Floating NPC, will be copied to all desired locations
+//================================================================
+-	script	Kafra#dummy::KafraService	-1,{
+	cutin "kafra_03",2;			// Display Kafra
+	callfunc "F_KafSet";		// Build up Menu
+	callfunc "F_Kafra",0,0,30,750;
+	callfunc "F_KafEnd",0,1;
+}
+
+//=================================================================
+//= Kafra Locations
+//=================================================================
+aldebaran,143,119,4	duplicate(Kafra)	Kafra#ald01	4_F_KAFRA5
+geffen,120,62,0	duplicate(Kafra)	Kafra#gef01	4_F_KAFRA3
+geffen,203,123,2	duplicate(Kafra)	Kafra#gef02 4_F_KAFRA4
+morocc,156,97,4	duplicate(Kafra)	Kafra#moc01	4_F_KAFRA5
+morocc,160,258,4	duplicate(Kafra)	Kafra#moc02 4_F_KAFRA4
+payon,181,104,4	duplicate(Kafra)	Kafra#pay01	4_F_KAFRA5
+payon,175,226,4	duplicate(Kafra)	Kafra#pay02	4_F_KAFRA2
+pay_arche,55,123,0	duplicate(Kafra)	Kafra#pay03	4_F_KAFRA3
+prontera,152,326,3	duplicate(Kafra)	Kafra#pron01	4_F_KAFRA6
+prontera,152,192,5	duplicate(Kafra)	Kafra#pron02	4_F_KAFRA3
+prontera,29,207,6	duplicate(Kafra)	Kafra#pron03	4_F_KAFRA5
+prontera,282,200,2	duplicate(Kafra)	Kafra#pron04	4_F_KAFRA4
+prontera,146,89,6	duplicate(Kafra)	Kafra#pron05	4_F_KAFRA1
+yuno,152,187,4	duplicate(Kafra)	Kafra#yun01	4_F_KAFRA8
+yuno,327,108,4	duplicate(Kafra)	Kafra#yun02	4_F_KAFRA8
+yuno,277,221,4	duplicate(Kafra)	Kafra#yun03	4_F_KAFRA9
+alberta,28,229,0	duplicate(Kafra)	Kafra#alb01	4_F_KAFRA2
+alberta,113,60,6	duplicate(Kafra)	Kafra#alb02	4_F_KAFRA6
+comodo,195,150,4	duplicate(Kafra)	Kafra#com01	4_F_KAFRA7
+cmd_fild07,136,134,4	duplicate(Kafra)	Kafra#cmd_fild07	4_F_KAFRA7
+izlude,128,114,4	duplicate(Kafra)	Kafra#izl01	4_F_KAFRA7
+moscovia,223,191,3	duplicate(Kafra)	Kafra#mos01	4_F_KAFRA4
+amatsu,123,156,3	duplicate(Kafra)	Kafra#ama01	4_F_KAFRA2
+ayothaya,212,169,5	duplicate(Kafra)	Kafra#ayo01	4_F_KAFRA2
+einbech,181,132,5	duplicate(Kafra)	Kafra#ein01	4_F_KAFRA8
+einbroch,242,205,5	duplicate(Kafra)	Kafra#ein02	4_F_KAFRA8
+einbroch,59,203,6	duplicate(Kafra)	Kafra#ein03	4_F_KAFRA9
+gonryun,159,122,4	duplicate(Kafra)	Kafra#gon01	4_F_KAFRA2
+lighthalzen,164,100,4	duplicate(Kafra)	Kafra#lhz01	4_F_KAFRA8
+lighthalzen,191,320,4	duplicate(Kafra)	Kafra#lhz02	4_F_KAFRA9
+lhz_in02,237,284,4	duplicate(Kafra)	Kafra#lhz03	4_F_KAFRA9
+louyang,210,104,5	duplicate(Kafra)	Kafra#lou01	4_F_KAFRA1
+umbala,87,160,4		duplicate(Kafra)	Kafra#umb01	4_F_KAFRA7
+niflheim,202,180,3	duplicate(Kafra)	Kafra#nif01	4_F_NFDEADKAFRA
+prt_fild05,290,224,3	duplicate(Kafra)	Kafra#prt_fild05	4_F_KAFRA4
+mjolnir_02,83,362,4	duplicate(Kafra)	Kafra#mjolnir_02	4_F_KAFRA2
+moc_ruins,59,157,5	duplicate(Kafra)	Kafra#mocr01	4_F_KAFRA4
+gef_fild10,73,340,5	duplicate(Kafra)	Kafra#gef_fild10	4_F_KAFRA2
+alb2trea,59,69,5	duplicate(Kafra)	Kafra#alb2trea	4_F_KAFRA1
+
+// This kafra is special in that she needs to kee the Merchant Job quest
+// in mind as well.
+izlu2dun,106,58,8	script	Kafra Employee::kaf_izlu2dun	4_F_KAFRA3,{
+	cutin "kafra_03",2;
+	if (!checkre(0) && BaseJob == Job_Novice && job_merchant_q2 > 0) {
+		// Merchant Job Change Quest
+		// function F_MercKafra is found in /pre-re/jobs/1-1/merchant.txt
+		callfunc "F_MercKafra";
+	}
+	mes "[Kafra Employee]";
+	mes "Welcome to the";
+	mes "Kafra Corporation.";
+	mes "Kafra's Employees are";
+	mes "always ready to serve you.";
+	mes "How can I help you today?";
+	callfunc "F_Kafra",5,2,1,120,1200;
+	savepoint "izlu2dun",87,170;
+	callfunc "F_KafEnd",0,1;
+}
