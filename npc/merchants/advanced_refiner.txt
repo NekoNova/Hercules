@@ -24,12 +24,7 @@
 //= 1.4b Fixed coordinates. [Euphy]
 //= 1.5 Some official script updates. [Euphy]
 //============================================================
-
-<<<<<<< HEAD
-payon,157,146,6	script	Suhnbi#cash	4_M_03,{
-=======
 payon,157,146,6	script	Suhnbi#cash	85,{
->>>>>>> atherea/master
 	disable_items;
 	mes "[Suhnbi]";
 	mes "I am the Armsmith";
@@ -88,26 +83,15 @@ payon,157,146,6	script	Suhnbi#cash	85,{
 		mes "It's been a while since I've made such a fine "+((getequipweaponlv(.@part))?"weapon":"armor")+". You must be happy because it has become stronger!";
 		close;
 	}
-<<<<<<< HEAD
-	failedrefitem .@part;
-=======
 	downrefitem .@part,getequiprefinerycnt(.@part);
->>>>>>> atherea/master
 	next;
 	emotion (!rand(5))?e_cash:e_omg;
 	mes "[Suhnbi]";
 	mes "Uuuuuuuuuummmmmph!!!";
 	next;
 	mes "[Suhnbi]";
-<<<<<<< HEAD
-	mes "...";
-	mes ".....";
-	mes ".......Huhuhuhuhu~";
-	mes "........It was your choice and my ability, no regret.";
-=======
 	mes "I couldn't refine it as you wanted me to.";
 	mes "I was able to restore your equipment to it's original state.";
->>>>>>> atherea/master
 	close;
 
 S_RefineValidate:
@@ -125,15 +109,6 @@ S_RefineValidate:
 				mes "This weapon probably";
 				mes "looks like it's been refined...";
 				mes "many times...";
-<<<<<<< HEAD
-				mes "It may break if";
-				mes "you refine it again.";
-				next;
-				mes "And if it breaks,";
-				mes "you can't use it anymore!";
-				mes "All the cards in it and the properties ^ff0000will be lost^000000!";
-				mes "^ff0000Besides, the equipment will break!^000000";
-=======
 				mes "It may fail if";
 				mes "you refine it again.";
 				next;
@@ -141,17 +116,12 @@ S_RefineValidate:
 				mes "you will not lose your equipment.";
 				mes "with my advanced skills, I will be able to restore the item to it's original state.";
 				mes "^ff0000You will lose all refines if it fails!^000000";
->>>>>>> atherea/master
 				mes "Are you sure you still want to continue?";
 				next;
 				if(select("Yes:No") == 2) {
 					mes "[Suhnbi]";
 					mes "Good.";
-<<<<<<< HEAD
-					mes "Because if the weapon breaks from unreasonable refining, then I get a bad mood, too.";
-=======
 					mes "Because if the upgrade fails from unreasonable refining, then I get a bad mood, too.";
->>>>>>> atherea/master
 					close;
 				}
 			} else {
@@ -159,14 +129,8 @@ S_RefineValidate:
 				mes "Giggle. Giggle. Oh, you have guts, daring to refine this.";
 				mes "You know it's pretty risky, don't you?";
 				next;
-<<<<<<< HEAD
-				mes "If your defensive equipment is broken, you'll never be able to use it again.";
-				mes "Even your cards and your modifications will ^ff0000completely disappear^000000.";
-				//mes "Everything will disappear. As in... GONE!";
-=======
 				mes "If your defensive equipment fails to be refined";
 				mes "^ff0000Your existing upgrades will completely disappear^000000.";
->>>>>>> atherea/master
 				mes "Do you really wish to continue?";
 				next;
 				if(select("Yes:No") == 2) {
@@ -179,11 +143,7 @@ S_RefineValidate:
 		}
 		if (countitem(getarg(1)) > 0 && Zeny > getarg(2)) {
 			delitem getarg(1),1;
-<<<<<<< HEAD
-			Zeny -= getarg(2);
-=======
 			set Zeny, Zeny - getarg(2);
->>>>>>> atherea/master
 			return;
 		}
 		mes "[Suhnbi]";
