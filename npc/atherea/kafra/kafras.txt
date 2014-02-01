@@ -162,6 +162,12 @@ mjolnir_02,83,362,4	duplicate(Kafra)	Kafra#mjolnir_02	4_F_KAFRA2
 moc_ruins,59,157,5	duplicate(Kafra)	Kafra#mocr01	4_F_KAFRA4
 gef_fild10,73,340,5	duplicate(Kafra)	Kafra#gef_fild10	4_F_KAFRA2
 alb2trea,59,69,5	duplicate(Kafra)	Kafra#alb2trea	4_F_KAFRA1
+brasilis,197,221,4	duplicate(Kafra)	Kafra#bra01	4_F_KAFRA1
+dewata,202,184,6	duplicate(Kafra)	Kafra#dew01	4_F_KAFRA1
+moc_para01,10,185,4	duplicate(Kafra)	Kafra#moc_para	4_F_KAFRA7
+malaya,71,79,4	duplicate(Kafra)	Kafra#mal01	4_MAL_KAFRA
+malaya,234,204,4	duplicate(Kafra)	Kafra#mal02	4_MAL_KAFRA
+job3_rune01,92,62,3	duplicate(Kafra)	Kafra#rune01	4_F_KAFRA4
 
 // This kafra is special in that she needs to kee the Merchant Job quest
 // in mind as well.
