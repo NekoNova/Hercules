@@ -9156,8 +9156,11 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 	sce->val4 = val4;
 	if (tick >= 0)
 		sce->timer = timer->add(timer->gettick() + tick, status->change_timer, bl->id, type);
-	else
+	else {
 		sce->timer = INVALID_TIMER; //Infinite duration
+		if( sd )
+			chrif->save_scdata_single(sd->status.account_id,sd->status.char_id,type,sce);
+	}
 
 	if (calc_flag)
 		status_calc_bl(bl,calc_flag);
@@ -9336,6 +9339,9 @@ int status_change_end_(struct block_list* bl, enum sc_type type, int tid, const 
 	if (sce->timer != tid && tid != INVALID_TIMER)
 		return 0;
 
+	if( sd && sce->timer == INVALID_TIMER )
+		chrif->del_scdata_single(sd->status.account_id,sd->status.char_id,type);
+	
 	if (tid == INVALID_TIMER) {
 		if (type == SC_ENDURE && sce->val4)
 			//Do not end infinite endure.
