@@ -1,0 +1,120 @@
+//========================================================================
+// The NPCs defined in this file will open up quests at specific levels,
+// that are triggered by Elys on the correct level. These quests can be
+// done once by everyone who meets the level requirement, regardless of
+// his class.
+//========================================================================
+payon,170,178,4	script	Desperate Mother	510,{
+	if(checkquest(30010) == 1){
+		mes "[Desperate Mother]";
+		mes "Oh adventureeeree, I reeequireee yourrrr help.";
+		mes "My son herrrre is hungrrry, but I'm unable to fetch his food.";
+		mes "I sprrrained my ankle not long ago, and lack the speed to hunt.";
+		next;
+		mes "[" + strcharinfo(0) + "]";
+		mes "What does your son require?";
+		next;
+		mes "[Desperate Mother]";
+		mes "You'll help us? Oh praise the wood spirits!";
+		next;
+		mes "[Desperate Mother]";
+		mes "Please hunt the following:";
+		mes "20 x ^0000FFSkel-Bone^000000";
+		mes "20 x ^0000FFSweet Potato^000000";
+		mes "5 x ^0000FFNine Tails^000000";
+		mes "";
+		mes "You can find these nutrients inside ^0000FFPayon Cave^000000";
+		close2;
+		changequest 30010,30011;
+		end;
+	} elseif(checkquest(30011) == 1){
+		mes "[Desperate Mother]";
+		mes "Did you bring the nutrients I asked for?";
+		next;
+		
+		// Load the inventory info of the player.
+		getinventorylist;
+		
+		// If he has no items, send him back.
+		if (@inventorylist_count > 1){
+			set(.@collected,0);
+			
+			// Check the following items:
+			// = Skel-Bone 932 
+			// = Sweet Potato 633
+			// = Nine Tails 1022
+			// Do this by looping the inventory and checking the itemID for a match.
+			// If we find a match, check the logic.
+			for(.@i = 1, .@i < @inventorylist_count; .@i++){
+				switch(@inventorylist_id[.@i]){
+					// If the itemID is 633,932 or 1022, we need to check the amount.
+					case 633:
+					case 932:
+					case 1022:
+						// Based on the item we're checking, change the required
+						// amount that is needed.
+						if(@inventorylist_id[.@i] == 1022)
+							set(.@amount,5);
+						else
+							set(.@amount,20);
+						
+						// If sufficient items are collected, raise the counter by 1.
+						if(@inventorylist_amount[.@i] >= .@amount)
+							set(.@collected.@collected + 1);						
+						break;
+						
+					default:
+						break;
+				}
+			}
+			
+			// All items have been collected, end the quest.
+			// Also remove the items from the User.
+			if(.@collected == 3){
+				delitem 633,20;
+				delitem 932,20;
+				delitem 1022,5;
+				completequest 30011;
+				mes "[Desperate Mother]";
+				mes "Thank you kind adventurer, you've saved my son!";
+				mes "Look here honney, now you can eat.";
+				next;
+				mes "[Young Best Clan Member]";
+				mes "^0000FFHis eyer grow big when he sees the food.^000000";
+				mes "^0000FFWithout hesitation he snatches the food and devours it.^000000";
+				next;
+				mes "[Desperate Mother]";
+				mes "Just shows how hungry he was.";
+				mes "Thank you again, and may the forest spirits protect you.";
+				close;
+			}
+		}
+		
+		mes "[Desperate Mother]";
+		mes "Please, my son is hungry, and I cannot hunt the food.";
+		mes "";
+		mes "20 x ^0000FFSkel-Bone^000000";
+		mes "20 x ^0000FFSweet Potato^000000";
+		mes "5 x ^0000FFNine Tails^000000";
+		mes "";
+		mes "You can find these nutrients inside ^0000FFPayon Cave^000000";
+		close;
+	} elseif(checkquest(30011) == 2){
+		mes "[Desperate Mother]";
+		mes "Again, thank you kind stranger for helping my son.";
+		mes "May the forest spirits guide and protect you.";
+		close;
+	} else {
+		mes "[Desperate Mother]";
+		mes "Won't someone think of the children?";
+		close;
+	}
+}
+
+payon,171 179,4	script	Young Beast Clan	626,{
+	emotion 28,0;
+	mes "[Young Best Clan Member]";
+	mes "Mommy, I'm hungry...";
+	mes "^0000FFThe boy pulls his mother's robes, and sobs^000000.";
+	close;
+}
