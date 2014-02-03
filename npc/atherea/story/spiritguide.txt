@@ -40,7 +40,7 @@ OnPCBaseLvUpEvent:
 
 	// This triggers when the player rebirths. In this case the Spirit will reveal the
 	// power of being reborn to the Player.
-	if(BaseLevel == 1 && Class = Job_Novice_High) {
+	if(BaseLevel == 1 && Class == Job_Novice_High) {
 		mes "[Elys]";
 		mes "By Atherea, you have found it";
 		next;
@@ -49,7 +49,7 @@ OnPCBaseLvUpEvent:
 		next;
 		mes "[Elys]";
 		mes "You have transcended " + strcharinfo(0) + ".";
-		mes "You are no more an ordinary human, you have harnessed the power of the Gods and have been reincarnated into a greater being."
+		mes "You are no more an ordinary human, you have harnessed the power of the Gods and have been reincarnated into a greater being.";
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes " I feel strange....";
