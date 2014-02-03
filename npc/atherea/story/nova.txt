@@ -4,7 +4,11 @@
 //= clans.
 //=========================================================
 prontera,153,285,4	script	Nova	10006,{
-	if(Class >= Job_Novice_High){
+	// We only allows transcended classes and second expanded classes on this quest.
+	// All other classes either need to rebirth first, unlock their second class or
+	// be excluded in general.
+	// Super Novice is not allowed to participate at all, nor are baby classes allowed.
+	if((Class >= Job_Novice_High && Class <= Job_Paladin2) || (Class >= Job_Star_Gladiator && Class <= Job_Dark_Collector)){
 		if(nova < 1){
 			mes "[Nova]";
 			mes "I've been expecting you, young one.";
