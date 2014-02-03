@@ -66,8 +66,9 @@ OnPCBaseLvUpEvent:
 		mes strcharinfo(0);
 		mes "There is a knight in Prontera and he seems to be looking for aid.";
 		mes "Perhaps you could help him out and gain their trust.";
-		close;
+		close2;
 		setquest 30000;	// Flag Quest "Hidden Temple Expedition (30000) as Active
+		end;
 	}
 	
 OnPCJobLvUpEvent:
