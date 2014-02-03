@@ -59,6 +59,17 @@ OnPCBaseLvUpEvent:
 		close;
 	}
 
+	// If the player hits level 80, and has not completed the Quest "Hidden Temple Expedition (30000)", we will allow Elys
+	// to inform the player or this quest.
+	if(BaseLevel == 80 && checkquest(30000) == -1) {
+		mes "[Elys]";
+		mes strcharinfo(0);
+		mes "There is a knight in Prontera and he seems to be looking for aid.";
+		mes "Perhaps you could help him out and gain their trust.";
+		close;
+		setquest 30000;	// Flag Quest "Hidden Temple Expedition (30000) as Active
+	}
+	
 OnPCJobLvUpEvent:
 	if(JobLevel == 10 && Class == Job_Novice) {
 		mes "[Elys]";
@@ -81,7 +92,7 @@ OnPCJobLvUpEvent:
 	// This is triggered when the player reaches job level 1 on his new base class.
 	// Now the spirit will reveal that various clans are actually looking for the
 	// Player.
-	if(JobLevel == 1 && (Class == Job_Swordman_High || Class == Job_Mage_High || Class == Job_Archer_High || Class == Job_Acolyte_High || Class == Job_Merchant_High || Class == Job_Thief_High)) {
+	if(JobLevel == 1 && (Class >= Job_Swordman_High || Class <= Job_Thief_High)) {
 		mes "[Elys]";
 		mes "The name " + strcharinfo(0) + " spreads far and wide across the world now that you have achieve that which many couldn't.";
 		mes "Take caution " + strcharinfo(0) + ", races/clans both big and small are looking for you.";

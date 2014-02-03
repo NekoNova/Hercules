@@ -2616,6 +2616,14 @@
 19128,0,0,0,0,0,0,0,"The Eye of Hellion"
 19129,0,0,0,0,0,0,0,"The Eye of Hellion"
 
+//================================================
+//= Atherea Story Quests
+//================================================
+30000,0,0,0,0,0,0,0,"Hidden Temple Expedition"
+30001,0,0,0,0,0,0,0,"Hidden Temple Expedition"
+30002,0,0,0,0,0,0,0,"Hidden Temple Expedition"
+
+
 50000,0,0,0,0,0,0,0,"Pirate Dagger materials"
 50001,0,0,0,0,0,0,0,"Weather Beaten Old Man"
 50002,0,0,0,0,0,0,0,"Lost Treasure?"
