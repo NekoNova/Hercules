@@ -13,7 +13,7 @@
 -	script	Elys#guide	-1,{
 
 OnPCBaseLvUpEvent:
-if(BaseLevel == 10 && Class == Job_Novice) {
+	if(BaseLevel == 10 && Class == Job_Novice) {
 		mes "[Elys]";
 		mes "" + strcharinfo(0) + ", you have obtained some experience that will aid you in combat.";
 		mes "Focus on improving your attributes so you may become stronger";
@@ -38,6 +38,26 @@ if(BaseLevel == 10 && Class == Job_Novice) {
 		close;
 	}
 
+	// This triggers when the player rebirths. In this case the Spirit will reveal the
+	// power of being reborn to the Player.
+	if(BaseLevel == 1 && Class = Job_Novice_High) {
+		mes "[Elys]";
+		mes "By Atherea, you have found it";
+		next;
+		mes "[" + strcharinfo(0) + "]";
+		mes "What just happened Elys?";
+		next;
+		mes "[Elys]";
+		mes "You have transcended " + strcharinfo(0) + ".";
+		mes "You are no more an ordinary human, you have harnessed the power of the Gods and have been reincarnated into a greater being."
+		next;
+		mes "[" + strcharinfo(0) + "]";
+		mes " I feel strange....";
+		mes "[Elys]";
+		mes "You have reborn with power which no other human possess.";
+		mes "Lets make haste " + strcharinfo(0) + ", you need to train yourself to master this power and refine your skills.";
+		close;
+	}
 
 OnPCJobLvUpEvent:
 	if(JobLevel == 10 && Class == Job_Novice) {
@@ -45,14 +65,48 @@ OnPCJobLvUpEvent:
 		mes "You have enough skill to choose a class. Choose your path wisely " + strcharinfo(0) + ", what path you choose now determines your future.";
 		close;
 	}
+	
 	if(JobLevel == 40 && (Class == Job_Swordman || Class == Job_Mage || Class == Job_Archer || Class == Job_Acolyte || Class == Job_Merchant || Class == Job_Thief || Class == Job_Baby_Swordman || Class == Job_Baby_Mage || Class == Job_Baby_Archer || Class == Job_Baby_Acolyte || Class == Job_Baby_Merchant || Class == Job_Baby_Thief)) {
 		mes "[Elys]";
 		mes "It appears that Jean in Prontera is looking for you after hearing news of your great skill in combat. However, there is still much to learn and I advise you to gain some more skill before meeting with her.";
 		close;
 	}
+	
 	if(JobLevel == 50 && (Class == Job_Swordman || Class == Job_Mage || Class == Job_Archer || Class == Job_Acolyte || Class == Job_Merchant || Class == Job_Thief || Class == Job_Baby_Swordman || Class == Job_Baby_Mage || Class == Job_Baby_Archer || Class == Job_Baby_Acolyte || Class == Job_Baby_Merchant || Class == Job_Baby_Thief)) {
 		mes "[Elys]";
 		mes "Well done, " + strcharinfo(0) + "! You have taken my advise... Now we shall go meet Jean in Peontera. Find out what she has to offer and choose that which suits you best..";
+		close;
+	}
+	
+	// This is triggered when the player reaches job level 1 on his new base class.
+	// Now the spirit will reveal that various clans are actually looking for the
+	// Player.
+	if(JobLevel == 1 && (Class == Job_Swordman_High || Class == Job_Mage_High || Class == Job_Archer_High || Class == Job_Acolyte_High || Class == Job_Merchant_High || Class == Job_Thief_High)) {
+		mes "[Elys]";
+		mes "The name " + strcharinfo(0) + " spreads far and wide across the world now that you have achieve that which many couldn't.";
+		mes "Take caution " + strcharinfo(0) + ", races/clans both big and small are looking for you.";
+		next;
+		mes "[" + strcharinfo(0) + "]";
+		mes "Looking for me?";
+		next;
+		mes "[Elys]";
+		mes "Yes, they are starting to believe the ancient prophecy and the promises of old.";
+		mes "But most importantly they are afraid.";
+		next;
+		mes "[" + strcharinfo(0) + "]";
+		mes "Afraid? of what exactly?";
+		next;
+		mes "[Elys]";
+		mes "Afraid of you, " + strcharinfo(0) + ".";
+		mes "You have come a long way and achieved that which no ordinary person could have.";
+		mes "When you make allies with one, you end up making enemies out of the rest.";
+		next;
+		mes "[" + strcharinfo(0) + "]";
+		mes "Do you enjoy confusing me Elys?";
+		next;
+		mes "[Elys]";
+		mes "If you seek answers, we should pay a visit to Nova.";
+		mes "You'll find him on the way to the castle north of Prontera, he should be able to explain things more clearly to you.";
 		close;
 	}
 end;
