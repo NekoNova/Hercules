@@ -132,7 +132,7 @@ OnReadyCheck:
 		donpcevent "#bat_a02_timer::OnStop";
 		end;
 	}
-	else if( .@Guillaume < 10 || .@Croix < 10 )
+	else if( .@Guillaume < 5 || .@Croix < 5 )
 		end;
 	set $@TierraBG2,1;
 	donpcevent "Lieutenant Rundel::OnEnterBG";
