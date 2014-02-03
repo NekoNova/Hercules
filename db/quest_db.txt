@@ -2622,7 +2622,9 @@
 30000,0,0,0,0,0,0,0,"Hidden Temple Expedition"
 30001,0,0,0,0,0,0,0,"Hidden Temple Expedition"
 30002,0,0,0,0,0,0,0,"Hidden Temple Expedition"
-
+30003,0,0,0,0,0,0,0,"No Witnesses"
+30004,0,0,0,0,0,0,0,"No Witnesses"
+30005,0,0,0,0,0,0,0,"No Witnesses"
 
 50000,0,0,0,0,0,0,0,"Pirate Dagger materials"
 50001,0,0,0,0,0,0,0,"Weather Beaten Old Man"

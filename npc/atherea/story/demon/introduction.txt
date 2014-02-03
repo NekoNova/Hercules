@@ -1,0 +1,74 @@
+//========================================================================
+// The NPCs defined in this file will open up quests at specific levels,
+// that are triggered by Elys on the correct level. These quests can be
+// done once by everyone who meets the level requirement, regardless of
+// his class.
+//========================================================================
+que_job01,91,90,3	script	Sinister Demon	456,{
+	if(checkquest(30003) == 1){
+		mes "[Sinister Demon]";
+		mes "What the hell do you want, adventurer?";
+		mes ".......";
+		mes "No wait.....perhaps you can be of service.";
+		next;
+		mes ["Sinister Demon]";
+		mes "One of my ^0000FFvictims^000000 has escaped.";
+		mes "This could prove to be troublesome if our clan was discovered because of this.";
+		next;
+		mes ["Sinister Demon]";
+		mes "Get rid of him, and I'll tell our overlords to keep an eye on you.";
+		mes "Might be beneficial, if you get my drift.";
+		next;
+		mes ["Sinister Demon]";
+		mes "What...Do I have to spoonfeed it to you?";
+		mes "I saw him scurrying off to the pyramids.";
+		mes "Now begon with you.";
+		close2;
+		changequest 30003,30004;
+		end;
+	} elseif(checkquest(30004) == 1){
+		mes "[Sinister Demon]";
+		mes "Are all adventurers as stupid as you?";
+		mes "I said he scurried off to the ^0000FFPyramids^000000.";
+		mes "Now scram!";
+		close;
+	} elseif(checkquest(30005) == 1){
+		mes "[Sinister Demon]";
+		mes "He did not managed to tell anyone?";
+		mes "Good, then the clan will remain hidden yet again.";
+		next;
+		mes "["Sinister Demon]";
+		mes "You did well adventurer.";
+		mes "As promised, I will inform our overlord to keep an eye on you.";
+		mes "Perhaps our paths will cross again in the future.";
+		next;
+		mes "["Sinister Demon]";
+		mes "Now scram!";
+		close2;
+		completequest 30005;
+		end;
+	} elseif(checkquest(30005) == 2){
+		mes "[Sinister Demon]";
+		mes "Why are you back here? Need another pat on the back?";
+		mes "Scram, before the thought to devour you crosses my mind.";
+		close;
+	} else {
+		mes "[Sinister Demon]";
+		mes "What do you want adventurer?";
+		mes "I've got enough problems as it is, scram!";
+		close;
+	}
+}
+
+moc_ruins,119,22,0	script	Demon Victim	849,{
+	mes "[Demon Victim]";
+	mes "^0000FFIt seems the poor soul died of dehydration.^000000";
+	
+	if(checkquest(30004) == 1){
+		mes "^0000FFFortunatly it looks like he never got to tell anyone about the clan.^000000";
+		mes "^FF0000You should probably inform the demon who sent you about this.^000000";
+		changequest 30004,30005;
+	}
+	
+	close;
+}

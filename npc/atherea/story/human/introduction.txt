@@ -18,7 +18,9 @@ prt_in,85,106,3	script	Distressed Captain	628,{
 		mes "Yes, you adventurer, pleas help me out";
 		mes "A company of Knights has ventured into the ^5EAE9EEHidden Temple^000000";
 		mes "But they have not returned yet. Please do me a favour and go look for them.";
+		close2;
 		changequest 30000,30001;
+		end;
 	} elseif(checkquest(30002) == 1) {
 		mes "[Distressed Captain]";
 		mes "They are okay? Thank you adventurer.";
@@ -74,6 +76,7 @@ prt_fild01,142,364,4	script	Wounded Knight	686,{
 	
 OnMonsterDead:
 	changequest 30001,30002;
+end;
 }
 
 prt_fild01,143,362,4	script	Scared Knight	500,{
