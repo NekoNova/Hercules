@@ -1,0 +1,98 @@
+//=========================================================
+//= This is the script for Nova, who will guide all the 
+//= players that meet the requirements to join one of the
+//= clans.
+//=========================================================
+prontera,153,285,4	script	Nova	10006,{
+	if(Class >= Job_Novice_High){
+		if(nova < 1){
+			mes "[Nova]";
+			mes "I've been expecting you, young one.";
+			mes "I see that you were able to find the fragments of heart and transcend.";
+			next;
+			mes "[" + strcharinfo(0) + "]";
+			mes "Yes but I came here to...";
+			next;
+			mes "[Nova]";
+			mes "I know, I know... A war is coming and your name has become quite popular in your journey.";
+			mes "Knowing that you are a wanderer and not particularly with anyone, every race is seeking alliance with you to join them.";
+			next;
+			mes "[" + strcharinfo(0) + "]";
+			mes "What if i don't want to join them?";
+			next;
+			mes "[Nova]";
+			mes "Your path is only yours to make young one.";
+			mes "You either make allies or you make enemies.";
+			mes "You might not have noticed but people around you have always had an eye on you,";
+			mes "even more now that you have grown stronger than any would have expected.";
+			next;
+			mes "[" + strcharinfo(0) + "]";
+			mes "I am merely looking for answers here and not interested in these races or the war ";
+			next;
+			mes "[Nova]";
+			mes "Do not think you are going astray " + strcharinfo(0) + ".";
+			mes "The spirit beside you comes from the ancient lands that was long forgotten by everyone.";
+			next;
+			mes "[Elys]";
+			mes "That is true " + strcharinfo(0) + ".";
+			mes	"But it seems that Gods are not the only ones seeking the gates of Atherea.";
+			mes "Very few know of our ways and with you, some races are starting to believe you are the key to Atherea and want you on their side.";
+			next;
+			mes "[Nova]";
+			mes "Since there are people who want you to be able to reach the ancient lands,";
+			mes "there are ones who also conspire against you to prevent that from happening.";
+			mes "Come meet me again once you have made up your mind.";
+			
+			set(nova,1);
+			close;
+		} elseif(nova == 1){
+			mes "[Nova]";
+			mes "Have you decided on making allies with the ones seeking you?";
+			menu "Tell me more about these races",TellMeMore,"Where will I find them?",TellMeWhere;
+		}
+	} else {
+		mes "[Nova]";
+		mes "I'm sorry adventurer, but you're not quite ready yet for the secrets of this world";
+		mes "Come back to me when you have transcended the boundaries of the hearth";
+		close;
+	}
+
+TellMeMore:
+	next;
+	mes "[Nova]";
+	mes "At this very moment there are four races that are equally strong both in number and warfare.";
+	mes "They have distinguished themselves as humans, demons, elves and the beastfolks.";
+	next;
+	mes "[Nova]";
+	mes "You should already know of you race as a human being one of the primary beings.";
+	next;
+	mes "[Nova]";
+	mes "Demons are descendants of the creatures spawned by the chaos and wrath of the Gods and the darker side of the human race.";
+	next;
+	mes "[Nova]";
+	mes "Elves with their superior intelligence were not only proud but also cunning, mischievous and reaped the benefits of the chaos.";
+	next;
+	mes "[Nova]";
+	mes "Beasts came to evolve as difference among the other races joined together to form an even stronger race capable of adapting to tough surroundings.";
+	next;
+	mes "[" + strcharinfo(0) + "]";
+	mes "Where will I find them?";
+	goto TellMeWhere;
+end;
+
+TellMeWhere:
+	next;
+	mes "[Nova]";
+	mes "To find out more about humans, look for a knight named ^0000FFMichael^000000 near the castle gates north of Prontera.";
+	next;
+	mes "[Nova]";
+	mes "In the center of Spledide, you will find one named ^0000FFKyrule^000000 who will aid you among the Elves.";
+	next;
+	mes "[Nova]";
+	mes "One among the beasts has been looking for you and can be found in south-east region of Payon near the forest.";
+	next;
+	mes "[Nova]";
+	mes "To make an audience with the demons, you should darken your heart and meet ^0000FFLahrgos^000000 in Glast Heim near the churchyard.";
+	close;
+end;
+}
