@@ -116,7 +116,7 @@ aldeba_in,96,181,4	script	Kafra Service	4_F_KAFRA5,{
 -	script	Kafra#dummy::KafraService	-1,{
 	cutin "kafra_03",2;			// Display Kafra
 	callfunc "F_KafSet";		// Build up Menu
-	callfunc "F_Kafra",0,0,30,750;
+	callfunc "F_Kafra",0,0,1,30,750;
 	callfunc "F_KafEnd",0,1;
 }
 
