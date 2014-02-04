@@ -56,7 +56,7 @@ prt_in,63,60,0	script	Hollgrehenn	4_M_03,{
 		mes "[Hollgrehenn]";
 		mes "With that, I believe that is all I have to tell you.";
 		mes "I will now refer you to Seiyablem who is in the next room on your left. He will tell you about socket enchanting.";
-		set npcintroquest,1;
+		set npcintroquest,2;
 		close;
 		end;
 	
