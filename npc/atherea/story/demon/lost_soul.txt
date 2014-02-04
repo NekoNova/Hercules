@@ -88,6 +88,8 @@ JoinDemonClan:
 	set .@instance, instance_create("1@tnm1 instanced", getcharid(1));
 	
 	// Check if the instance can be created.
+	if(.@instance == -4) warp "1@tnm1",67,108;
+	
 	if(.@instance < 0) {
 		mes "Failed to create the instance! Please report this bug";
 		close;

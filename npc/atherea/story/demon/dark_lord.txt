@@ -47,6 +47,7 @@ AcceptDefeat:
 	mes "I'm disappointed " + strcharinfo(0) + ".";
 	mes "Oh well, at least you'll prove to be a good snack.";
 	close2;
+	set demontest, 1;
 	atcommand "@nuke " + strcharinfo(0);
 	end;
 end;
@@ -100,7 +101,6 @@ OnPerfectDemonDead:
 	mes "Begone!";
 	close2;
 	atcommand "@killmonster2";
-	set demontest, 1;
 	atcommand "@nuke " + strcharinfo(0);
 	end;
 end;
