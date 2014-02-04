@@ -191,13 +191,10 @@ payon_in02,64,71,4	script	Archer Guildsman#archer	4_M_03,{
 		next;
 		callfunc "Job_Change",Job_Archer;
 		callfunc "F_ClearJobVar";
-<<<<<<< HEAD
-=======
 		getitem 1704,1;
 		getitem 2200,1;
 		getitem 2401,1;
 		getitem 2501,1;
->>>>>>> atherea/master
 		completequest 1004;
 		mes "[Archer Guildsman]";
 		mes "Congratulations!";

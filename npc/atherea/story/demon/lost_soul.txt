@@ -13,13 +13,21 @@
 //================================================================
 glast_01,194,130,5	script	Lost Soul	1132,{
 	if(clan_membership$ == "demon"){
-	
-	} elseif(clan_membership$ == "fairy") {
-	
-	} elseif(clan_membership$ == "human") {
-	
-	} elseif(clan_membership$ == "beast") {
-	
+		mes "[Lost Soul]";
+		mes "What are you doing here?";
+		close;
+	} else if(clan_membership$ == "fairy") {
+		mes "[Lost Soul]";
+		mes "Beat it fly, before I swat you";
+		close;
+	} else if(clan_membership$ == "human") {
+		mes "[Lost Soul]";
+		mes "Come to seek your death, Human?";
+		close;
+	} else if(clan_membership$ == "beast") {
+		mes "[Lost Soul]";
+		mes "Who's a good boy....heheheh...AHAHAHAA";
+		close;
 	} else {
 		if(Class <= Job_Wedding || (Class >= Job_Baby && Class <= Job_Super_Baby)) {
 			mes "[Lost Soul]";
