@@ -62,7 +62,6 @@ prontera,153,285,4	script	Nova	10006,{
 	}
 
 TellMeMore:
-	next;
 	mes "[Nova]";
 	mes "At this very moment there are four races that are equally strong both in number and warfare.";
 	mes "They have distinguished themselves as humans, demons, elves and the beastfolks.";
@@ -81,11 +80,11 @@ TellMeMore:
 	next;
 	mes "[" + strcharinfo(0) + "]";
 	mes "Where will I find them?";
+	next;
 	goto TellMeWhere;
 end;
 
 TellMeWhere:
-	next;
 	mes "[Nova]";
 	mes "To find out more about humans, look for a knight named ^0000FFMichael^000000 near the castle gates north of Prontera.";
 	next;
