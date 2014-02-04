@@ -1,0 +1,107 @@
+//=====================================================
+//= Hercules.ws Script
+//=====================================================
+//= This NPC is the clan leader of the Demons and allows
+//= players to take the test to either join with the clan
+//= or die trying.
+//= Additional features that are specific to the clan leader
+//= might be added here in the future as well.
+//=====================================================
+1@tnm1,69,119,3	script	Dark Lord::#clanleader	1272,{
+	if(demontest > 0 && demontest < 4) {
+		mes "[Clan Leader]";
+		mes "What? Too complicated for you?";
+		menu "Yes...",AcceptDefeat,"Too easy...",Continue;
+	} elseif(demontest == 4) {
+		mes "[Clan Leader]";
+		mes "Outstanding.";
+		mes "Let the Darkness inside you take over, and see the malice around you.";
+		mes "From this day on you're part of the Demon clan.";
+		mes "We will call upon you, when we require your services.";
+		close2;
+		set clan_membership$, "demon";
+		warp "glast_01",194,128;
+		end;
+	} elseif(decision == 1) {
+		mes "[Clan Leader]";
+		mes "But we can't just let you join us without a test.";
+		mes "If you are worthy, you shouldn't have any problem at all.";
+		mes "Would you like to take the test now?";
+		menu "No, I need time to prepare",Prepare,"Yes, I'm ready",Ready;
+	} else {
+		mes "[Clan Leader]";
+		mes "You must be brave to seek an audience with me.";
+		mes "You are exceptionally strong, I feel you will reap many souls to come.";
+		mes "With you help... we will be one step closer to reaching our goal";
+		mes "...of reaching the fabled lands of Atherea";
+		next;
+		mes "[Clan Leader]";
+		mes "But we can't just let you join us without a test.";
+		mes "If you are worthy, you shouldn't have any problem at all.";
+		mes "Would you like to take the test now?";
+		menu "No, I need time to prepare",Prepare,"Yes, I'm ready",Ready;
+	}
+	
+AcceptDefeat:
+	mes "[Clan Leader]";
+	mes "I'm disappointed " + strcharinfo(0) + ".";
+	mes "Oh well, at least you'll prove to be a good snack.";
+	close2;
+	atcommand "@nuke " + strcharinfo(0);
+	end;
+end;
+
+Continue:
+	mes "[Clan Leader]";
+	mes "Very well...be aware that my patience runs thin though...";
+	close;
+end;
+
+Prepare:
+	mes "[Clan Leader]";
+	mes "Very well then, come talk to me when you are ready...";
+	set(decision,1);
+	close;
+end;
+
+Ready:
+	mes "[Clan Leader]";
+	mes "You have spirit to take up a challenge, but is your hearth dark enough?";
+	mes "I'd like to see how well you do myself regardless of the outcome";
+	mes "Let's see if you possess the intelligence to figure this test out.";
+	close2;
+	emotion 18,0;
+	set(demontest, 1);
+	monster "this",0,0,"Helpless Human",1521,3,strnpcinfo(0)+"::OnHelplessHumanDead";
+	monster "this",0,0,"Weak Beast",1603,3,strnpcinfo(0)+"::OnWeakBeastDead";
+	monster "this",0,0,"Perfect Demon",1170,5,strnpcinfo(0)+"::OnPerfectDemonDead";
+	monster "this",0,0,"Perfect Demon",1729,5,strnpcinfo(0)+"::OnPerfectDemonDead";
+	monster "this",0,0,"Perfect Demon",1730,5,strnpcinfo(0)+"::OnPerfectDemonDead";
+end;
+
+OnHelplessHumanDead:
+	set demontest, demontest + 1;
+	mes "[Clan Leader]";
+	mes "Good....Good! Let the darkness revel through your body";
+	close;
+end;
+
+OnWeakBeastDead:
+	set demontest, demontest + 1;
+	mes "[Clan Leader]";
+	mes "Slay those beasts!";
+	close;
+end;
+
+OnPerfectDemonDead:
+	set demontest, 1;
+	mes "[Clan Leader]";
+	mes "You are not worthy of becoming one of our members";
+	mes "Begone!";
+	close2;
+	atcommand "@killmonster2";
+	set demontest, 1;
+	atcommand "@nuke " + strcharinfo(0);
+	end;
+end;
+}

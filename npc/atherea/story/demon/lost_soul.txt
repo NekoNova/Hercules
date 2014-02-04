@@ -1,0 +1,126 @@
+//================================================================
+//= Hercules.ws Script
+//================================================================
+//= This NPC is responsible for allowing the player to join the
+//= demon clan. This entails that once the player decides to join
+//= the demon clan, he can no longer join any other clan that he
+//= might like. To track this, we will use one character variable
+//= to track the clan he belongs to: clan_membership$
+//= - "demon","fairy","human","beast"
+//= to track the decision process for any clan: decision
+//= 1: decision to be made again
+//= 0: no decision trigger / clan chosen
+//================================================================
+glast_01,194,130,5	script	Lost Soul	1132,{
+	if(clan_membership$ == "demon"){
+	
+	} elseif(clan_membership$ == "fairy") {
+	
+	} elseif(clan_membership$ == "human") {
+	
+	} elseif(clan_membership$ == "beast") {
+	
+	} else {
+		if(Class <= Job_Wedding || (Class >= Job_Baby && Class <= Job_Super_Baby)) {
+			mes "[Lost Soul]";
+			mes "I have no time to waste on weaklings";
+			mes "Come back to me once you've learned to transcend your hearth";
+			mes "Right now you're useless to me";
+			mes "Begone before I devour your soul";
+			close;
+		}
+		
+		if(decision == 1) {
+			mes "[Lost Soul]";
+			mes "So let me ask again...would you like to strengthen yourself with darkness";
+			mes "and be one of us?"
+			menu "I'd like to think about it",ThinkAboutIt,"Yes, I want to join the Demons",JoinDemonClan;
+		} else {
+			mes "[Lost Soul]";
+			mes "Hehe...Look who's here...";
+			mes strcharinfo(0) + "the promised one.";
+			next;
+			mes "[" + strcharinfo(0) + "]";
+			mes "I came to seen an audience with the Demons,";
+			mes "and I heard you could help me.";
+			next;
+			mes "[Lost Soul]";
+			mes "I see...I see...are you sure you know what you're getting into?";
+			mes "...well...let's see....you are worthy...";
+			next;
+			mes "[Lost Soul]";
+			mes "We Demons are born of evil and take pride in the darkness within us.";
+			mes "You can become one of us...";
+			mes "Who am I to stop one such as yourself...";
+			next;
+			mes "[Lost Soul]";
+			mes "So let me ask again...would you like to strengthen yourself with darkness";
+			mes "and be one of us?"
+			menu "I'd like to think about it",ThinkAboutIt,"Yes, I want to join the Demons",JoinDemonClan;
+		}
+	}
+	
+ThinkAboutIt:
+	mes "[Lost Soul]";
+	mes "Take your time " + strcharinfo(0) + ",";
+	mes "you cannot escape the darkness within you no matter what...ehehe";
+	close2;
+	set(decision,1);
+	end;
+end;
+
+JoinDemonClan:
+	set(decision,0);
+	mes "[Lost Soul]";
+	mes "I'm starting to like you " + strcharinfo(0) + "...";
+	mes "I shall take you to the Dark Lord...";
+	close2;
+	
+	// create an instance for our player on the map, so he has exclusive access.
+	set .@instance, instance_create("1@tnm1 instanced", getcharid(1));
+	
+	// Check if the instance can be created.
+	íf(.@instance < 0) {
+		mes "Failed to create the instance! Please report this bug";
+		close;
+	}
+	
+	// Check if the target map can be attached to the instance.
+	if(instance_attachmap("1@tnm1", .@instance) == "") {
+		instance_destroy(.@instance);
+		mes "Failed to attach 1@tnm1 as map. Please report this bug";
+		close;
+	}
+	
+	instance_attach(.@instance);
+	instance_set_timeout(3600, 300, .@instance);
+	instance_init(.@instance);
+	
+	// Warp the player to the map with the new instance.
+	// Although not informed, he has one hour to actually complete the quest.
+	warp "1@tnm1",67,108;
+	end;
+end;
+}
+
+// This is a copy of the NPC to allow players to actually escape the room they
+// are being warped too.
+1@tnm1,76,106,3	script	Lost Soul#warp::exitwarp	1132,{
+	mes "[Lost Soul]";
+	mes "Don't tell me you're chickening out now..";
+	menu "No",No,"Let me out!",WarpOut;
+	
+No:
+	close;
+end;
+
+WarpOut:
+	mes "[Lost Soul]";
+	mes "^0000FF*sigh*^000000";
+	mes "Very well, but you'll be back.";
+	mes "They always come back...ehehehe";
+	close2;
+	warp "glast_01",194,128;
+	end;
+end;
+}
