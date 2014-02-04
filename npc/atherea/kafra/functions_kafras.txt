@@ -14,19 +14,14 @@
 //============================================================
 
 //=== Main Function ========================================================
-//=   arg(0): Set to 1 if in Guild Castle
-//=   arg(1): Cost to use Storage
-//=   arg(2): Cost to Rent a Pushcart
+//=   arg(0): Used to determine which welcome message to show.
+//=   arg(1): Used to determine which menu to display.
+//=   arg(2): Used to determine if the info menu is shown in F_KafInfo.
+//=   arg(3): Cost to use Storage
+//=   arg(4): Cost to Rent a Pushcart
 //==========================================================================
 function	script	F_Kafra	{
 	callfunc "F_ClearGarbage"; // Clear outdated, unused variables
-	
-	// Set the savepoint of the user, cause he talked to Kafra
-	// We do this by asking the NPC his coordinates, and putting the user right
-	// in front of that NPC
-	getmapxy strnpcinfo(4), .@x, .@y, 1;
-	savepoint strnpcinfo(4),(.@x - 1),(@y - 1);
-	
 	// Display Kafra Welcome Message
 	mes "[Kafra Employee]";
 	mes "Welcome to the";
@@ -36,31 +31,48 @@ function	script	F_Kafra	{
 	mes "How may I assist you?";
 	next;
 	
-	while(1) {
-		// Include all features such as Storage, Guild Storage, Pushcart, Teleport
-		setarray @K_Menu0$[0],"Use Storage","Use Guild Storage","Rent a Pushcart","Use Teleport Service","Cancel";
-		
-		// Build up the entire menu and let the user select which
-		// service he wants to use. Based on his selection, call the
-		// correct sub routine.
+	while (1) {
+		deletearray @K_Menu0$[0],getarraysize(@K_Menu0$);
+		setarray @K_Menu0$[0],"Save","Use Storage","Use Teleport Service","Rent a Pushcart","Check Other Information","Cancel";		
 		set .@menu$,"";
+		
 		for (set .@i, 0; .@i < getarraysize(@K_Menu0$); set .@i, .@i + 1)
 			set .@menu$, .@menu$ + @K_Menu0$[.@i] + ":";	
+		
 		set .@j, select (.@menu$) - 1;
 		
 		if (@K_Menu0$[.@j] == "Save") {
 			return;
 		} else if (@K_Menu0$[.@j] == "Use Storage") {
-			callfunc "F_KafStor",getarg(0),0,0;
+			// Do not charge for Guild Storage
+			if(getarg(0) == 2) 
+				callfunc "F_KafStor",2,0,0;
+			else 
+				callfunc "F_KafStor",0,getarg(3),getarg(0);
 			next;
 		} else if (@K_Menu0$[.@j] == "Use Teleport Service") {
-			callfunc "F_KafTele",4;
+			// Display Einbroch "No Teleport Service" notice.
+			if(getarg(1) != 4) callfunc "F_KafTele",getarg(0);
+			else {
+				mes "[Kafra Employee]";
+				mes "Because of the ^FF0000Limited";
+				mes "Transport Agreement^000000, the";
+				mes "Kafra Corporation cannot";
+				mes "provide Teleport Services";
+				mes "in the Schwaltzvalt Republic.";
+				next;
+				mes "[Kafra Employee]";
+				mes "We ask that you please";
+				mes "use the Airship Service";
+				mes "instead. Thank you for your";
+				mes "understanding and cooperation.";
+			}
 			next;
 		} else if (@K_Menu0$[.@j] == "Rent a Pushcart") {
-			if(callfunc("F_KafCart",getarg(0),getarg(1)) == 1) 
+			if(callfunc("F_KafCart",getarg(0),getarg(4)) == 1) 
 				next;
 		} else if (@K_Menu0$[.@j] == "Check Other Information") {
-			callfunc "F_KafInfo",getarg(0);
+			callfunc "F_KafInfo",getarg(2);
 			next;
 		} else if (@K_Menu0$[.@j] == "Cancel"){
 			callfunc "F_KafEnd",getarg(0),0;

@@ -98,7 +98,7 @@ prontera,159,221,4	duplicate(InsideFlagsPR4)	Skoegul#15	GUILD_FLAG
 
 // Kafra Employee
 //============================================================
-prtg_cas04,258,247,4	duplicate(KafraService)	Kafra#prtg_cas04	4_F_KAFRA1
+prtg_cas04,258,247,4	duplicate(GuildKafra)	Kafra#prtg_cas04	4_F_KAFRA1
 
 // Steward
 //============================================================

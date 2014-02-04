@@ -101,7 +101,7 @@ aldebaran,134,97,4	duplicate(InsideFlagsA3)	Nuernberg#20	GUILD_FLAG
 
 // Kafra Employee
 //============================================================
-aldeg_cas03,118,76,0	duplicate(KafraService)	Kafra#aldeg_cas03	4_F_KAFRA1
+aldeg_cas03,118,76,0	duplicate(GuildKafra)	Kafra#aldeg_cas03	4_F_KAFRA1
 
 // Steward
 //============================================================

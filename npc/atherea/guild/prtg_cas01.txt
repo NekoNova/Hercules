@@ -98,7 +98,7 @@ prontera,155,221,4	duplicate(InsideFlagsPR1)	Kriemhild#15	GUILD_FLAG
 
 // Kafra Employee
 //============================================================
-prtg_cas01,96,173,0	duplicate(KafraService)	Kafra#prtg_cas01	4_F_KAFRA1
+prtg_cas01,96,173,0	duplicate(GuildKafra)	Kafra#prtg_cas01	4_F_KAFRA1
 
 // Steward
 //============================================================
