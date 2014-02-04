@@ -1033,6 +1033,12 @@ int unit_set_walkdelay(struct block_list *bl, int64 tick, int delay, int type) {
 	struct unit_data *ud = unit->bl2ud(bl);
 	if (delay <= 0 || !ud) return 0;
 
+	/**
+	 * MvP mobs have no walk delay
+	 **/
+	if( bl->type == BL_MOB && (((TBL_MOB*)bl)->status.mode&MD_BOSS) )
+		return 0;
+
 	if (type) {
 		if (DIFF_TICK(ud->canmove_tick, tick+delay) > 0)
 			return 0;
@@ -1339,6 +1345,19 @@ int unit_skilluse_id2(struct block_list *src, int target_id, uint16 skill_id, ui
 		casttime = 0;
 	}
 
+	if( sc ) {
+		/**
+		 * why the if else chain: these 3 status do not stack, so its efficient that way.
+		 **/
+ 		if( sc->data[SC_CLOAKING] && !(sc->data[SC_CLOAKING]->val4&4) && skill_id != AS_CLOAKING ) {
+			status_change_end(src, SC_CLOAKING, INVALID_TIMER);
+			if (!src->prev) return 0; //Warped away!
+		} else if( sc->data[SC_CLOAKINGEXCEED] && !(sc->data[SC_CLOAKINGEXCEED]->val4&4) && skill_id != GC_CLOAKINGEXCEED ) {
+			status_change_end(src,SC_CLOAKINGEXCEED, INVALID_TIMER);
+			if (!src->prev) return 0;
+		}
+	}
+	
 	if(!ud->state.running) //need TK_RUN or WUGDASH handler to be done before that, see bugreport:6026
 		unit->stop_walking(src,1);// eventhough this is not how official works but this will do the trick. bugreport:6829
 	
@@ -1911,7 +1930,7 @@ int unit_attack_timer_sub(struct block_list* src, int tid, int64 tick) {
 
 	if(ud->state.attack_continue) {
 		if( src->type == BL_PC && battle_config.idletime_criteria & BCIDLE_ATTACK )
-			((TBL_PC*)src)->idletime = tick;
+			((TBL_PC*)src)->idletime = sockt->last_tick;
 		ud->attacktimer = timer->add(ud->attackabletime,unit->attack_timer,src->id,0);
 	}
 
