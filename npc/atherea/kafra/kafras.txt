@@ -291,7 +291,7 @@ lighthalzen,164,100,4	duplicate(KafraService)	Kafra#lhz01	4_F_KAFRA8
 lighthalzen,191,320,4	duplicate(KafraService)	Kafra#lhz02	4_F_KAFRA9
 lhz_in02,237,284,4	duplicate(KafraService)	Kafra#lhz03	4_F_KAFRA9
 louyang,210,104,5	duplicate(KafraService)	Kafra#lou01	4_F_KAFRA1
-umbala,87,160,4		duplicate(KafraService)	Kafra#umb01	4_F_KAFRA7
+umbala,87,160,4	duplicate(KafraService)	Kafra#umb01	4_F_KAFRA7
 niflheim,202,180,3	duplicate(KafraService)	Kafra#nif01	4_F_NFDEADKAFRA
 prt_fild05,290,224,3	duplicate(KafraService)	Kafra#prt_fild05	4_F_KAFRA4
 mjolnir_02,83,362,4	duplicate(KafraService)	Kafra#mjolnir_02	4_F_KAFRA2
