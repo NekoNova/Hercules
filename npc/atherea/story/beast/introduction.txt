@@ -27,7 +27,7 @@ payon,170,178,4	script	Desperate Mother	510,{
 		close2;
 		changequest 30010,30011;
 		end;
-	} elseif(checkquest(30011) == 1){
+	} else if(checkquest(30011) == 1){
 		mes "[Desperate Mother]";
 		mes "Did you brrring the nutrrrients I asked forrr?";
 		next;
@@ -99,7 +99,7 @@ payon,170,178,4	script	Desperate Mother	510,{
 		mes "";
 		mes "You can find these nutrrrients inside ^0000FFPayon Cave^000000";
 		close;
-	} elseif(checkquest(30011) == 2){
+	} else if(checkquest(30011) == 2){
 		mes "[Desperate Mother]";
 		mes "Again, thank you kind strrrangerrr for helping my son.";
 		mes "May the forrrest spirrrits guide and prrrotect you.";
@@ -111,7 +111,7 @@ payon,170,178,4	script	Desperate Mother	510,{
 	}
 }
 
-payon,171 179,4	script	Young Beast Clan	626,{
+payon,171,179,4	script	Young Beast Clan	626,{
 	emotion 28,0;
 	mes "[Young Best Clan Member]";
 	mes "Mommy, I'm hungrrry...";

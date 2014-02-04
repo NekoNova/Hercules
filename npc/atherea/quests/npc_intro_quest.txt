@@ -15,7 +15,7 @@
 // The quest begins with Hollgrehenn in Prontera. We replace the
 // NPC with our NPC, which will invoke the quest the very first
 // time a character talks to him.
-prontera,63,60,0	script	Hollgrehenn	4_M_03,{
+prt_in,63,60,0	script	Hollgrehenn	4_M_03,{
 	if (npcintroquest == 0){
 		mes "[Hollgrehenn]";
 		mes "Hello " + strcharinfo(0) + ", I am the refiner of Prontera. Hollgrehenn is my name.";
