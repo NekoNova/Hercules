@@ -54,7 +54,7 @@ function	script	F_Kafra	{
 			callfunc "F_KafStor",getarg(0),0,0;
 			next;
 		} else if (@K_Menu0$[.@j] == "Use Teleport Service") {
-			callfunc "F_KafTele",getarg(0);
+			callfunc "F_KafTele",4;
 			next;
 		} else if (@K_Menu0$[.@j] == "Rent a Pushcart") {
 			if(callfunc("F_KafCart",getarg(0),getarg(1)) == 1) 
@@ -197,7 +197,7 @@ function	script	F_KafTele	{
 	else if (@wrpD$[.@j] == "Thor Camp") warp "thor_camp",246,68;
 	else if (@wrpD$[.@j] == "Umbala") warp "umbala",97,153;
 	else if (@wrpD$[.@j] == "Veins") warp "veins",216,123;
-	else if (@wrpD$[.@j] == "Yuno") warp "yuno",157,51;
+	else if (@wrpD$[.@j] == "Yuno") warp "yuno",157,51;	
 	end;
 }
 
