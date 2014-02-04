@@ -8,7 +8,7 @@ prontera,153,285,4	script	Nova	10006,{
 	// All other classes either need to rebirth first, unlock their second class or
 	// be excluded in general.
 	// Super Novice is not allowed to participate at all, nor are baby classes allowed.
-	if((Class >= Job_Novice_High && Class <= Job_Paladin2) || (Class >= Job_Star_Gladiator && Class <= Job_Dark_Collector)){
+	if((Class >= Job_Gunslinger && Class <= Job_Baby) || (Class >= Job_Taekwon && Class <= Job_Soul_Linker)) {
 		if(nova < 1){
 			mes "[Nova]";
 			mes "I've been expecting you, young one.";
@@ -49,7 +49,7 @@ prontera,153,285,4	script	Nova	10006,{
 			
 			set(nova,1);
 			close;
-		} elseif(nova == 1){
+		} else if(nova == 1){
 			mes "[Nova]";
 			mes "Have you decided on making allies with the ones seeking you?";
 			menu "Tell me more about these races",TellMeMore,"Where will I find them?",TellMeWhere;
@@ -81,6 +81,7 @@ TellMeMore:
 	next;
 	mes "[" + strcharinfo(0) + "]";
 	mes "Where will I find them?";
+	next;
 	goto TellMeWhere;
 end;
 
