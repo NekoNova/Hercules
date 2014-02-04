@@ -26,13 +26,13 @@ que_job01,91,90,3	script	Sinister Demon	456,{
 		close2;
 		changequest 30003,30004;
 		end;
-	} elseif(checkquest(30004) == 1){
+	} else if(checkquest(30004) == 1){
 		mes "[Sinister Demon]";
 		mes "Are all adventurers as stupid as you?";
 		mes "I said he scurried off to the ^0000FFPyramids^000000.";
 		mes "Now scram!";
 		close;
-	} elseif(checkquest(30005) == 1){
+	} else if(checkquest(30005) == 1){
 		mes "[Sinister Demon]";
 		mes "He did not managed to tell anyone?";
 		mes "Good, then the clan will remain hidden yet again.";
@@ -47,7 +47,7 @@ que_job01,91,90,3	script	Sinister Demon	456,{
 		close2;
 		completequest 30005;
 		end;
-	} elseif(checkquest(30005) == 2){
+	} else if(checkquest(30005) == 2){
 		mes "[Sinister Demon]";
 		mes "Why are you back here? Need another pat on the back?";
 		mes "Scram, before the thought to devour you crosses my mind.";

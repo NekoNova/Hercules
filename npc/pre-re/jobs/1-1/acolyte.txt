@@ -182,14 +182,11 @@ prt_church,184,41,4	script	Cleric#aco	1_M_PASTOR,{
 		skill 143,0,0;
 		callfunc "Job_Change",Job_Acolyte;
 		callfunc "F_ClearJobVar";
-<<<<<<< HEAD
-=======
 		getitem 2216,1;
 		getitem 1504,1;
 		getitem 2501,1;
 		getitem 2401,1;
 		getitem 2101,1;
->>>>>>> atherea/master
 		if(checkquest(1001) != -1) {
 			completequest 1001;
 		}

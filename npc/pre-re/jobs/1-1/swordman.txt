@@ -151,14 +151,11 @@ izlude_in,74,172,4	script	Swordman#swd_1	2_M_SWORDMASTER,{
 			close;
 		}
 		else if (job_sword_q == 4) {
-<<<<<<< HEAD
-=======
 			getitem 1116,1;
 			getitem 2220,1;
 			getitem 2328,1;
 			getitem 2501,1;
 			getitem 2401,1;
->>>>>>> atherea/master
 			mes "Hahaha! Congratulations! Now you are fully qualified to be a real Swordman! I will transform you right away!";
 			next;
 			callfunc "Job_Change",Job_Swordman;
