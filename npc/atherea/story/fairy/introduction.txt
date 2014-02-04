@@ -16,17 +16,17 @@ aldebaran,174,180,4	script	Worrying Fairy	611,{
 		mes "Do you have any idea where she went?";
 		next;
 		mes "[Worrying Fairy]";
-		mes "She said something about exploring the ^0000FFnearby mountains^000000.;"
+		mes "She said something about exploring the ^0000FFnearby mountains^000000.";
 		mes "Oh please adventurer, help me out.";
 		close2;
 		changequest 30006,30007;
 		end;
-	} elseif(checkquest(30007) == 1 || checkquest(30008) == 1){
+	} else if(checkquest(30007) == 1 || checkquest(30008) == 1){
 		mes "[Worrying Fairy]";
 		mes "Please adventurer, go seek out my sister.";
 		mes "She has to be somewhere on ^0000FFMt. Mjolnir^000000.";
 		close;
-	} elseif(checkquest(30009) == 1 || checkquest(30009) == 2){
+	} else if(checkquest(30009) == 1 || checkquest(30009) == 2){
 		mes "[Worrying Fairy]";
 		mes "Thank you for returning my sister to me.";
 		mes "Our clan owes you a debt, adventurer. Perhaps in the future, we might be able to repay it.";
@@ -58,7 +58,7 @@ mjolnir_12,144,69,7	script	Lost Fairy Sister	446,{
 		close2;
 		monster "this",142,358,"Strange Monster",1632,2,strnpcinfo(0)+"::OnMonsterDead";
 		end;
-	} elseif(checkquest(30008) == 1){
+	} else if(checkquest(30008) == 1){
 		mes "[Lost Fairy Sister];
 		mes "Thank you adventurer!";
 		mes "I had this strange feeling that something was watching me.";
@@ -66,7 +66,7 @@ mjolnir_12,144,69,7	script	Lost Fairy Sister	446,{
 		close2;
 		changequest 30008,30009;
 		end;
-	} elseif(checkquest(30009) == 1){
+	} else if(checkquest(30009) == 1){
 		mes "[Lost Fairy Sister]";
 		mes "Come on, lead the way adventurer!";
 		close;
