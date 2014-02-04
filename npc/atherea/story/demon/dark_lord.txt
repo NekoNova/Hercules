@@ -72,11 +72,11 @@ Ready:
 	close2;
 	emotion 18,0;
 	set(demontest, 1);
-	monster "this",0,0,"Helpless Human",1521,3,OnHelplessHumanDead";
-	monster "this",0,0,"Weak Beast",1603,3,OnWeakBeastDead";
-	monster "this",0,0,"Perfect Demon",1170,5,OnPerfectDemonDead";
-	monster "this",0,0,"Perfect Demon",1729,5,OnPerfectDemonDead";
-	monster "this",0,0,"Perfect Demon",1730,5,OnPerfectDemonDead";
+	monster "this",0,0,"Helpless Human",1521,3,"OnHelplessHumanDead";
+	monster "this",0,0,"Weak Beast",1603,3,"OnWeakBeastDead";
+	monster "this",0,0,"Perfect Demon",1170,5,"OnPerfectDemonDead";
+	monster "this",0,0,"Perfect Demon",1729,5,"OnPerfectDemonDead";
+	monster "this",0,0,"Perfect Demon",1730,5,"OnPerfectDemonDead";
 end;
 
 OnHelplessHumanDead:
