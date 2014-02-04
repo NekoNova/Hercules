@@ -1,0 +1,153 @@
+//=========================================================
+// Hercules.ws Script
+//====================== Pet Handler ======================
+//= This NPC will allow players to obtain special items to
+//= tame custom pets on the server. The NPC will provide an
+//= introduction on how the mechanics work for obtaining these
+//= items and also offer an option to trade them.
+//======================= Version ==========================
+//= 1.0: Initial version without item trade
+//= 1.1: Refactored the code to be more config friendly
+//======================== Author ==========================
+//= Olivar
+//==========================================================
+invek,109,195,5	script	Mikato::pethandler	514,{
+	mes "[Mikato]";
+	mes "Greetings adventurer!";
+	mes "I've travelled across the world, mastering the art of catching pets";
+	mes "I'm willing to share this information with you.";
+	menu "Oh do tell me more",TellMore,"I want to exchange items",Exchange;
+	
+TellMore:
+	mes "[Mikato]";
+	mes "Why certainly adventurer.";
+	mes "About which pet do you want to know more?";
+	select(.pets);
+	
+	callfunc("LoadPetItems", @menu);
+	
+	mes "[Mikato]";
+	mes "In order to prepare the catch item for ^FF0000" + .pets[@menu] + "^000000I need the following:";
+	
+	for(set .@i,0; .@i < 3; set .@i,.@i+1) {
+		mes "^0000FF" + .item_counts[.@i] + " x " + getitemname(.item_ids[.@i]) + ".^000000";
+	}
+	
+	close;
+end;
+
+Exchange:
+	getinventorylist;
+	mes "[Mikato]";
+	mes "Which pet do you want to obtain the item for:";
+	select(.pets);
+	
+	callfunc("LoadPetItems", @menu);
+	
+
+	if (@inventorylist_count > 1) {
+		set(.@collected,0);
+			
+		// Check the following items:
+		// 1 Nine tail taming manual - 
+		// 50 Nine tails - 1022
+		// 10 Glass Beads - 746
+		for(set(.@i,1); .@i < @inventorylist_count; set(.@i, .@i+1)) {
+			for(set .@j, 0; .@j < 3; set(.@j, .@j+1)) {
+				if((@inventorylist_id[.@i] == .item_ids[.@j]) && (@inventorylist_amount[.@i] >= item_counts[.@j]) {
+					set(.@collected, .@collected+1);
+				}
+			}
+		}
+			
+		if(.@collected == 2) {
+			for(set .@j, 0; .@j < 3; set(.@j, .@j+1)) {
+				delitem(.item_ids[1], .item_counts[1]);
+			}
+		
+			getitem .item_rewards[@menu];
+			end;
+		} else {
+			mes "[Mikato]";
+			mes "I'm sorry, but you do not have all required items.";
+			mes "Please come back when you do.";
+			close;
+		}
+	}
+end;
+
+//====================================================================
+//= This is loaded then the NPC is initialized. The variables for this
+//= NPC will be configured using a few array to list all the items
+//= needed for each reward.
+//====================================================================
+OnInit:
+	setarray .pets[0], "Nine Tail","Disguise","Obeaune","Draco","Baby Leopard", "Teddy Bear";
+	setarray .item_ids[0],0,0,0;
+	setarray .item_rewards[0], 0,0,0,0,0,0;
+end;
+}
+
+//====================================================================
+//= This function will load all pet items into a local array to build up
+//= the menu. The function takes an integer as parameter to identify which
+//= pet has been select.
+//======================== Supported Pets ============================
+//= 1: Nine Tail
+//= 2: Disguise
+//= 3: Obeaune
+//= 4: Draco
+//= 5: Baby Leopard
+//= 6: Teddy Bear
+//=====================================================================
+function	tab	LoadPetItems	{
+	switch getarg(0) {
+		case 1:
+			// Nine tail taming manual - 
+			// Nine tails - 1022
+			// Glass Beads - 746
+			setarray .item_ids[0], 0,1022,746;
+			setarray .item_counts[0], 1,50,30;
+			break;
+			
+		case 2:	
+			// Disguise taming manual -
+			// Tangled Chains - 7221
+			// Honey - 518
+			setarray .item_ids[0], 0,7221,518;
+			setarray .item_counts[0], 1,50,10;
+			break;	
+				
+		case 3:	
+			// Obeaune taming manual -
+			// Hearth of Mermaid - 950
+			// Witherless Rose - 748
+			setarray .item_ids[0], 0,950,748;
+			setarray .item_counts[0], 1,50,10;
+			break;
+		
+		case 4:	
+			// Draco taming manual
+			// Dragon's Mane - 6073
+			// Dragon Canine - 1035
+			setarray .item_ids[0], 0,6073,1035;
+			setarray .item_counts[0], 1,50,10;
+			break;
+			
+		case 5:	
+			// Baby Leopard taming manual
+			// Leopard Skin - 7171
+			// Leopard Claw - 7172
+			setarray .item_ids[0], 0,7171,7172;
+			setarray .item_counts[0], 1,50,30;
+			break;
+			
+		case 6:
+			// Teddy Bear taming manual
+			// Rusty Screw - 7317
+			// Honey - 518
+			setarray .item_ids[0], 0,7317,518;
+			setarray .item_counts[0], 1,50,20;
+			break;
+	}
+}
