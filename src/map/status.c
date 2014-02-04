@@ -8085,7 +8085,20 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			case SC_KAIZEL:
 				val2 = 10*val1; //% of life to be revived with
 				break;
-				// case SC_ARMORPROPERTY:
+			case SC_ARMORPROPERTY:
+				if(sd){
+					if(val1 > 0){clif->status_change(bl,SI_PROPERTY_WATER,1,tick,0,0,0);}
+					else{clif->sc_end(&sd->bl, sd->bl.id, SELF, SI_PROPERTY_WATER);}
+					
+					if(val2 > 0){clif->status_change(bl,SI_PROPERTY_EARTH,1,tick,0,0,0);}
+					else{clif->sc_end(&sd->bl, sd->bl.id, SELF, SI_PROPERTY_EARTH);}
+					
+					if(val3 > 0){clif->status_change(bl,SI_PROPERTY_FIRE,1,tick,0,0,0);}
+					else{clif->sc_end(&sd->bl, sd->bl.id, SELF, SI_PROPERTY_FIRE);}
+					
+					if(val4 > 0){clif->status_change(bl,SI_PROPERTY_WIND,1,tick,0,0,0);}
+					else{clif->sc_end(&sd->bl, sd->bl.id, SELF, SI_PROPERTY_WIND);}
+				}
 				// case SC_ARMOR_RESIST:
 				// Mod your resistance against elements:
 				// val1 = water | val2 = earth | val3 = fire | val4 = wind
