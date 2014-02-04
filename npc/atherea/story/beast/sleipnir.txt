@@ -86,7 +86,7 @@ Approach:
 end;
 
 StartQuest:
-	mes "[Sleipnir]"
+	mes "[Sleipnir]";
 	mes "Don't be so hasty, Human";
 	mes "I will help you, if you can help me first...";
 	next;
