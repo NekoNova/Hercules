@@ -40,7 +40,7 @@ OnPCBaseLvUpEvent:
 
 	// This triggers when the player rebirths. In this case the Spirit will reveal the
 	// power of being reborn to the Player.
-	if(BaseLevel == 1 && Class == Job_Novice_High) {
+	if(BaseLevel == 10 && Class == Job_Novice_High) {
 		mes "[Elys]";
 		mes "By Atherea, you have found it";
 		next;
@@ -75,7 +75,7 @@ OnPCBaseLvUpEvent:
 	// to inform the player or this quest.
 	if(BaseLevel == 70 && checkquest(30010) == -1) {
 		mes "[Elys]";
-		mes strcharinfo(0);
+		mes strcharinfo(0) + ",";
 		mes "There is a Beast Clan member in Payon and she seems to be looking for aid.";
 		mes "Perhaps you could help her out and gain their trust.";
 		close2;

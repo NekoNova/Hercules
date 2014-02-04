@@ -33,6 +33,7 @@ prt_in,85,106,3	script	Distressed Captain	628,{
 		mes "Until then, have a safe journey.";
 		close2;
 		completequest 30002;
+		getexp 200000,30000;
 		end;
 	} else if(checkquest(30002) == 2) {
 		mes "[Distressed Captain]";

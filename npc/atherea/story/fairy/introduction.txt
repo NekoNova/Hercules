@@ -33,6 +33,7 @@ aldebaran,174,180,4	script	Worrying Fairy	611,{
 		mes "Until then, I wish you the best of luck on your adventures.";
 		close2;
 		completequest 30009;
+		getexp 200000,30000;
 		end;
 	} else {
 		mes "[Worrying Fairy]";

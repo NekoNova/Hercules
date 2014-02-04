@@ -75,6 +75,7 @@ payon,170,178,4	script	Desperate Mother	510,{
 				delitem 932,20;
 				delitem 1022,5;
 				completequest 30011;
+				getexp 200000,30000;
 				mes "[Desperate Mother]";
 				mes "Thank you kind adventurrrerrr, you've saved my son!";
 				mes "Look herrre honney, now you can eat.";
