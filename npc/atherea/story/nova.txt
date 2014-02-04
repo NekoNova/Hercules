@@ -85,6 +85,7 @@ TellMeMore:
 end;
 
 TellMeWhere:
+	next;
 	mes "[Nova]";
 	mes "To find out more about humans, look for a knight named ^0000FFMichael^000000 near the castle gates north of Prontera.";
 	next;
