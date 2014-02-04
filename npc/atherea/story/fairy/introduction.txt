@@ -71,7 +71,7 @@ mjolnir_12,144,69,7	script	Lost Fairy Sister	446,{
 		mes "Come on, lead the way adventurer!";
 		close;
 	} else {
-		mes ["Lost Fairy Sister]";
+		mes "[Lost Fairy Sister]";
 		mes "^0000FFShe's too busy exploring her surroundings, that she doesn't notice you.^000000";
 		close;
 	}

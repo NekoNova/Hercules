@@ -63,7 +63,7 @@ glast_01,194,130,5	script	Lost Soul	1132,{
 			next;
 			mes "[Lost Soul]";
 			mes "So let me ask again...would you like to strengthen yourself with darkness";
-			mes "and be one of us?"
+			mes "and be one of us?";
 			menu "I'd like to think about it",ThinkAboutIt,"Yes, I want to join the Demons",JoinDemonClan;
 		}
 	}
