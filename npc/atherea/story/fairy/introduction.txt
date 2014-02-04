@@ -59,7 +59,7 @@ mjolnir_12,144,69,7	script	Lost Fairy Sister	446,{
 		monster "this",142,358,"Strange Monster",1632,2,strnpcinfo(0)+"::OnMonsterDead";
 		end;
 	} else if(checkquest(30008) == 1){
-		mes "[Lost Fairy Sister];
+		mes "[Lost Fairy Sister]";
 		mes "Thank you adventurer!";
 		mes "I had this strange feeling that something was watching me.";
 		mes "Please take me back to my sister in ^0000FFAl De Baran^000000.";
