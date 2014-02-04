@@ -470,10 +470,10 @@ function	script	F_KafSet	{
 	
 	// Regardless of the location, we offer teleports to every
 	// town where our Kafra are located
-	setarray @wrpD$[0],"Al De Baran,"Amatsu,"Ayothaya,"Brasilis","Comodo","Dewata","Eclage","Einbech",
-	                   "Einbroch","El Discastes","Geffen","Gonryun","Hugel","Izlude","Jawaii","Lighthalzen",
-					   "Louyang","Lutie","Malangdo","Malaya","Manuk","Midgarts Expedition Camp","Mora",
-					   "Morroc","Moscovia","Payon","Prontera","Rachel","Splendide","Thor Camp","Umbala","Veins","Yuno";
+	setarray @wrpD$[0], "Al De Baran","Amatsu","Ayothaya","Brasilis","Comodo","Dewata","Eclage","Einbech",
+	                    "Einbroch","El Discastes","Geffen","Gonryun","Hugel","Izlude","Jawaii","Lighthalzen",
+					    "Louyang","Lutie","Malangdo","Malaya","Manuk","Midgarts Expedition Camp","Mora",
+					    "Morroc","Moscovia","Payon","Prontera","Rachel","Splendide","Thor Camp","Umbala","Veins","Yuno";
 	setarray @wrpP[0], 	0,0,0,0,0,0,
 						0,0,0,0,0,0,
 						0,0,0,0,0,0,
