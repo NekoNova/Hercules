@@ -62,6 +62,7 @@ prontera,153,285,4	script	Nova	10006,{
 	}
 
 TellMeMore:
+	next;
 	mes "[Nova]";
 	mes "At this very moment there are four races that are equally strong both in number and warfare.";
 	mes "They have distinguished themselves as humans, demons, elves and the beastfolks.";
