@@ -55,6 +55,7 @@ function	script	F_Kafra	{
 			next;
 		} else if (@K_Menu0$[.@j] == "Use Teleport Service") {
 			callfunc "F_KafTele",getarg(0);
+			next;
 		} else if (@K_Menu0$[.@j] == "Rent a Pushcart") {
 			if(callfunc("F_KafCart",getarg(0),getarg(1)) == 1) 
 				next;
