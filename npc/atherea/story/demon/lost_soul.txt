@@ -46,7 +46,7 @@ glast_01,194,130,5	script	Lost Soul	1132,{
 		} else {
 			mes "[Lost Soul]";
 			mes "Hehe...Look who's here...";
-			mes strcharinfo(0) + "the promised one.";
+			mes strcharinfo(0) + " the promised one.";
 			next;
 			mes "[" + strcharinfo(0) + "]";
 			mes "I came to seen an audience with the Demons,";
