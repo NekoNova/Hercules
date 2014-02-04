@@ -207,6 +207,7 @@ function	script	F_KafTele	{
 	else if (@wrpD$[.@j] == "Morroc") warp "morocc",156,93;
 	else if (@wrpD$[.@j] == "Moscovia") warp "moscovia",223,184;
 	else if (@wrpD$[.@j] == "Payon") warp "payon",179,100;
+	else if (@wrpD$[.@j] == "Prontera") warp "prontera",156,188;
 	else if (@wrpD$[.@j] == "Rachel") warp "rachel",130,110;
 	else if (@wrpD$[.@j] == "Splendide") warp "splendide",201,147;
 	else if (@wrpD$[.@j] == "Thor Camp") warp "thor_camp",246,68;
@@ -469,12 +470,10 @@ function	script	F_KafSet	{
 	
 	// Regardless of the location, we offer teleports to every
 	// town where our Kafra are located
-	setarray @wrpD$[0], "Prontera","Alberta","Aldebaran","Amatsu","Ayothaya","Brasilis",
-						"Comodo","Dewata","Eclage","Einbech","Einbroch","El Dicastes", "Geffen",
-						"Gonryun","Hugel","Izlude","Jawaii","Lighthalzen", "Louyang",
-						"Lutie","Malangdo","Malaya","Manuk","Midgarts Expedition Camp","Mora",
-						"Morroc","Moscovia","Payon","Rachel","Splendide","Thor Camp",
-						"Umbala","Veins","Yuno";
+	setarray @wrpD$[0],"Al De Baran,"Amatsu,"Ayothaya,"Brasilis","Comodo","Dewata","Eclage","Einbech",
+	                   "Einbroch","El Discastes","Geffen","Gonryun","Hugel","Izlude","Jawaii","Lighthalzen",
+					   "Louyang","Lutie","Malangdo","Malaya","Manuk","Midgarts Expedition Camp","Mora",
+					   "Morroc","Moscovia","Payon","Prontera","Rachel","Splendide","Thor Camp","Umbala","Veins","Yuno";
 	setarray @wrpP[0], 	0,0,0,0,0,0,
 						0,0,0,0,0,0,
 						0,0,0,0,0,0,
