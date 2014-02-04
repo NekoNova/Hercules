@@ -279,7 +279,7 @@ alberta,28,229,0	duplicate(KafraService)	Kafra#alb01	4_F_KAFRA2
 alberta,113,60,6	duplicate(KafraService)	Kafra#alb02	4_F_KAFRA6
 comodo,195,150,4	duplicate(KafraService)	Kafra#com01	4_F_KAFRA7
 cmd_fild07,136,134,4	duplicate(KafraService)	Kafra#cmd_fild07	4_F_KAFRA7
-izlude,128,114,4	duplicate(KafraService)	Kafra#izl01	4_F_KAFRA7
+izlude,134,87,3	duplicate(KafraService)	Kafra Employee#iz	4_F_KAFRA1
 moscovia,223,191,3	duplicate(KafraService)	Kafra#mos01	4_F_KAFRA4
 amatsu,123,156,3	duplicate(KafraService)	Kafra#ama01	4_F_KAFRA2
 ayothaya,212,169,5	duplicate(KafraService)	Kafra#ayo01	4_F_KAFRA2
