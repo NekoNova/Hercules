@@ -56,7 +56,7 @@ prt_in,63,60,0	script	Hollgrehenn	4_M_03,{
 		mes "[Hollgrehenn]";
 		mes "With that, I believe that is all I have to tell you.";
 		mes "I will now refer you to Seiyablem who is in the next room on your left. He will tell you about socket enchanting.";
-		set npcintroquest,2;
+		set npcintroquest,1;
 		close;
 		end;
 	
@@ -64,7 +64,7 @@ prt_in,63,60,0	script	Hollgrehenn	4_M_03,{
 		mes "[Hollgrehenn]";
 		mes "Fair enough.";
 		mes "I will now refer you to Seiyablem who is in the next room on your left. He will tell you about socket enchanting.";
-		set npcintroquest,2;
+		set npcintroquest,1;
 		close;
 		end;
 	} else {
@@ -80,7 +80,7 @@ prt_in,63,60,0	script	Hollgrehenn	4_M_03,{
 // about enchanting gear. Afterwards we redirect the player to the
 // Apprentice Craftsman.
 prt_in,33,70,5	script	Seiyablem	4_M_02,{
-	if(npcintroquest == 2){
+	if(npcintroquest == 1){
 		mes "[Seiyablem]";
 		mes "Hi, so you'd like to learn about socket enchanting?";
 		mes "Simple work, really. There are 4 classes of items:";
@@ -100,7 +100,7 @@ prt_in,33,70,5	script	Seiyablem	4_M_02,{
 		mes "[Seiyablem]";
 		mes "That's pretty much it. You should go down to the south Prontera exit and meet with the Apprentice Craftsman.";
 		mes "She can put a hidden enchantment onto your armor. Go talk to her to find out how!";
-		set npcintroquest,3;
+		set npcintroquest,2;
 		close;
 		end;
 	} else {
@@ -249,7 +249,7 @@ S_EnchantArmor:
 // This is our custom NPC that replaces the Apprentice Craftsman in 
 // Prontera.
 prontera,165,60,2	script	Apprentice Craftsman	1_F_MERCHANT_01,{
-	if(npcintroquest == 3){
+	if(npcintroquest == 2){
 		mes "[Apprentice Craftsman]";
 		mes "Hello there! So you'd like to learn about armor enchanting?";
 		mes "Well, listen here and let me explain.";
@@ -278,7 +278,7 @@ prontera,165,60,2	script	Apprentice Craftsman	1_F_MERCHANT_01,{
 		mes "[Apprentice Craftsman]";
 		mes "For all that listening, you must deserve a reward huh? Well, here you go.";
 		mes "See ya around!";
-		set npcintroquest,4;
+		set npcintroquest,3;
 		getexp 10000,10000;
 	} else {
 		callfunc "Enchant_Armor";
