@@ -16,7 +16,7 @@
 //=================== Author ==============================
 //= Olivar
 //=========================================================
-prontera,0,0,0	script	Sleipnir	3079,{
+pay_fild01,274,303,5	script	Sleipnir	1992,{
 	mes "[Sleipnir]";
 	mes "^0000FFThe majestic beast slumbers and snores.^000000";
 	menu "Approach the majestic beast",Approach,"Back off",BackOff;
