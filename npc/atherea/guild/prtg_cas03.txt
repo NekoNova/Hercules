@@ -98,7 +98,7 @@ prontera,157,221,4	duplicate(InsideFlagsPR3)	Fadhgridh#15	GUILD_FLAG
 
 // Kafra Employee
 //============================================================
-prtg_cas03,181,215,4	duplicate(Kafra)	Kafra#prtg_cas03	4_F_KAFRA1
+prtg_cas03,181,215,4	duplicate(KafraService)	Kafra#prtg_cas03	4_F_KAFRA1
 
 // Steward
 //============================================================
