@@ -71,7 +71,7 @@ Approach:
 			mes "[Sleipnir]";
 			mes "Grr....gr...Who has awoken me?";
 			mes "State your business human.";
-			next:
+			next;
 			mes "[" + strcharinfo(0) + "]";
 			mes "I've come to seek the land of the beasts, and become one with nature.";
 			next;
