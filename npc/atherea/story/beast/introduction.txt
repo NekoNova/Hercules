@@ -60,7 +60,7 @@ payon,170,178,4	script	Desperate Mother	510,{
 						
 						// If sufficient items are collected, raise the counter by 1.
 						if(@inventorylist_amount[.@i] >= .@amount)
-							set(.@collected.@collected + 1);						
+							set(.@collected,.@collected + 1);						
 						break;
 						
 					default:
