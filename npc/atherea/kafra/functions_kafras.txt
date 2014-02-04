@@ -179,6 +179,7 @@ function	script	F_KafTele	{
 	
 	// Warp the player to the correct location based on the selection he made
 	// from the Teleport Menu.
+	close2;
 	if (@wrpD$[.@j] == "Alberta") warp "alberta",28,234;
 	else if (@wrpD$[.@j] == "Al De Baran") warp "aldebaran",140,131;
 	else if (@wrpD$[.@j] == "Amatsu") warp "amatsu",198,84;
@@ -212,6 +213,7 @@ function	script	F_KafTele	{
 	else if (@wrpD$[.@j] == "Umbala") warp "umbala",97,153;
 	else if (@wrpD$[.@j] == "Veins") warp "veins",216,123;
 	else if (@wrpD$[.@j] == "Yuno") warp "yuno",157,51;	
+	end;
 }
 
 
