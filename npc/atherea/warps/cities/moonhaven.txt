@@ -1,0 +1,11 @@
+//================ Hercules Script ===================
+//= Moonhaven Town Warp Scripts
+//===================== By ===========================
+//= Olivar
+//================ Current Version ===================
+//= 1.0: Initial Version
+//================ Description =======================
+//= This file contains all the warps defined in the
+//= city of Moonhaven.
+//====================================================
+moonhaven,294,137,0	warp	moonhaven_1-2,3,3,pay_fild09,290,138
