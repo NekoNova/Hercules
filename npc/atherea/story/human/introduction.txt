@@ -46,7 +46,7 @@ prt_in,85,106,3	script	Distressed Captain	628,{
 		mes "[Distressed Captain]";
 		mes "What are you still standing here for!?";
 		mes "They could be severaly injured or worse!";
-		mes "Please go look for them in the ^5EAE9EEHidden Temple^000000";
+		mes "Please go look for them in the ^EAE9EEHidden Temple^000000";
 		close;
 	}
 }
