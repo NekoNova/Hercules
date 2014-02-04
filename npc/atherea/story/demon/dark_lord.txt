@@ -12,7 +12,7 @@
 		mes "[Clan Leader]";
 		mes "What? Too complicated for you?";
 		menu "Yes...",AcceptDefeat,"Too easy...",Continue;
-	} elseif(demontest == 4) {
+	} else if(demontest == 4) {
 		mes "[Clan Leader]";
 		mes "Outstanding.";
 		mes "Let the Darkness inside you take over, and see the malice around you.";
@@ -22,7 +22,7 @@
 		set clan_membership$, "demon";
 		warp "glast_01",194,128;
 		end;
-	} elseif(decision == 1) {
+	} else if(decision == 1) {
 		mes "[Clan Leader]";
 		mes "But we can't just let you join us without a test.";
 		mes "If you are worthy, you shouldn't have any problem at all.";

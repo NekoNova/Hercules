@@ -28,7 +28,7 @@ glast_01,194,130,5	script	Lost Soul	1132,{
 		mes "[Lost Soul]";
 		mes "Who's a good boy....heheheh...AHAHAHAA";
 		close;
-	} else {
+	} else {
 		if(Class <= Job_Wedding || (Class >= Job_Baby && Class <= Job_Super_Baby)) {
 			mes "[Lost Soul]";
 			mes "I have no time to waste on weaklings";
