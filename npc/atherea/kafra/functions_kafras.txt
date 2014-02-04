@@ -164,7 +164,7 @@ function	script	F_KafTele	{
 	// from the Teleport Menu.
 	if (@wrpD$[.@j] == "Alberta") warp "alberta",28,234;
 	else if (@wrpD$[.@j] == "Al De Baran") warp "aldebaran",140,131;
-	else if (@wrpD$[.@j] == "Amatsu") warp "amatsu",198,84);
+	else if (@wrpD$[.@j] == "Amatsu") warp "amatsu",198,84;
 	else if (@wrpD$[.@j] == "Ayothaya") warp "ayothaya",208,166;
 	else if (@wrpD$[.@j] == "Brasilis") warp "brasilis",196,217;
 	else if (@wrpD$[.@j] == "Comodo") warp "comodo",209,143;
