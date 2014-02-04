@@ -1,0 +1,119 @@
+//=========================================================
+//= Hercules.ws Script
+//==================== Sleipnir ===========================
+//= Sleipnir is the NPC responsible for bringing players
+//= into the clan of beasts. Because beasts are more in tune
+//= with nature, and not so bend on being ruled, the quest
+//= involves a more mundane, but challenging task of
+//= collecting Yggdrasil berries for Sleipnir.
+//= Future interactions can be added here as well.
+//=
+//= In order to track the membership of a player, check the
+//= variable clan_membership$ which can be set to the following:
+//= "human","beast","demon","fairy"
+//=================== Version =============================
+//= 1.0: Initial version
+//=================== Author ==============================
+//= Olivar
+//=========================================================
+prontera,0,0,0	script	Sleipnir	3079,{
+	mes "[Sleipnir]";
+	mes "^0000FFThe majestic beast slumbers and snores.^000000";
+	menu "Approach the majestic beast",Approach,"Back off",BackOff;
+
+Approach:
+	if(clan_membership$ == "beast") {
+		mes "[Sleipnir]";
+		mes "^0000FFThe last time you approached Sleipnir, he was rather grumpy.^000000";
+		mes "^0000FFPerhaps it's best to leave him alone and just head to the Beast clan.^000000";
+		close;
+	} elseif(clan_membership$ == "human" || clan_membership$ == "demon" || clan_membership$ == "fairy") {
+		mes "[Sleipnir]";
+		mes "^FF0000This fearsome beast is part of the Beast Clan.^000000";
+		mes "^FF0000Awaking it would be a terrible idea.";
+		close;
+	} else {
+		if(checkquest(30012) == 1) {
+			mes "[Sleipnir]";
+			mes "Did you bring those ^0000FFYggdrasil Berries^000000?";
+			if(select("Yes:No") == 1) {
+				getnventorylist;
+				if(@inventorylist_count > 1) {
+					for(set(.@i,0); .@i < @inventorylist_count; set(.@i, .@i+1)) {
+						if(@inventorylist_id[.@i] == 607 && @inventorylist_amount[.@i] >= 10) {
+							delitem(607,10);
+							mes "[Sleipnir]";
+							mes "Thank you, Human";
+							mes "Seems you are beneficial for the Clan after all.";
+							mes "Allow me to welcome you as part of the Clan.";
+							set(clan_membership$,"beast");
+							next;
+							mes "[Sleipnir]";
+							mes "Your first task as new member, like any new member,";
+							mes "is to prove your attunement to Nature and find our village.";
+							mes "I wish you the best of luck, and will see you there.";
+							close2;
+							changequest(30012,30013);
+							end;
+						}
+					}
+				}
+				
+				mes "[Sleipnir]";
+				mes "Are you toying with me, Human?";
+				mes "Don't come back until you brought those 10 ^0000FFYggdrasil Berries^000000.";
+				close;
+			} else {
+				close;
+			}
+		} else {
+			emotion(45,0);
+			mes "[Sleipnir]";
+			mes "Grr....gr...Who has awoken me?";
+			mes "State your business human.";
+			next:
+			mes "[" + strcharinfo(0) + "]";
+			mes "I've come to seek the land of the beasts, and become one with nature.";
+			next;
+			mes "[Sleipnir]";
+			mes "The land of the Beasts?";
+			mes "Ha! To be torn to shreds and eaten alive?";
+			mes "The land of the beasts is not for the mild and weak.";
+			mes "Turn back now! You might that not all beasts are as friendly as I am.";
+			menu("I'm sure of it. Take me there!",StartQuest,"Is that so? I'll pass then.",BackOff);
+		}
+	}
+end;
+
+StartQuest:
+	mes "[Sleipnir]"
+	mes "Don't be so hasty, Human";
+	mes "I will help you, if you can help me first...";
+	next;
+	mes "[" + strcharinfo(0) + "]";
+	mes "What is it that you need help with, so that I may get there?";
+	next;
+	mes "[Sleipnir]";
+	mes "Good, Good.";
+	mes "I haven't been doing well since I escaped from Odin as his steed.";
+	mes "His steed! Can you believe it? A majestic beast like myself?";
+	mes "To be simply used to ride on and nothing more?";
+	mes "I'll need some ^0000FFYggdrasil Berries^000000 to regain energy and heal up.";
+	next;
+	mes "[" + strcharinfo(0) + "]";
+	mes "Yes, you deserve better. I'll acquire that fruit for you.";
+	next;
+	mes "[Sleipnir]";
+	mes "Hah, if you are so sure of yourself,";
+	mes "then bring me 10 ^0000FFYggdrasil Berries^000000.";
+	mes "I don't settle for anything less.";
+	close2;
+	setquest(30012);
+end;
+
+BackOff:
+	mes "[Sleipnir]";
+	mes "^0000FFYou leave the beast alone and slowly walk backwards^.^000000";
+	close;
+end;
+}

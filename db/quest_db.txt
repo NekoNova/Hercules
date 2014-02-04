@@ -2631,6 +2631,8 @@
 30009,0,0,0,0,0,0,0,"Lost Fairy"
 30010,0,0,0,0,0,0,0,"The hungry cub"
 30011,0,0,0,0,0,0,0,"The hungry cub"
+30012,0,0,0,0,0,0,0,"Sleipnir"
+30013,0,0,0,0,0,0,0,"Sleipnir"
 
 50000,0,0,0,0,0,0,0,"Pirate Dagger materials"
 50001,0,0,0,0,0,0,0,"Weather Beaten Old Man"
