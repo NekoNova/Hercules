@@ -27,7 +27,7 @@ Approach:
 		mes "^0000FFThe last time you approached Sleipnir, he was rather grumpy.^000000";
 		mes "^0000FFPerhaps it's best to leave him alone and just head to the Beast clan.^000000";
 		close;
-	} elseif(clan_membership$ == "human" || clan_membership$ == "demon" || clan_membership$ == "fairy") {
+	} else if(clan_membership$ == "human" || clan_membership$ == "demon" || clan_membership$ == "fairy") {
 		mes "[Sleipnir]";
 		mes "^FF0000This fearsome beast is part of the Beast Clan.^000000";
 		mes "^FF0000Awaking it would be a terrible idea.";

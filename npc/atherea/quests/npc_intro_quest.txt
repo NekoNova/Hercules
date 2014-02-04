@@ -113,7 +113,7 @@ prt_in,33,70,5	script	Seiyablem	4_M_02,{
 // This is the last part of the quest, where we send the user to the actual Apprentice Craftsman.
 // Because the NPC replaces the standard one, we copied the entire script, and disabled the original
 // script completly on the server.
-function	script	Enchant_Armor {
+function	script	Enchant_Armor	{
 	disable_items;
 	mes "[Apprentice Craftsman]";
 	if (Zeny >= 400000) {
