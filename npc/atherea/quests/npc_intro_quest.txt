@@ -287,7 +287,7 @@ prontera,165,60,2	script	Apprentice Craftsman	1_F_MERCHANT_01,{
 	close;
 }
 
-function	script Socket_Enchant {
+function	script	Socket_Enchant	{
 	if (checkweight(1201,1) == 0)
 	{
 		mes "- Wait a minute !! -";
