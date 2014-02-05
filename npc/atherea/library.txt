@@ -43,7 +43,7 @@ function	script	A_FS_Eligible	{
 	
 	set .@found, 0;
 	for(set(.@i,0); .@i < getarraysize(@jobs); set(.@i, .@i+1)) {
-		if(@.jobs[.@i] == Class) {
+		if(.@jobs[.@i] == Class) {
 			set .@found,1;
 			break;
 		}
