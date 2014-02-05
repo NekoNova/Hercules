@@ -1,5 +1,5 @@
 //===== Hercules Script =========================
-//= Nergal, Demon Clan Introduction
+//= No Witnesses, Demon Clan Introduction
 //===== By: =====================================
 //= Olivar
 //===== Description: ============================

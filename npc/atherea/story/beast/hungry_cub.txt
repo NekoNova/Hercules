@@ -1,0 +1,98 @@
+//===== Hercules Script =========================
+//= Hungry Cub, Beast Clan Introduction
+//===== By: =====================================
+//= Olivar
+//===== Description: ============================
+//= This is the introduction quest to the Beast Clan.
+//= Players can undertake this quest as soon as they are
+//= level 70 and received the quest from either Elys
+//= or just talk to the NPC after they reached level 70.
+//===== Version: ================================
+//= 1.0
+//===============================================
+payon,170,178,4	script	Desperate Mother	510,{
+	if(callfunc("A_FS_Eligible",70,0,0,0,.jobs,.quests) == 1) {
+		if(checkquest(30010) == 1) completequest(30010);
+		
+		if(checkquest(30011) == 2){
+			mes "[Desperate Mother]";
+			mes "Again, thank you kind strrrangerrr for helping my son.";
+			mes "May the forrrest spirrrits guide and prrrotect you.";
+		} else if(checkquest(30011) == 1){
+			mes "[Desperate Mother]";
+			mes "Did you brrring the nutrrrients I asked forrr?";
+			next;
+			
+			// Check if all items have been collected:
+			// Skel-Bone 932 x 20
+			// Sweet Potato 633 x 20
+			// Nine Tails 1022 x 5
+			if(callfunc("A_FS_HasItem",932,20) && callfunc("A_FS_HasItem",633,20) && callfunc("A_FS_HasItem",1022,5)) {
+				delitem 633,20;
+				delitem 932,20;
+				delitem 1022,5;
+				completequest 30011;
+				getexp 140000,30000;
+				
+				mes "[Desperate Mother]";
+				mes "Thank you kind adventurrrerrr, you've saved my son!";
+				mes "Look herrre honney, now you can eat.";
+				next;
+
+				mes "[Young Best Clan Member]";
+				mes "^0000FFHis eyes grow big when he sees the food.^000000";
+				mes "^0000FFWithout hesitation he snatches the food and devours it.^000000";
+				next;
+
+				mes "[Desperate Mother]";
+				mes "Just shows how hungrrry he was.";
+				mes "Thank you again, and may the forest spirrrits prrrotect you.";
+			} else {			
+				mes "[Desperate Mother]";
+				mes "Please, my son is hungrrry, and I cannot hunt the food myself.";
+				mes "";
+				mes "20 x ^0000FFSkel-Bone^000000";
+				mes "20 x ^0000FFSweet Potato^000000";
+				mes "5 x ^0000FFNine Tails^000000";
+				mes "";
+				mes "You can find these nutrrrients inside ^0000FFPayon Cave^000000";
+			}
+		} else {
+			mes "[Desperate Mother]";
+			mes "Oh adventureeeree, I reeequireee yourrrr help.";
+			mes "My son herrrre is hungrrry, but I'm unable to fetch his food.";
+			mes "I sprrrained my ankle not long ago, and lack the speed to hunt.";
+			next;
+			
+			mes "[" + strcharinfo(0) + "]";
+			mes "What does your son require?";
+			next;
+			
+			mes "[Desperate Mother]";
+			mes "You'll help us? Oh prrraise the wood spirrrits!";
+			next;
+			
+			mes "[Desperate Mother]";
+			mes "Please hunt the following:";
+			mes "20 x ^0000FFSkel-Bone^000000";
+			mes "20 x ^0000FFSweet Potato^000000";
+			mes "5 x ^0000FFNine Tails^000000";
+			mes "";
+			mes "You can find these nutrrrients inside ^0000FFPayon Cave^000000";
+			setquest 30011;
+		} 
+	} else {
+		mes "[Desperate Mother]";
+		mes "Won't someone think of the childrrren?";
+	}
+	
+	close;
+}
+
+payon,171,179,4	script	Young Beast Clan	626,{
+	emotion 28,0;
+	mes "[Young Best Clan Member]";
+	mes "^0000FFThe boy pulls his mother's robes, and sobs^000000.";
+	mes "Mommy, I'm hungrrry...";	
+	close;
+}

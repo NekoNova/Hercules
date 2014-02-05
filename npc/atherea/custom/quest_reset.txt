@@ -19,7 +19,7 @@ vip,67,67,4	script	Quest Reset	442,{
 		mes "[Quest Reset]";
 		mes "Which quest do you want to reset?";
 		next;
-		switch(select("No Witnesses")) {
+		switch(select("No Witnesses","Hungry Cub")) {
 			case 1:
 				if(checkquest(30003) > -1) erasequest(30003);
 				if(checkquest(30004) > -1) erasequest(30004);
@@ -28,6 +28,10 @@ vip,67,67,4	script	Quest Reset	442,{
 				mes "[Quest Reset]";
 				mes "The quest ^0000FFNo Witnesses^000000 has been reset.";
 				break;
+				
+			case 2:
+				if(checkquest(30010) > -1) erasequest(30010);
+				if(checkquest(30011) > -1) erasequest(30011);
 		}
 		close;
 	} else {
