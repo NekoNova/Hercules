@@ -11,19 +11,44 @@
 //= 1.0
 //===============================================
 que_job01,91,90,3	script	nergal#morroc	456,{
-	if(callfunc("A_FS_Eligible",60,0,0,0,.jobs,.quests) == 1){
-		if(getgmlevel() > 40) {
-			mes "[Nergal]";
-			mes "DEBUG";
-			mes "quest 30003: " + checkquest(30003);
-			mes "quest 30004: " + checkquest(30004);
-			mes "quest 30005: " + checkquest(30005);
-			next;
-		}
-		
+	if(callfunc("A_FS_Eligible",60,0,0,0,.jobs,.quests) == 1){		
 		if(checkquest(30003) == 1) completequest(30003);
 		
-		if(checkquest(30004) == -1) {
+		if(checkquest(30005) == 2) {
+			mes "[Nergal]";
+			mes "Don't worry, " + strcharinfo(0) + ", we're watching you...";
+			mes "heheheh....hahahahahaha.....";
+		} else if(checkquest(30005) == 1) {
+			mes "[Nergal]";
+			mes "Ahh...you're back...did you find what you were asked to look for?";
+			next;
+			
+			mes "[" + strcharinfo(0) + "]";
+			mes "You killed him!";
+			next;
+			
+			emotion(29,0);
+			mes "[Nergal]";
+			mes "Killed him? I have no idea what you're talking about...hehehe";
+			mes "I never said to give him that bottle, now did I?";
+			mes "hehehe....hahahahaha";
+			next;
+			
+			mes "[Nergal]";
+			mes "You're interesting, " + strcharinfo(0) + ".";
+			mes "Oh yes, I know everything about you.";
+			mes "We'll be keeping a close eye on you.";
+			getexp 37000,12000;
+			completequest(30005);
+		} else if(checkquest(30004) == 1) {
+			mes "[Nergal]";
+			mes "Didn't I just tell you to go to the ^0000FFSouth Desert^000000?";
+			
+			if(callfunc("A_FS_HasItem",678,1) == 0) {
+				mes "What? You lost the bottle I gave you?";
+				mes "Your problem, go find another one then";
+			}
+		} else if(checkquest(30004) == -1) {
 			mes "[Nergal]";
 			mes "...What the hell do you want, Human?";
 			mes "Come to gaze upon a powerful being?";
@@ -69,48 +94,9 @@ que_job01,91,90,3	script	nergal#morroc	456,{
 				mes "Because other wise I'll make it your problem...";
 				setquest(30004);
 			}
-		
-			close;
-		} else if(checkquest(30004) == 1) {
-			mes "[Nergal]";
-			mes "Didn't I just tell you to go to the ^0000FFSouth Desert^000000?";
-			
-			if(callfunc("A_FS_HasItem",678,1) == 0) {
-				mes "What? You lost the bottle I gave you?";
-				mes "Your problem, go find another one then";
-			}
-			
-			close;
-		} else if(checkquest(30005) == 1) {
-			mes "[Nergal]";
-			mes "Ahh...you're back...did you find what you were asked to look for?";
-			next;
-			
-			mes "[" + strcharinfo(0) + "]";
-			mes "You killed him!";
-			next;
-			
-			emotion(29,0);
-			mes "[Nergal]";
-			mes "Killed him? I have no idea what you're talking about...hehehe";
-			mes "I never said to give him that bottle, now did I?";
-			mes "hehehe....hahahahaha";
-			next;
-			
-			mes "[Nergal]";
-			mes "You're interesting, " + strcharinfo(0) + ".";
-			mes "Oh yes, I know everything about you.";
-			mes "We'll be keeping a close eye on you.";
-			close2;
-			getexp 37000,12000;
-			completequest(30005);
-			end;
-		} else if(checkquest(30005) == 2) {
-			mes "[Nergal]";
-			mes "Don't worry, " + strcharinfo(0) + ", we're watching you...";
-			mes "heheheh....hahahahahaha.....";
-			close;
 		}
+
+		close;
 	} else {
 		emotion(9,0);
 		mes "[Nergal]";
