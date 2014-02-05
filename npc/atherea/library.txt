@@ -1,0 +1,81 @@
+//===== Hercules Script ==================
+//= Script Library
+//===== By: ==============================
+//= Olivar
+//===== Current Version: =================
+//= 1.0
+//===== Description: =====================
+//= Library of functions that provide a
+//= generic logic to be used across scripts
+//= This reduces the over code base and keeps
+//= the Scripts small
+//===== Additional Comments ==============
+//=
+//========================================
+
+//========================================
+//= This function checks whether a player
+//= is eligible for a quest. This can be
+//= done by passing the following arguments:
+//=
+//= arg(0) : minimum base level
+//= arg(1) : maximum base level
+//= arg(2) : minimum job level
+//= arg(3) : maximum job level
+//= arg(4) : Array of allowed classes
+//= arg(5) : Array of required quests
+//=
+//= the first 4 arguments can be set to 0
+//= to ignore the check.
+//========================================
+function	script	A_FS_Eligible	{
+	set .@min_blvl, getarg(0);
+	set .@max_blvl, getarg(1);
+	set .@min_jlvl, getarg(2);
+	set .@max_jlvl, getarg(3);
+	set .@jobs, getarg(4);
+	set .@quests, getarg(5);
+
+	if(.@min_blvl > 0 && BaseLevel < .@min_blvl) return 0;
+	if(.@max_blvl > 0 && BaseLevel > .@max_blvl) return 0;
+	if(.@min_jlvl > 0 && JobLevel < .@min_jlvl) return 0;
+	if(.@max_jlvl > 0 && JobLevel > .@max_jlvl) return 0;
+	
+	set .@found, 0;
+	for(set(.@i,0); .@i < getarraysize(@jobs); set(.@i, .@i+1)) {
+		if(@.jobs[.@i] == Class) {
+			set .@found,1;
+			break;
+		}
+	}
+
+	if(.@found == 0) return 0;
+
+	for(set(.@i,0); .@i < getarraysize(.@quests); set(.@i, .@i+1)) {
+		if(checkquest(@.quests[.@i]) == 2) continue;
+		else return 0;
+	}
+
+	return 1;
+}
+
+//===========================================
+//= This function checks whether a player
+//= has a specific item in his inventory and
+//= whether he has the required amount of it.
+//=
+//= arg(0) : item ID
+//= arg(1) : minimum amount
+//=
+//===========================================
+function	script	A_FS_HasItem	{
+	set .@itemID, getarg(0);
+	set .@amount, getarg(1);
+	getinventorylist;
+	
+	for(set(.@i,0); .@i < @inventorylist_count; set(.@i, .@i+1)) {
+		if(@inventorylist_id[.@i] == .@itemID && @inventorylist_amount[.@i] >= .@amount) return 1;
+	}
+	
+	return 0;
+}

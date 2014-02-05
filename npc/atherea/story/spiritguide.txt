@@ -64,7 +64,7 @@ OnPCBaseLvUpEvent:
 	if(BaseLevel == 60 && checkquest(30003) == -1) {
 		mes "[Elys]";
 		mes strcharinfo(0);
-		mes "There is a Demon in Morroc and he seems to be looking for aid.";
+		mes "There is a member of the ^0000FFDemon Clan^000000 in Morroc and he seems to be looking for aid.";
 		mes "Perhaps you could help him out and gain their trust.";
 		close2;
 		setquest 30003;	// Flag Quest "No Witnesses (30003) as Active
