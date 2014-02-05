@@ -32,7 +32,12 @@ vip,67,67,4	script	Quest Reset	442,{
 			case 2:
 				if(checkquest(30010) > -1) erasequest(30010);
 				if(checkquest(30011) > -1) erasequest(30011);
+				
+				mes "[Quest Reset]";
+				mes "The quest ^0000FFHungry Cub^000000 has been reset.";
+				break;
 		}
+		
 		close;
 	} else {
 		mes "[Quest Reset]";
