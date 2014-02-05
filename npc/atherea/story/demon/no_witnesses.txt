@@ -12,6 +12,15 @@
 //===============================================
 que_job01,91,90,3	script	nergal#morroc	456,{
 	if(callfunc("A_FS_Eligible",60,0,0,0,.jobs,.quests) == 1){
+		if(getgmlevel() > 40) {
+			mes "[Nergal]";
+			mes "DEBUG";
+			mes "quest 30003: " + checkquest(30003);
+			mes "quest 30004: " + checkquest(30004);
+			mes "quest 30005: " + checkquest(30005);
+			next;
+		}
+		
 		if(checkquest(30003) == 1) completequest(30003);
 		
 		if(checkquest(30004) == -1) {
