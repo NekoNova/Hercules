@@ -42,20 +42,25 @@ function	script	A_FS_Eligible	{
 	if(.@max_jlvl > 0 && JobLevel > .@max_jlvl) return 0;
 	
 	set .@found, 0;
-	for(set(.@i,0); .@i < getarraysize(@jobs); set(.@i, .@i+1)) {
-		if(.@jobs[.@i] == Class) {
-			set .@found,1;
-			break;
+	
+	if(getarraysize(@jobs) > 0) {
+		for(set(.@i,0); .@i < getarraysize(@jobs); set(.@i, .@i+1)) {
+			if(.@jobs[.@i] == Class) {
+				set .@found,1;
+				break;
+			}
+		}
+	
+		if(.@found == 0) return 0;
+	}
+
+	if(getarraysize(.@quests) > 0) {
+		for(set(.@i,0); .@i < getarraysize(.@quests); set(.@i, .@i+1)) {
+			if(checkquest(.@quests[.@i]) == 2) continue;
+			else return 0;
 		}
 	}
-
-	if(.@found == 0) return 0;
-
-	for(set(.@i,0); .@i < getarraysize(.@quests); set(.@i, .@i+1)) {
-		if(checkquest(.@quests[.@i]) == 2) continue;
-		else return 0;
-	}
-
+	
 	return 1;
 }
 
