@@ -14,7 +14,7 @@
 //= going to be a check on every interaction
 //= on the GM level.
 //========================================
-vip,67,67,4	script	Quest Reset	2489,{
+vip,67,67,4	script	Quest Reset	442,{
 	if(getgmlevel() > 40) {
 		mes "[Quest Reset]";
 		mes "Which quest do you want to reset?";
