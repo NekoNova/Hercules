@@ -101,12 +101,6 @@ que_job01,91,90,3	script	nergal#morroc	456,{
 			mes "Don't worry, " + strcharinfo(0) + ", we're watching you...";
 			mes "heheheh....hahahahahaha.....";
 			close;
-		} else {
-			emotion(9,0);
-			mes "[Nergal]";
-			mes ".....What does a lowly Human want with me?";
-			mes "Beat it kid, before I let you experience something unpleasant";
-			close;
 		}
 	} else {
 		emotion(9,0);
