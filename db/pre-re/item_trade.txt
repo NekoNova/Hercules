@@ -56,6 +56,27 @@
 5597,9,100	// Bubble Gum In Mouth
 5654,9,100	// Holy Marching Hat
 
+//Vote shop items
+12263,475,100	// Field Manual
+12221,475,100	// Megaphone
+12300,475,100	// Wild Rose Contract
+12278,475,100	// Alice Scroll
+12302,475,100	// Egnigem Cenia Contract
+6320,475,100	// Premium Reset Stone
+5336,475,100	// Guildsman Recruiter Hat
+5337,475,100	// Party Recruiter Hat
+5338,475,100	// Bf Recruiter Hat
+5339,475,100	// Friend Recruiter Hat
+5346,475,100	// Gf Recruiter Hat
+5352,475,100	// Poporing Cap
+5371,475,100	// Judge Hat
+5181,475,100	//helm of darkness
+5579,475,100	// Wanderer's Sakkat
+5223,475,100	// Evolved Big Golden Bell
+8218,475,100	// ghostring egg
+8219,475,100	// angeling egg
+8220,475,100	// deviling egg
+
 // Wedding Related items
 2634,507,100	// Wedding Ring
 2635,507,100	// Wedding Ring
@@ -375,7 +396,6 @@
 
 // PC-Cafe Authoritative Badge
 12262,507,100	// Authoritative Badge
-12263,475,100	// Field Manual
 12264,475,100	// Bubble Gum
 12265,475,100	// Life Insurrance
 
@@ -779,7 +799,6 @@
 12218,475,100	// LV5 Assumptio Scroll
 12219,475,100	// LV10 Wind Walker Scroll
 12220,475,100	// LV5 Adrenaline Scroll
-12221,475,100	// Megaphone
 12269,499,100	// Tasty Pink Ration
 12270,499,100	// Tasty White Ration
 12271,499,100	// Military Ration A
@@ -789,7 +808,6 @@
 12275,507,100	// Taecheongdan
 12276,73,100	// Mimic Scroll
 12277,73,100	// Disguise Scroll
-12278,73,100	// Alice Scroll
 12287,507,100	// Love Angel Magic Powder
 12288,507,100	// Squirrel Magic Powder
 12289,507,100	// Gogo Magic Powder
@@ -799,9 +817,7 @@
 12297,507,100	// PC-Room Coin Box
 12298,507,100	// SP Consumption Reduction Potion
 12299,507,100	// Mega Resist Potion
-12300,499,100	// Wild Rose Contract
 12301,499,100	// Doppelganger Contract
-12302,499,100	// Egnigem Cenia Contract
 12303,475,100	// Blessing Of Water
 12304,507,100	// Diary Magic Powder
 12305,507,100	// Mini Heart Magic Powder
@@ -1486,7 +1502,6 @@
 5220,73,100	// Evolved Pipe
 5221,73,100	// Evolved Pair of Red Ribbon
 5222,73,100	// Evolved Blue Fish
-5223,73,100	// Evolved Big Golden Bell
 5224,73,100	// Evolved Orc Hero Helm
 5243,73,100	// Shafka
 5256,73,100	// Valkyrie Feather Band
@@ -1501,18 +1516,11 @@
 5304,73,100	// Cap Of Blindness
 5318,467,100	// Poring Party Hat
 5333,457,100	// Radio Antenna
-5336,73,100	// Guildsman Recruiter Hat
-5337,73,100	// Party Recruiter Hat
-5338,507,100	// Bf Recruiter Hat
-5339,507,100	// Friend Recruiter Hat
-5346,507,100	// Gf Recruiter Hat
-5352,73,100	// Poporing Cap
 5356,384,100	// Festival Pumpkin Hat
 5359,73,100	// Ship Captain Hat
 5360,73,100	// Hyuke's Black Cat Ears
 5361,73,100	// Gangster Scarf
 5362,73,100	// Ninja Scroll
-5371,73,100	// Judge Hat
 5383,73,100	// Hunter's Cap
 5387,73,100	// Neko Mimi Kafra
 5395,73,100	// Striped Hat
@@ -1551,7 +1559,6 @@
 5570,73,100	// Gemini Crown
 5574,73,100	// Well-Chewed Pencil
 5577,65,100	// Dark Knight Mask
-5579,73,100	// Wanderer's Sakkat
 5584,73,100	// Majestic Evil Horns
 5587,499,100	// Mosquito Coil
 5667,73,100	// Skull Hood
@@ -1623,7 +1630,6 @@
 6296,499,100	// Training Notice
 6298,499,100	// Pumpkin Head Crushed
 6299,499,100	// Worn Cloth Piece
-6320,507,100	// Premium Reset Stone
 6345,499,100	// Love Ball
 6347,499,100	// Bless Word Paper
 6348,499,100	// Bless Word Paper
