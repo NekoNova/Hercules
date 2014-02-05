@@ -1,0 +1,38 @@
+//===== Hercules Script ==================
+//= Script Library
+//===== By: ==============================
+//= Olivar
+//===== Current Version: =================
+//= 1.0
+//===== Description: =====================
+//= This NPC allows GMs to actually reset
+//= their quests variables and trackers in
+//= order to re-take quests for testing
+//= purposes.
+//===== Additional Comments ==============
+//= Because the NPC is for gms only, there's
+//= going to be a check on every interaction
+//= on the GM level.
+//========================================
+vip,67,67,4	script	Quest Reset	2491,{
+	if(getgmlevel() > 40) {
+		mes "[Quest Reset]";
+		mes "Which quest do you want to reset?";
+		next;
+		switch(select("No Witnesses")) {
+			case 1:
+				for(set(.@i,30003); .@i < 30006; set(.@i,.@i+1)) {
+					if(checkquest(.@i) > -1) erasequest(.@i);
+				}
+				
+				mes "[Quest Reset]";
+				mes "The quest ^0000FFNo Witnesses^000000 has been reset.";
+				break;
+		}
+		close;
+	} else {
+		mes "[Quest Reset]";
+		mes "I'm sorry, but my services are reserved to GameMasters only.";
+		close;
+	}
+}
