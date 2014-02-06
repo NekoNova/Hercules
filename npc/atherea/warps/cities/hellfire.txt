@@ -1,12 +1,11 @@
 //================ Hercules Script ===================
-//= 1@tnm1 Warps
+//= Hellfire Warps
 //===================== By ===========================
 //= Olivar
 //================ Current Version ===================
 //= 1.0: Initial Version
 //================ Description =======================
-//= This file contains all the warps defined on the
-//= fields of 1@tnm1.
+//= This file contains all the warps defined in the
+//= town of Hellfire (Demon Clan)
 //====================================================
-1@tnm1,152,80,0	warp	abandoned_building#exit	2,1,glast_01,136,94
-1@tnm1,139,101,0	warp	abandoned_building#portal	1,1,hellfire,306,263
+hellfire,306,260,0	warp	hellfire#portal	1,1,1@tnm1,143,98
