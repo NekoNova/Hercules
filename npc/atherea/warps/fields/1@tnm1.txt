@@ -8,5 +8,5 @@
 //= This file contains all the warps defined on the
 //= fields of 1@tnm1.
 //====================================================
-1@tnm1,152,80,0	warp	abandoned_building#exit	2,1,glast_01,136,94
-1@tnm1,139,101,0	warp	abandoned_building#portal	1,1,hellfire,306,263
+1@tnm1,152,80,0	warp	abandoned_house#exit	2,1,glast_01,136,94
+1@tnm1,139,101,0	warp	abandoned_house#portal	1,1,hellfire,306,263
