@@ -1,32 +1,46 @@
 //===== Hercules Script ======================================
 //= Warper
 //===== By: ==================================================
-//= Atherea Dev Team
+//= Euphy
+//===== Current Version: =====================================
+//= 1.4
+//===== Description: =========================================
+//= A complete - but very condensed - warper script.
+//= Some coordinates written by Tekno-Kanix and ToastOfDoom.
+//===== Additional Comments: =================================
+//= 1.0 Initial script.
+//= 1.1 Added missing duplicates and fixed coordinates.
+//= 1.2 Added new episodes and simplified functions.
+//= 1.3 Added Renewal checks and Instances menu.
+//=     Aligned coordinates with @go.
+//= 1.4 Added new Guild Dungeons.
+//= 1.5 Delete most function, and add unlocker [Kichi]
+//= 1.6 Add unlocker to most dungeons [Jesse]
+//= 1.7 Fix bug, no need zeny on dungeon last warp[Kichi]
 //============================================================
 
--	script	Cool Event Corp.	-1,{
+-	script	Warper	-1,{
 function Go; function Disp; function Pick; function Restrict;
 
-	cutin "zonda_01",2;
-	mes "[Cool Event Corp. Staff]";
-	mes "Welcome to Cool Event Corp.";
-	mes "We provide warping service to dungeons.";
-	mes "Our staff is always working";
-	mes "to surpass your expactations";
-	mes "for quality service. So how";
-	mes "may I assist you today?";
-	menu	" ~ Dungeon Warp Service",Dungeons, " ~ Information",Infoa;
+// --------------------------------------------------
+//	Main Menu:
+// --------------------------------------------------
 
-Infoa:
-	mes "[Cool Event Corp. Staff]";
-	mes "Dungeon warps cost 1,500 zeny";
+/*menu	"Last Warp ^777777["+lastwarp$+"]^000000",-,
+	" ~ Towns",Towns, " ~ Fields",Fields, " ~ Dungeons",Dungeons,
+	" ~ Guild Castles",Castles, " ~ Guild Dungeons",Guild_Dungeons,
+	" ~ Instances",Instances, " ~ Special Areas",Special;*/
+	mes "[Kafra Employee]";
+	mes "Welcome to the Kafra Deluxe Warp service.";
+	mes "General Information:";
+	mes "Town Warps are free.";
+	mes "Dungeon warps cost 1,500z";
 	mes "Locked warps will be labelled [^FF0000red^000000].";
 	mes "Unlocked warps will be displayed [black].";
-	mes "To unlock a warp, enter a dungeon and click the [Unlocker] stone. Then you may use our warp facility to head back to the entrance of that dungeon.";
-	close2;
-	cutin "", 255;
-	end;
-	
+	mes "To unlock a warp, enter a dungeon and click the [Unlock NPC]. Then you may warp back to the entrance of that dungeon from the warper.";
+	menu	" ~ Towns",Towns, " ~ Dungeons",Dungeons;
+
+
 // ------------------- Functions -------------------
 // * Go("<map>",<x>,<y>);
 //	~ Warps directly to a map.
@@ -99,6 +113,128 @@ function Restrict {
 }
 
 // --------------------------------------------------
+	Towns:
+// --------------------------------------------------
+menu	"Last Warp ^777777["+.@lastMap$+"]^000000",-,"Prontera ^777777["+getmapusers("prontera")+"]^000000",T1, "Alberta ^777777["+getmapusers("alberta")+"]^000000",T2, "Aldebaran ^777777["+getmapusers("aldebaran")+"]^000000",T3, "Amatsu ^777777["+getmapusers("amatsu")+"]^000000",T4, "Ayothaya ^777777["+getmapusers("ayothaya")+"]^000000",T5,
+	"Brasilis ^777777["+getmapusers("brasilis")+"]^000000",T6, "Comodo ^777777["+getmapusers("comodo")+"]^000000",T7, "Dewata ^777777["+getmapusers("dewata")+"]^000000",T8, "Eclage ^777777["+getmapusers("ecl_in01")+"]^000000",T9, "Einbech ^777777["+getmapusers("einbech")+"]^000000",T10, 
+	"Einbroch ^777777["+getmapusers("einbroch")+"]^000000",T11, "El Dicastes ^777777["+getmapusers("dicastes01")+"]^000000",T12, "Geffen ^777777["+getmapusers("geffen")+"]^000000",T13, "Gonryun ^777777["+getmapusers("gonryun")+"]^000000",T14, "Hugel ^777777["+getmapusers("hugel")+"]^000000",T15,
+	"Izlude ^777777["+getmapusers("izlude")+"]^000000",T16, "Jawaii ^777777["+getmapusers("jawaii")+"]^000000",T17, "Lighthalzen ^777777["+getmapusers("lighthalzen")+"]^000000",T18, "Louyang ^777777["+getmapusers("louyang")+"]^000000",T19, "Lutie ^777777["+getmapusers("xmas")+"]^000000",T20,
+	"Malangdo ^777777["+getmapusers("malangdo")+"]^000000",T21, "Malaya ^777777["+getmapusers("malaya")+"]^000000",T22, "Manuk ^777777["+getmapusers("manuk")+"]^000000",T23, "Midgards Expedition Camp ^777777["+getmapusers("mid_camp")+"]^000000",T24,
+	"Mora ^777777["+getmapusers("mora")+"]^000000",T25, "Morroc ^777777["+getmapusers("morocc")+"]^000000",T26, "Moscovia ^777777["+getmapusers("moscovia")+"]^000000",T27,
+	"Payon ^777777["+getmapusers("payon")+"]^000000",T28, "Rachel ^777777["+getmapusers("rachel")+"]^000000",T29, "Splendide ^777777["+getmapusers("splendide")+"]^000000",T30, "Thor Camp ^777777["+getmapusers("thor_camp")+"]^000000",T31,
+	"Umbala ^777777["+getmapusers("umbala")+"]^000000",T32, "Veins ^777777["+getmapusers("veins")+"]^000000",T33, "Yuno ^777777["+getmapusers("yuno")+"]^000000",T34;
+	
+	if (lastTwarp$ == "")
+		message strcharinfo(0),"You haven't warped anywhere yet.";
+	else
+		warp lastTwarp$,lastTwarpx,lastTwarpy;
+
+	close;
+
+T1: warp "prontera",155,183;
+	getmapxy(lastTwarp$,lastTwarpx,lastTwarpy,0);
+	end;
+T2: warp "alberta",28,234;
+	getmapxy(lastTwarp$,lastTwarpx,lastTwarpy,0);
+	end;
+T3: warp "aldebaran",140,131;
+	getmapxy(lastTwarp$,lastTwarpx,lastTwarpy,0);
+	end;
+T4: warp "amatsu",115,160;
+	getmapxy(lastTwarp$,lastTwarpx,lastTwarpy,0);
+	end;
+T5: warp "ayothaya",208,166;
+	getmapxy(lastTwarp$,lastTwarpx,lastTwarpy,0);
+	end;
+T6: warp "brasilis",196,217;
+	getmapxy(lastTwarp$,lastTwarpx,lastTwarpy,0);
+	end;
+T7: warp "comodo",190,151;
+	getmapxy(lastTwarp$,lastTwarpx,lastTwarpy,0);
+	end;
+T8: warp "dewata",200,180;
+	getmapxy(lastTwarp$,lastTwarpx,lastTwarpy,0);
+	end;
+T9: warp "ecl_in01",48,53;
+	getmapxy(lastTwarp$,lastTwarpx,lastTwarpy,0);
+	end;
+T10: warp "einbech",63,35;
+	getmapxy(lastTwarp$,lastTwarpx,lastTwarpy,0);
+	end;
+T11: warp "einbroch",240,201;
+	getmapxy(lastTwarp$,lastTwarpx,lastTwarpy,0);
+	end;
+T12: warp "dicastes01",198,187;
+	getmapxy(lastTwarp$,lastTwarpx,lastTwarpy,0);
+	end;
+T13: warp "geffen",119,59;
+	getmapxy(lastTwarp$,lastTwarpx,lastTwarpy,0);
+	end;
+T14: warp "gonryun",160,120;
+	getmapxy(lastTwarp$,lastTwarpx,lastTwarpy,0);
+	end;
+T15: warp "hugel",96,145;
+	getmapxy(lastTwarp$,lastTwarpx,lastTwarpy,0);
+	end;
+T16: warp "izlude",128,114;
+	getmapxy(lastTwarp$,lastTwarpx,lastTwarpy,0);
+	end;
+T17: warp "jawaii",251,132;
+	getmapxy(lastTwarp$,lastTwarpx,lastTwarpy,0);
+	end;
+T18: warp "lighthalzen",158,92;
+	getmapxy(lastTwarp$,lastTwarpx,lastTwarpy,0);
+	end;
+T19: warp "louyang",217,100;
+	getmapxy(lastTwarp$,lastTwarpx,lastTwarpy,0);
+	end;
+T20: warp "xmas",147,134;
+	getmapxy(lastTwarp$,lastTwarpx,lastTwarpy,0);
+	end;
+T21: warp "malangdo",140,114;
+	getmapxy(lastTwarp$,lastTwarpx,lastTwarpy,0);
+	end;
+T22: warp "malaya",212,206;
+	getmapxy(lastTwarp$,lastTwarpx,lastTwarpy,0);
+	end;
+T23: warp "manuk",282,138;
+	getmapxy(lastTwarp$,lastTwarpx,lastTwarpy,0);
+	end;
+T24: warp "mid_camp",210,288;
+	getmapxy(lastTwarp$,lastTwarpx,lastTwarpy,0);	
+	end;
+T25: warp "mora",55,146;
+	getmapxy(lastTwarp$,lastTwarpx,lastTwarpy,0);
+	end;
+T26: warp "morocc",156,93;
+	getmapxy(lastTwarp$,lastTwarpx,lastTwarpy,0);
+	end;
+T27: warp "moscovia",223,184;
+	getmapxy(lastTwarp$,lastTwarpx,lastTwarpy,0);
+	end;
+T28: warp "payon",179,100;
+	getmapxy(lastTwarp$,lastTwarpx,lastTwarpy,0);
+	end;
+T29: warp "rachel",130,110;
+	getmapxy(lastTwarp$,lastTwarpx,lastTwarpy,0);
+	end;
+T30: warp "splendide",201,147;
+	getmapxy(lastTwarp$,lastTwarpx,lastTwarpy,0);
+	end;
+T31: warp "thor_camp",246,68;
+	getmapxy(lastTwarp$,lastTwarpx,lastTwarpy,0);
+	end;
+T32: warp "umbala",97,153;
+	getmapxy(lastTwarp$,lastTwarpx,lastTwarpy,0);
+	end;
+T33: warp "veins",216,123;
+	getmapxy(lastTwarp$,lastTwarpx,lastTwarpy,0);
+	end;
+T34: warp "yuno",157,51;
+	getmapxy(lastTwarp$,lastTwarpx,lastTwarpy,0);
+	end;
+
+// --------------------------------------------------
 	Dungeons:
 // --------------------------------------------------
 menu "Last Warp ^777777["+lastwarp$+"]^000000",-, (abyss_01?"^000000":"^ff0000")+"Abyss Lakes",D1, (ama_dun01?"^000000":"^ff0000")+"Amatsu Dungeon",D2, (anthell01?"^000000":"^ff0000")+"Anthell",D3,
@@ -121,16 +257,14 @@ menu "Last Warp ^777777["+lastwarp$+"]^000000",-, (abyss_01?"^000000":"^ff0000")
 			set Zeny,Zeny-1500;
 		}
 		warp lastwarp$,lastwarpx,lastwarpy;
-	close2;
-	cutin "", 255;
-	end;
+
+	close;
 
 D1: if(abyss_01){
 		if (Zeny < 1500) goto L_nope;
 		set Zeny,Zeny-1500;
 		warp "hu_fild05",189,204;
 		getmapxy(lastwarp$,lastwarpx,lastwarpy,0);
-		cutin "", 255;
 		end;
 	}
 	goto L_Lock;
@@ -139,7 +273,6 @@ D2: if(ama_dun01){
 		set Zeny,Zeny-1500;
 		warp "ama_in02",116,182;
 		getmapxy(lastwarp$,lastwarpx,lastwarpy,0);
-		cutin "", 255;
 		end;
 	}
 	goto L_Lock;
@@ -148,7 +281,6 @@ D3: if(anthell01){
 		set Zeny,Zeny-1500;
 		warp "cmd_fild08",330,355;
 		getmapxy(lastwarp$,lastwarpx,lastwarpy,0);
-		cutin "", 255;
 		end;
 	}
 	goto L_Lock;
@@ -157,7 +289,6 @@ D4: if(ayo_dun01){
 		set Zeny,Zeny-1500;
 		warp "ayo_fild02",277,150;
 		getmapxy(lastwarp$,lastwarpx,lastwarpy,0);
-		cutin "", 255;
 		end;
 	}
 	goto L_Lock;
@@ -166,7 +297,6 @@ D5: if(beach_dun){
 		set Zeny,Zeny-1500;
 		warp "comodo",30,215;
 		getmapxy(lastwarp$,lastwarpx,lastwarpy,0);
-		cutin "", 255;
 		end;
 	}
 	goto L_Lock;
@@ -175,7 +305,6 @@ D6: if(lhz_dun01){
 		set Zeny,Zeny-1500;
 		warp "lighthalzen",309,302;
 		getmapxy(lastwarp$,lastwarpx,lastwarpy,0);
-		cutin "", 255;
 		end;
 	}
 	goto L_Lock;
@@ -184,7 +313,6 @@ D7: if(bra_dun01){
 		set Zeny,Zeny-1500;
 		warp "bra_in01",207,184;
 		getmapxy(lastwarp$,lastwarpx,lastwarpy,0);
-		cutin "", 255;
 		end;
 	}
 	goto L_Lock;
@@ -193,7 +321,6 @@ D8: if(iz_dun00){
 		set Zeny,Zeny-1500;
 		warp "izlu2dun",108,88;
 		getmapxy(lastwarp$,lastwarpx,lastwarpy,0);
-		cutin "", 255;
 		end;
 	}
 	goto L_Lock;
@@ -202,7 +329,6 @@ D9: if(c_tower1){
 		set Zeny,Zeny-1500;
 		warp "aldebaran",139,131;
 		getmapxy(lastwarp$,lastwarpx,lastwarpy,0);
-		cutin "", 255;
 		end;
 	}
 	goto L_Lock;
@@ -211,7 +337,6 @@ D10: if(mjo_dun01){
 		set Zeny,Zeny-1500;
 		warp "mjolnir_02",79,361;
 		getmapxy(lastwarp$,lastwarpx,lastwarpy,0);
-		cutin "", 255;
 		end;
 	}
 	goto L_Lock;
@@ -220,7 +345,6 @@ D11: if(prt_sewb1){
 		set Zeny,Zeny-1500;
 		warp "prt_fild05",273,209;
 		getmapxy(lastwarp$,lastwarpx,lastwarpy,0);
-		cutin "", 255;
 		end;
 	}
 	goto L_Lock;
@@ -229,7 +353,6 @@ D12: if(abbey01){
 		set Zeny,Zeny-1500;
 		warp "nameless_n",160,184;
 		getmapxy(lastwarp$,lastwarpx,lastwarpy,0);
-		cutin "", 255;
 		end;
 	}
 	goto L_Lock;
@@ -238,7 +361,6 @@ D13: if(dew_dun02){
 		set Zeny,Zeny-1500;
 		warp "dew_fild01",50,65;
 		getmapxy(lastwarp$,lastwarpx,lastwarpy,0);
-		cutin "", 255;
 		end;
 	}
 	goto L_Lock;
@@ -247,7 +369,6 @@ D14: if(ein_dun01){
 		set Zeny,Zeny-1500;
 		warp "einbech",138,247;
 		getmapxy(lastwarp$,lastwarpx,lastwarpy,0);
-		cutin "", 255;
 		end;
 	}
 	goto L_Lock;
@@ -256,7 +377,6 @@ D15: if(gefenia01){
 		set Zeny,Zeny-1500;
 		warp "geffen",120,57;
 		getmapxy(lastwarp$,lastwarpx,lastwarpy,0);
-		cutin "", 255;
 		end;
 	}
 	goto L_Lock;
@@ -265,7 +385,6 @@ D16: if(gef_dun00){
 		set Zeny,Zeny-1500;
 		warp "gef_tower",153,32;
 		getmapxy(lastwarp$,lastwarpx,lastwarpy,0);
-		cutin "", 255;
 		end;
 	}
 	goto L_Lock;
@@ -274,7 +393,6 @@ D17: if(glast_01){
 		set Zeny,Zeny-1500;
 		warp "gef_fild06",26,304;
 		getmapxy(lastwarp$,lastwarpx,lastwarpy,0);
-		cutin "", 255;
 		end;
 	}
 	goto L_Lock;
@@ -283,7 +401,6 @@ D18: if(gon_dun01){
 		set Zeny,Zeny-1500;
 		warp "gonryun",159,197;
 		getmapxy(lastwarp$,lastwarpx,lastwarpy,0);
-		cutin "", 255;
 		end;
 	}
 	goto L_Lock;
@@ -292,7 +409,6 @@ D19: if(prt_maze01){
 		set Zeny,Zeny-1500;
 		warp "prt_fild01",136,366;
 		getmapxy(lastwarp$,lastwarpx,lastwarpy,0);
-		cutin "", 255;
 		end;
 	}
 	goto L_Lock;
@@ -301,7 +417,6 @@ D20: if(ice_dun01){
 		set Zeny,Zeny-1500;
 		warp "ra_fild01",233,327;
 		getmapxy(lastwarp$,lastwarpx,lastwarpy,0);
-		cutin "", 255;
 		end;
 	}
 	goto L_Lock;
@@ -310,7 +425,6 @@ D21: if(jupe_cave){
 		set Zeny,Zeny-1500;
 		warp "yuno_fild07",213,175;
 		getmapxy(lastwarp$,lastwarpx,lastwarpy,0);
-		cutin "", 255;
 		end;
 	}
 	goto L_Lock;
@@ -319,7 +433,6 @@ D22: if(kh_dun01){
 		set Zeny,Zeny-1500;
 		warp "yuno_fild08",76,180;
 		getmapxy(lastwarp$,lastwarpx,lastwarpy,0);
-		cutin "", 255;
 		end;
 	}
 	goto L_Lock;
@@ -328,7 +441,6 @@ D23: if(lou_dun01){
 		set Zeny,Zeny-1500;
 		warp "louyang",41,274;
 		getmapxy(lastwarp$,lastwarpx,lastwarpy,0);
-		cutin "", 255;
 		end;
 	}
 	goto L_Lock;
@@ -337,7 +449,6 @@ D24: if(mag_dun01){
 		set Zeny,Zeny-1500;
 		warp "yuno_fild03",37,140;
 		getmapxy(lastwarp$,lastwarpx,lastwarpy,0);
-		cutin "", 255;
 		end;
 	}
 	goto L_Lock;
@@ -346,7 +457,6 @@ D25: if(mal_dun01){
 		set Zeny,Zeny-1500;
 		warp "malangdo",75,236;
 		getmapxy(lastwarp$,lastwarpx,lastwarpy,0);
-		cutin "", 255;
 		end;
 	}
 	goto L_Lock;
@@ -355,7 +465,6 @@ D26: if(mosk_dun01){
 		set Zeny,Zeny-1500;
 		warp "mosk_fild02",190,253;
 		getmapxy(lastwarp$,lastwarpx,lastwarpy,0);
-		cutin "", 255;
 		end;
 	}
 	goto L_Lock;
@@ -364,7 +473,6 @@ D27: if(nif_fild01){
 		set Zeny,Zeny-1500;
 		warp "nif_fild01",315,63;
 		getmapxy(lastwarp$,lastwarpx,lastwarpy,0);
-		cutin "", 255;
 		end;
 	}
 D28: if(nyd_dun01){
@@ -372,7 +480,6 @@ D28: if(nyd_dun01){
 		set Zeny,Zeny-1500;
 		warp "spl_fild01",366,62;
 		getmapxy(lastwarp$,lastwarpx,lastwarpy,0);
-		cutin "", 255;
 		end;
 	}
 	goto L_Lock;
@@ -381,7 +488,6 @@ D29: if(odin_tem01){
 		set Zeny,Zeny-1500;
 		warp "hugel",205,109;
 		getmapxy(lastwarp$,lastwarpx,lastwarpy,0);
-		cutin "", 255;
 		end;
 	}
 	goto L_Lock;
@@ -390,7 +496,6 @@ D30: if(orcsdun01){
 		set Zeny,Zeny-1500;
 		warp "gef_fild10",68,334;
 		getmapxy(lastwarp$,lastwarpx,lastwarpy,0);
-		cutin "", 255;
 		end;
 	}
 	goto L_Lock;
@@ -399,7 +504,6 @@ D31: if(pay_dun00){
 		set Zeny,Zeny-1500;
 		warp "pay_arche",42,131;
 		getmapxy(lastwarp$,lastwarpx,lastwarpy,0);
-		cutin "", 255;
 		end;
 	}
 	goto L_Lock;
@@ -408,7 +512,6 @@ D32: if(moc_pryd01){
 		set Zeny,Zeny-1500;
 		warp "moc_ruins",63,161;
 		getmapxy(lastwarp$,lastwarpx,lastwarpy,0);
-		cutin "", 255;
 		end;
 	}
 	goto L_Lock;
@@ -417,7 +520,6 @@ D33: if(ra_san01){
 		set Zeny,Zeny-1500;
 		warp "ra_temin",276,320;
 		getmapxy(lastwarp$,lastwarpx,lastwarpy,0);
-		cutin "", 255;
 		end;
 	}
 	goto L_Lock;
@@ -426,7 +528,6 @@ D34: if(dic_dun01){
 		set Zeny,Zeny-1500;
 		warp "dic_fild01",28,79;
 		getmapxy(lastwarp$,lastwarpx,lastwarpy,0);
-		cutin "", 255;
 		end;
 	}
 	goto L_Lock;
@@ -435,7 +536,6 @@ D35: if(in_sphinx1){
 		set Zeny,Zeny-1500;
 		warp "moc_fild19",106,99;
 		getmapxy(lastwarp$,lastwarpx,lastwarpy,0);
-		cutin "", 255;
 		end;
 	}
 	goto L_Lock;
@@ -444,7 +544,6 @@ D36: if(treasure01){
 		set Zeny,Zeny-1500;
 		warp "alb2trea",85,107;
 		getmapxy(lastwarp$,lastwarpx,lastwarpy,0);
-		cutin "", 255;
 		end;
 	}
 	goto L_Lock;
@@ -453,7 +552,6 @@ D37: if(tha_t01){
 		set Zeny,Zeny-1500;
 		warp "hu_fild01",140,158;
 		getmapxy(lastwarp$,lastwarpx,lastwarpy,0);
-		cutin "", 255;
 		end;
 	}
 	goto L_Lock;
@@ -462,7 +560,6 @@ D38: if(thor_v01){
 		set Zeny,Zeny-1500;
 		warp "ve_fild03",168,235;
 		getmapxy(lastwarp$,lastwarpx,lastwarpy,0);
-		cutin "", 255;
 		end;
 	}
 	goto L_Lock;
@@ -471,7 +568,6 @@ D39: if(xmas_dun01){
 		set Zeny,Zeny-1500;
 		warp "xmas",143,309;
 		getmapxy(lastwarp$,lastwarpx,lastwarpy,0);
-		cutin "", 255;
 		end;
 	}
 	goto L_Lock;
@@ -480,7 +576,6 @@ D40: if(tur_dun01){
 		set Zeny,Zeny-1500;
 		warp "alberta",244,121;
 		getmapxy(lastwarp$,lastwarpx,lastwarpy,0);
-		cutin "", 255;
 		end;
 	}
 	goto L_Lock;
@@ -489,75 +584,70 @@ D41: if(um_dun01){
 		set Zeny,Zeny-1500;
 		warp "umbala",111,283;
 		getmapxy(lastwarp$,lastwarpx,lastwarpy,0);
-		cutin "", 255;
 		end;
 	}
 	goto L_Lock;
 
 L_Lock:
 mes "Sorry this warp isn't unlocked.";
-close2;
-cutin "", 255;
-end;
+close;
 
 L_nope:
 mes "Sorry but you don't have enough zeny.";
-close2;
-cutin "", 255;
-end;
+close;
 }
 
 // --------------------------------------------------
 //	Duplicates:
 // --------------------------------------------------
-alb2trea,57,70,6	duplicate(Cool Event Corp.)	Cool Event Corp.#tre	4_M_ZONDAMAN
-alberta,28,240,4	duplicate(Cool Event Corp.)	Cool Event Corp.#alb	4_M_ZONDAMAN
-aldebaran,145,118,4	duplicate(Cool Event Corp.)	Cool Event Corp.#alde	4_M_ZONDAMAN
-amatsu,108,156,5	duplicate(Cool Event Corp.)	Cool Event Corp.#ama	4_M_ZONDAMAN
-ayothaya,209,169,6	duplicate(Cool Event Corp.)	Cool Event Corp.#ayo	4_M_ZONDAMAN
-comodo,194,158,4	duplicate(Cool Event Corp.)	Cool Event Corp.#com	4_M_ZONDAMAN
-einbech,59,38,6	duplicate(Cool Event Corp.)	Cool Event Corp.#einbe	4_M_ZONDAMAN
-einbroch,239,205,4	duplicate(Cool Event Corp.)	Cool Event Corp.#einbr	4_M_ZONDAMAN
-gef_fild10,71,339,4	duplicate(Cool Event Corp.)	Cool Event Corp.#orc	4_M_ZONDAMAN
-geffen,124,72,4	duplicate(Cool Event Corp.)	Cool Event Corp.#gef	4_M_ZONDAMAN
-glast_01,372,308,4	duplicate(Cool Event Corp.)	Cool Event Corp.#glh	4_M_ZONDAMAN
-gonryun,162,122,4	duplicate(Cool Event Corp.)	Cool Event Corp.#gon	4_M_ZONDAMAN
-hugel,101,151,4	duplicate(Cool Event Corp.)	Cool Event Corp.#hug	4_M_ZONDAMAN
-izlu2dun,110,92,4	duplicate(Cool Event Corp.)	Cool Event Corp.#izd	4_M_ZONDAMAN
-izlude,135,116,4	duplicate(Cool Event Corp.)	Cool Event Corp.#izl	4_M_ZONDAMAN
-jawaii,253,138,4	duplicate(Cool Event Corp.)	Cool Event Corp.#jaw	4_M_ZONDAMAN
-lighthalzen,162,102,4	duplicate(Cool Event Corp.)	Cool Event Corp.#lhz	4_M_ZONDAMAN
-louyang,208,103,6	duplicate(Cool Event Corp.)	Cool Event Corp.#lou	4_M_ZONDAMAN
-manuk,274,146,6	duplicate(Cool Event Corp.)	Cool Event Corp.#man	4_M_ZONDAMAN
-mid_camp,216,288,4	duplicate(Cool Event Corp.)	Cool Event Corp.#mid	4_M_ZONDAMAN
-mjolnir_02,85,364,4	duplicate(Cool Event Corp.)	Cool Event Corp.#mjo	4_M_ZONDAMAN
-moc_ruins,64,164,4	duplicate(Cool Event Corp.)	Cool Event Corp.#moc	4_M_ZONDAMAN
-morocc,159,97,4	duplicate(Cool Event Corp.)	Cool Event Corp.#mor	4_M_ZONDAMAN
-moscovia,229,191,4	duplicate(Cool Event Corp.)	Cool Event Corp.#mos	4_M_ZONDAMAN
-nameless_n,259,213,4	duplicate(Cool Event Corp.)	Cool Event Corp.#nam	4_M_ZONDAMAN
-niflheim,205,179,4	duplicate(Cool Event Corp.)	Cool Event Corp.#nif	4_M_ZONDAMAN
-pay_arche,42,134,4	duplicate(Cool Event Corp.)	Cool Event Corp.#arc	4_M_ZONDAMAN
-payon,182,108,4	duplicate(Cool Event Corp.)	Cool Event Corp.#pay	4_M_ZONDAMAN
-prontera,159,192,4	duplicate(Cool Event Corp.)	Cool Event Corp.#prt	4_M_ZONDAMAN
-prt_fild05,279,223,6	duplicate(Cool Event Corp.)	Cool Event Corp.#cul	4_M_ZONDAMAN
-rachel,135,116,4	duplicate(Cool Event Corp.)	Cool Event Corp.#rac	4_M_ZONDAMAN
-splendide,205,153,4	duplicate(Cool Event Corp.)	Cool Event Corp.#spl	4_M_ZONDAMAN
-thor_camp,249,76,4	duplicate(Cool Event Corp.)	Cool Event Corp.#thor	4_M_ZONDAMAN
-umbala,106,150,3	duplicate(Cool Event Corp.)	Cool Event Corp.#umb	4_M_ZONDAMAN
-veins,214,123,4	duplicate(Cool Event Corp.)	Cool Event Corp.#ve	4_M_ZONDAMAN
-xmas,150,136,6	duplicate(Cool Event Corp.)	Cool Event Corp.#xmas	4_M_ZONDAMAN
-yuno,155,187,4	duplicate(Cool Event Corp.)	Cool Event Corp.#yuno	4_M_ZONDAMAN
+alb2trea,57,70,6	duplicate(Warper)	Warper#tre	859
+alberta,28,240,4	duplicate(Warper)	Warper#alb	859
+aldebaran,145,118,4	duplicate(Warper)	Warper#alde	859
+amatsu,108,156,5	duplicate(Warper)	Warper#ama	859
+ayothaya,209,169,6	duplicate(Warper)	Warper#ayo	859
+comodo,194,158,4	duplicate(Warper)	Warper#com	859
+einbech,59,38,6	duplicate(Warper)	Warper#einbe	859
+einbroch,239,205,4	duplicate(Warper)	Warper#einbr	859
+gef_fild10,71,339,4	duplicate(Warper)	Warper#orc	859
+geffen,124,72,4	duplicate(Warper)	Warper#gef	859
+glast_01,372,308,4	duplicate(Warper)	Warper#glh	859
+gonryun,162,122,4	duplicate(Warper)	Warper#gon	859
+hugel,101,151,4	duplicate(Warper)	Warper#hug	859
+izlu2dun,110,92,4	duplicate(Warper)	Warper#izd	859
+izlude,135,116,4	duplicate(Warper)	Warper#izl	859
+jawaii,253,138,4	duplicate(Warper)	Warper#jaw	859
+lighthalzen,162,102,4	duplicate(Warper)	Warper#lhz	859
+louyang,208,103,6	duplicate(Warper)	Warper#lou	859
+manuk,274,146,6	duplicate(Warper)	Warper#man	859
+mid_camp,216,288,4	duplicate(Warper)	Warper#mid	859
+mjolnir_02,85,364,4	duplicate(Warper)	Warper#mjo	859
+moc_ruins,64,164,4	duplicate(Warper)	Warper#moc	859
+morocc,159,97,4	duplicate(Warper)	Warper#mor	859
+moscovia,229,191,4	duplicate(Warper)	Warper#mos	859
+nameless_n,259,213,4	duplicate(Warper)	Warper#nam	859
+niflheim,205,179,4	duplicate(Warper)	Warper#nif	859
+pay_arche,42,134,4	duplicate(Warper)	Warper#arc	859
+payon,182,108,4	duplicate(Warper)	Warper#pay	859
+prontera,159,192,4	duplicate(Warper)	Warper#prt	859
+prt_fild05,279,223,6	duplicate(Warper)	Warper#cul	859
+rachel,135,116,4	duplicate(Warper)	Warper#rac	859
+splendide,205,153,4	duplicate(Warper)	Warper#spl	859
+thor_camp,249,76,4	duplicate(Warper)	Warper#thor	859
+umbala,106,150,3	duplicate(Warper)	Warper#umb	859
+veins,214,123,4	duplicate(Warper)	Warper#ve	859
+xmas,150,136,6	duplicate(Warper)	Warper#xmas	859
+yuno,155,187,4	duplicate(Warper)	Warper#yuno	859
 
 // --------------------------------------------------
 //	Duplicates (Renewal):
 // --------------------------------------------------
-brasilis,194,221,5	duplicate(Cool Event Corp.)	Cool Event Corp.#bra	4_M_ZONDAMAN
-dewata,198,184,5	duplicate(Cool Event Corp.)	Cool Event Corp.#dew	4_M_ZONDAMAN
-dicastes01,194,194,6	duplicate(Cool Event Corp.)	Cool Event Corp.#dic	4_M_ZONDAMAN
-ecl_in01,51,60,4	duplicate(Cool Event Corp.)	Cool Event Corp.#ecl	4_M_ZONDAMAN
-malangdo,134,117,6	duplicate(Cool Event Corp.)	Cool Event Corp.#mal	4_M_ZONDAMAN
-malaya,210,205,4	duplicate(Cool Event Corp.)	Cool Event Corp.#ma	4_M_ZONDAMAN
-mora,57,152,4	duplicate(Cool Event Corp.)	Cool Event Corp.#mora	4_M_ZONDAMAN
+brasilis,194,221,5	duplicate(Warper)	Warper#bra	859
+dewata,198,184,5	duplicate(Warper)	Warper#dew	859
+dicastes01,194,194,6	duplicate(Warper)	Warper#dic	859
+ecl_in01,51,60,4	duplicate(Warper)	Warper#ecl	859
+malangdo,134,117,6	duplicate(Warper)	Warper#mal	859
+malaya,210,205,4	duplicate(Warper)	Warper#ma	859
+mora,57,152,4	duplicate(Warper)	Warper#mora	859
 
 -	script	Unlocker	-1,{
 set .@unlock,getd (""+strnpcinfo(2)+"");
