@@ -24,20 +24,16 @@ que_job01,91,90,3	script	nergal#morroc	456,{
 			next;
 			
 			mes "[" + strcharinfo(0) + "]";
-			mes "You killed him!";
+			mes "Yes, he won't be discovered by anyone soon.";
+			mes "The sands of the desert are swallowing him.";
 			next;
 			
 			emotion(29,0);
 			mes "[Nergal]";
-			mes "Killed him? I have no idea what you're talking about...hehehe";
-			mes "I never said to give him that bottle, now did I?";
-			mes "hehehe....hahahahaha";
-			next;
-			
-			mes "[Nergal]";
 			mes "You're interesting, " + strcharinfo(0) + ".";
-			mes "Oh yes, I know everything about you.";
+			mes "Oh yes, I know everything about you, even your name...";
 			mes "We'll be keeping a close eye on you.";
+			mes "The Demon Clan can use people like yourself.";
 			getexp 37000,12000;
 			completequest(30005);
 		} else if(checkquest(30004) == 1) {
@@ -80,7 +76,7 @@ que_job01,91,90,3	script	nergal#morroc	456,{
 		
 			if(select("Fine, I'll help", "No, I'll pass") == 1) {
 				mes "[Nergal]";
-				mes "Here...take this bottle and head to the desert";
+				mes "Here...take this ^0000FFPoirson Bottle^000000 and head to the desert";
 				mes "South of here you'll find what you're looking for";
 				next;
 				getitem(678,1);	// Poison Bottle 1ea
@@ -91,7 +87,7 @@ que_job01,91,90,3	script	nergal#morroc	456,{
 			
 				mes "[Nergal]";
 				mes "Your problem, not mine...and you better find IT!";
-				mes "Because other wise I'll make it your problem...";
+				mes "Because otherwise I'll make it your problem...";
 				setquest(30004);
 			}
 		}
