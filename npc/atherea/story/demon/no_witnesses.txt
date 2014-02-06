@@ -1,0 +1,164 @@
+//===== Hercules Script =========================
+//= No Witnesses, Demon Clan Introduction
+//===== By: =====================================
+//= Olivar
+//===== Description: ============================
+//= This is the introduction quest to the Demon Clan.
+//= Players can undertake this quest as soon as they are
+//= level 60 and received the quest from either Elys
+//= or just talk to the NPC after they reached level 60.
+//===== Version: ================================
+//= 1.0
+//===============================================
+que_job01,91,90,3	script	nergal#morroc	456,{
+	if(callfunc("A_FS_Eligible",60,0,0,0,.jobs,.quests) == 1){		
+		if(checkquest(30003) == 1) completequest(30003);
+		
+		if(checkquest(30005) == 2) {
+			mes "[Nergal]";
+			mes "Don't worry, " + strcharinfo(0) + ", we're watching you...";
+			mes "heheheh....hahahahahaha.....";
+		} else if(checkquest(30005) == 1) {
+			mes "[Nergal]";
+			mes "Ahh...you're back...did you find what you were asked to look for?";
+			next;
+			
+			mes "[" + strcharinfo(0) + "]";
+			mes "Yes, he won't be discovered by anyone soon.";
+			mes "The sands of the desert are swallowing him.";
+			next;
+			
+			emotion(29,0);
+			mes "[Nergal]";
+			mes "You're interesting, " + strcharinfo(0) + ".";
+			mes "Oh yes, I know everything about you, even your name...";
+			mes "We'll be keeping a close eye on you.";
+			mes "The Demon Clan can use people like yourself.";
+			getexp 37000,12000;
+			completequest(30005);
+		} else if(checkquest(30004) == 1) {
+			mes "[Nergal]";
+			mes "Didn't I just tell you to go to the ^0000FFSouth Desert^000000?";
+			
+			if(callfunc("A_FS_HasItem",678,1) == 0) {
+				mes "What? You lost the bottle I gave you?";
+				mes "Your problem, go find another one then";
+			}
+		} else if(checkquest(30004) == -1) {
+			mes "[Nergal]";
+			mes "...What the hell do you want, Human?";
+			mes "Come to gaze upon a powerful being?";
+			next;
+		
+			mes "[" + strcharinfo(0) + "]";
+			mes "I was told that you'd need some help...";
+			mes "But if you're not interested, I'll just go...";
+			next;
+		
+			mes "[Nergal]";
+			mes "...No wait, perhaps you can be of help.";
+			mes "Actually, you might be ideal for this task...hehehe...";
+			next;
+		
+			mes "[Nergal]";
+			mes "I require help in recovering something that's mine...";
+			mes "Or rather, making sure it's not found at all...";
+			next;
+		
+			mes "[" + strcharinfo(0) + "]";
+			mes "This sounds rather fishy...";
+			next;
+		
+			mes "[Nergal]";
+			mes "It's what my Clan does...";
+			mes "So are you interested or not?";
+			next;
+		
+			if(select("Fine, I'll help", "No, I'll pass") == 1) {
+				mes "[Nergal]";
+				mes "Here...take this ^0000FFPoison Bottle^000000 and head to the desert";
+				mes "South of here you'll find what you're looking for";
+				next;
+				getitem(678,1);	// Poison Bottle 1ea
+			
+				mes "[" + strcharinfo(0) + "]";
+				mes "Eum...the desert is rather large...";
+				next;
+			
+				mes "[Nergal]";
+				mes "Your problem, not mine...and you better find IT!";
+				mes "Because otherwise I'll make it your problem...";
+				setquest(30004);
+			}
+		}
+
+		close;
+	} else {
+		emotion(9,0);
+		mes "[Nergal]";
+		mes ".....What does a lowly Human want with me?";
+		mes "Beat it kid, before I let you experience something unpleasant";
+		close;
+	}
+	
+OnInit:
+	setarray .jobs[0],0;
+	setarray .quests[0],0;
+	end;
+}
+
+moc_fild17,209,230,0	script	Thirsty Stranger	849,{
+	if(checkquest(30004) == 1) {
+		emotion(26,0);
+		mes "[Thirsty Stranger]";
+		mes "...Ooh...I'm...so...thirsty...";
+		mes "You...adventurer...do you have something to drink?";
+		next;
+		
+		if(callfunc("A_FS_HasItem", 678,1) == 1) {
+			if(select("Hand him the bottle","Don't hand him the bottle") == 1) {
+				delitem(678,1);
+				mes "[Thirsty Stranger]";
+				mes "Ooh...thank you stranger...there are kind souls after all...";
+				next;
+				
+				mes "[Thirsty Stranger]";
+				mes "^0000FFThe stranger takes the bottle and drinks it empty in one gulp.^000000";
+				next;
+				
+				mes "[Thirsty Stranger]";
+				mes "Thank....what....arrgh...have you...d..o..n...e...";
+				next;
+				
+				mes "[Poisoned Stranger]";
+				mes "^0000FFThe stranger collapses, his breath stopping.^000000";
+				mes "^0000FFYou have killed the stranger by handing over the bottle.^000000";
+				mes "^FF0000You decide to confront 'Nergal' about this.^000000";
+				changequest(30004,30005);
+			}
+		} else {
+			mes "[" + strcharinfo(0) + "]";
+			mes "^0000FFYou do not have anything to give to the stranger.^000000";
+			mes "I'm sorry, but I cannot help you.";
+		}
+		
+		close;
+	} else if(checkquest(30005) == 1 || checkquest(30005) == 2) {
+		mes "[Poisoned Stranger]";
+		mes "^0000FFThe body is lying in the sand, not moving...^000000";
+		mes "^0000FFThe wind is blowing sand across the body.^000000";
+		mes "^0000FFSoon the evidence will be swallowed by the desert^000000";
+		close;
+	} else {
+		emotion(26,0);
+		mes "[Thirsty Stranger]";
+		mes "Ugh...soo...thirsty";
+		mes "Who's there.....I can't see...";
+		mes "Please help me...";
+		next;
+		
+		mes "[" + strcharinfo(0) + "]";
+		mes "^FF0000Unfortunetely you do not have anything on you to give to the thirsty man.^000000";
+		close;
+	}
+}

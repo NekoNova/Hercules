@@ -1,0 +1,106 @@
+//===== Hercules Script =========================
+//= Hidden Temple Expedition, Human Clan Introduction
+//===== By: =====================================
+//= Olivar
+//===== Description: ============================
+//= This is the introduction quest to the Human Clan.
+//= Players can undertake this quest as soon as they are
+//= level 80 and received the quest from either Elys
+//= or just talk to the NPC after they reached level 80.
+//===== Version: ================================
+//= 1.0
+//===============================================
+prt_in,85,106,3	script	Distressed Captain	628,{
+	if(callfunc("A_FS_Eligible",80,0,0,0,.jobs,.quests) == 1) {	
+		if(checkquest(30000) == 1) completequest(30000);
+
+		if(checkquest(30002) == 2) {
+			mes "[Distressed Captain]";
+			mes "Many thanks again adventurer for helping us locate the missing knights.";
+			mes "One of them even requested more training.";
+			mes "It seems you inspired them.";
+		} else if(checkquest(30002) == 1) {
+			mes "[Distressed Captain]";
+			mes "They are okay? Thank you adventurer.";
+			mes "That's the best news I've heard all day.";
+			mes "I'll be sure to notify my superiors to keep an eye on you.";
+			mes "We could always use more able adventurers.";
+			next;
+		
+			mes "[Distressed Captain]";
+			mes "Perhaps in the future we might call upon your servics again.";
+			mes "Until then, have a safe journey.";
+			completequest 30002;
+			getexp 368102,150000;
+		} else if(checkquest(30001) == -1){
+			emotion 19,0;
+			mes "[Distressed Captain]";
+			mes "Oh...I don't know what to do...";
+			mes "Hey, you there! Yes you!";
+			next;
+
+			mes "[" + strcharinfo(0) + "]";
+			mes "me?";
+			next;
+
+			mes "[Distressed Captain]";
+			mes "Yes, you adventurer, pleas help me out";
+			mes "A company of Knights has ventured into the ^5EAE9EEHidden Temple^000000";
+			mes "But they have not returned yet. Please do me a favour and go look for them.";
+			changequest 30000,30001;
+		} else {
+			emotion 23,0;
+			mes "[Distressed Captain]";
+			mes "What to do...what to do....";
+		}
+
+		close;
+	}
+
+OnInit:
+	setarray .jobs[0],0;
+	setarray .quests[0],0;
+	end;
+}
+
+prt_fild01,142,364,4	script	Wounded Knight	686,{
+	emotion 19,0;
+	
+	if(checkquest(30001) == 1){
+		mes "[Wounded Knight]";
+		mes "Oh thank you for coming to our aid.";
+		mes "We got ambushed by the Demon Baphomet and....";
+		mes "Look Out!!!";
+		monster "this",142,358,"Baphomet Jr.",1729,2,strnpcinfo(0)+"::OnMonsterDead";
+	} else if(checkquest(30002) == 1 || checkquest(30002) == 2){
+		mes "[Wounded Knight]";
+		mes "Wow, your combat skills are amazing, adventurer.";
+		mes "These monsters forced us to retreat from the Hidden Temple";
+		mes "Please return to the Guild and let our Captain know that we're fine";
+	} else {
+		mes "[Wounded Knight]";
+		mes "Oh god....The monsters....we......";
+		mes "^0000FFIt seems he's too much in a shock to notice you.^000000";
+	}
+
+	close;
+	
+OnMonsterDead:
+	changequest 30001,30002;
+end;
+}
+
+prt_fild01,143,362,4	script	Scared Knight	500,{
+	if(checkquest(30002) == 1 || checkquest(30002) == 2){
+		mes "[Scared Knight]";
+		mes "Wow, your combat skills are amazing, adventurer,";
+		mes "I'm going to ask the Captain to train us harder.";
+		mes "That should prepare us better for future campaigns.";
+	} else {
+		emotion 79,0;
+		mes "[Scared Knight]";
+		mes "^0000FFThe knight if frozen with fear and does not seem to notice you.^000000";
+	}
+
+	close;
+}

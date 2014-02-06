@@ -1,0 +1,66 @@
+//===== Hercules Script ==================
+//= Script Library
+//===== By: ==============================
+//= Olivar
+//===== Current Version: =================
+//= 1.0
+//===== Description: =====================
+//= This NPC allows GMs to actually reset
+//= their quests variables and trackers in
+//= order to re-take quests for testing
+//= purposes.
+//===== Additional Comments ==============
+//= Because the NPC is for gms only, there's
+//= going to be a check on every interaction
+//= on the GM level.
+//========================================
+vip,67,67,4	script	Quest Reset	442,{
+	if(getgmlevel() > 40) {
+		mes "[Quest Reset]";
+		mes "Which quest do you want to reset?";
+		next;
+		switch(select("No Witnesses","Hungry Cub","Hidden Temple Expediton,"Lost Fairy")) {
+			case 1:
+				if(checkquest(30003) > -1) erasequest(30003);
+				if(checkquest(30004) > -1) erasequest(30004);
+				if(checkquest(30005) > -1) erasequest(30005);
+				
+				mes "[Quest Reset]";
+				mes "The quest ^0000FFNo Witnesses^000000 has been reset.";
+				break;
+				
+			case 2:
+				if(checkquest(30010) > -1) erasequest(30010);
+				if(checkquest(30011) > -1) erasequest(30011);
+				
+				mes "[Quest Reset]";
+				mes "The quest ^0000FFHungry Cub^000000 has been reset.";
+				break;
+
+			case 3:
+				if(checkquest(30000) > -1) erasequest(30000);
+				if(checkquest(30001) > -1) erasequest(30001);
+				if(checkquest(30002) > -1) erasequest(30002);
+
+				mes "[Quest Reset]";
+				mes "The quest ^0000FFHidden Temple Expedition^000000 has been reset.";
+				break;
+
+			case 4:
+				if(checkquest(30006) > -1) erasequest(30006);
+				if(checkquest(30007) > -1) erasequest(30007);
+				if(checkquest(30008) > -1) erasequest(30008);
+				if(checkquest(30009) > -1) erasequest(30009);
+
+				mes "[Quest Reset]";
+				mes "The quest ^0000FFLost Fairy^000000 has been reset.";
+				break;
+		}
+		
+		close;
+	} else {
+		mes "[Quest Reset]";
+		mes "I'm sorry, but my services are reserved to GameMasters only.";
+		close;
+	}
+}
