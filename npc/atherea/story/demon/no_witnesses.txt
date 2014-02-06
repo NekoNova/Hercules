@@ -76,7 +76,7 @@ que_job01,91,90,3	script	nergal#morroc	456,{
 		
 			if(select("Fine, I'll help", "No, I'll pass") == 1) {
 				mes "[Nergal]";
-				mes "Here...take this ^0000FFPoirson Bottle^000000 and head to the desert";
+				mes "Here...take this ^0000FFPoison Bottle^000000 and head to the desert";
 				mes "South of here you'll find what you're looking for";
 				next;
 				getitem(678,1);	// Poison Bottle 1ea
