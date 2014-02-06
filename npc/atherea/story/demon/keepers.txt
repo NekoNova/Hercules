@@ -1,0 +1,22 @@
+//================ Hercules Script ===================
+//= Keepers
+//===================== By ===========================
+//= Olivar
+//================ Current Version ===================
+//= 1.0: Initial Version
+//================ Description =======================
+//= These are the portal keepers, that stand guard.
+//====================================================
+glast_01,132,92,7	script	keeper#glast_01	1923,{
+	mes "[Keeper]";
+	mes "........proceed at your own risk.....";
+	mes "...hehehe....";
+	close;
+}
+
+1@tnm1,146,93,4	script	keeper#1@tnm1_1	1923,{
+	mes "[Keeper]";
+	mes "......you can still go back, Human....";
+	mes "....hehehehe...";
+	close;
+}
