@@ -200,17 +200,104 @@ function	script	F_Kafra	{
 function	script	F_KafStor	{
 	// Unable to access Guild Storage (Busy)
 	if(getarg(0) == 1){
-		if(guildopenstorage()){
+	mes "[Kafra Employee]";
+	mes "What would you like to do?";
+	switch(select("Open Guild Storage:"+( (getguildmasterid(getcharid(2))==getcharid(0)) ? "Guild Storage Settings:" : ":" )+"Cancel")) {
+	case 1: // guild storage
+		if (!getcharid(2)) {
+			next;
+			mes "[Kafra Employee]";
+			mes "Sorry, you must be in a Guild to use this function!";
+			cutin "",255;
+			close;
+		}
+		query_sql "SELECT `storage_password` FROM `guild` WHERE `guild_id`="+getcharid(2), .@password;
+		if (.@password) {
+			next;
+			mes "[Guild Storage password system]";
+			mes " ";
+			mes "Enter your guild storage password:";
+			input .@input;
+			if (.@input != .@password) {
+				mes "^FF0000Wrong guild storage password.^000000";
+				cutin "",255;
+				close;
+			}
+			mes "^0000FFPassword accepted.^000000";
+		}
+		close2;
+		if (guildopenstorage() == 1) {
 			mes "[Kafra Employee]";
 			mes "I'm sorry but another guild member is using the guild storage";
 			mes "right now.  Please wait until that person is finished.";
-			close2;
-			cutin "", 255;
-			end;
+		} else {
+			message strcharinfo(0),"Guild storage opened.";
 		}
-		cutin "", 255;
-		close;
+		break;
+
+case 2: // guild storage settings
+		next;
+		mes "[Guild Storage Password]";
+		if (!getcharid(2)) {
+			mes "You are not in a guild, so you don't have a ^0000FFGuild Storage^000000.";
+			close;
+		} else if (getguildmasterid(getcharid(2)) != getcharid(0)) {
+			mes "Your guild leader can talk to me and setup a Guild Storage Password.";
+			close;
+		}
+		
+		query_sql "SELECT `storage_password` FROM `guild` WHERE `guild_id`="+getcharid(2), .@password;
+		switch(select(.@password ? ":Change guild storage password:Remove guild storage password" : "Set a guild storage password")) {
+case 1: // set
+			mes "Enter a number 1000~10000000:";
+			if (input(.@new_password) == 1) {
+				mes "You can't use such a big password.";
+			} else if (.@new_password < 1000) {
+				mes "You shouldn't use such a short password.";
+			} else {
+				query_sql "UPDATE `guild` SET `storage_password`="+.@new_password+" WHERE `guild_id`="+getcharid(2);
+				mes "Guild storage password updated.";
+			}
+			break;
+		case 2: // change
+			mes "Enter your current guild storage password:";
+			input .@input;
+			if (.@input != .@password) {
+				mes "^FF0000Wrong guild storage password.^000000";
+				cutin "",255;
+				close;
+			}
+			mes "^0000FFPassword accepted.^000000";
+			mes " ";
+			mes "Enter a new guild storage password:";
+			mes "(a number between 1000~10000000)";
+			if (input(.@new_password) == 1) {
+				mes "You can't use such a big password.";
+			} else if (.@new_password < 1000) {
+				mes "You shouldn't use such a short password.";
+			} else {
+				query_sql "UPDATE `guild` SET `storage_password`="+.@new_password+" WHERE `guild_id`="+getcharid(2);
+				mes "Guild storage password updated.";
+			}
+			break;
+		case 3: // remove
+			mes "Enter your current guild storage password:";
+			input .@input;
+			if (.@input != .@password) {
+				mes "^FF0000Wrong guild storage password.^000000";
+				cutin "",255;
+				close;
+			}
+			query_sql "UPDATE `guild` SET `storage_password`=0 WHERE `guild_id`="+getcharid(2);
+			mes "Guild storage password removed.";
+			break;
+}
+
+}
+	cutin "",255;
+	close;
 	}
+
 	// Unable to access Normal Storage (Insufficient Basic Skills)
 	if(basicskillcheck() && getskilllv("NV_BASIC") < 6){
 		mes "[Kafra Employee]";
