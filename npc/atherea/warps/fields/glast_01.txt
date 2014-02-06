@@ -1,0 +1,11 @@
+//================ Hercules Script ===================
+//= GlastHeim (glast_01) Warps
+//===================== By ===========================
+//= Olivar
+//================ Current Version ===================
+//= 1.0: Initial Version
+//================ Description =======================
+//= This file contains all the warps defined on the
+//= fields of Glastheim.
+//====================================================
+glast_01,136,92,0	warp	abandoned_building#entrance	2,1,1@tnm1,152,83

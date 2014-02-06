@@ -1,0 +1,11 @@
+//================ Hercules Script ===================
+//= 1@tnm1 Warps
+//===================== By ===========================
+//= Olivar
+//================ Current Version ===================
+//= 1.0: Initial Version
+//================ Description =======================
+//= This file contains all the warps defined on the
+//= fields of 1@tnm1.
+//====================================================
+1@tnm1,152,80,0	warp	abandoned_building#exit	2,1,glast_01,136,94
