@@ -64,7 +64,7 @@ OnPCBaseLvUpEvent:
 	if(BaseLevel == 60 && checkquest(30003) == -1) {
 		mes "[Elys]";
 		mes strcharinfo(0);
-		mes "There is a member of the ^0000FFDemon Clan^000000 in Morroc and he seems to be looking for aid.";
+		mes "There is a member of the ^0000FFDemon Clan^000000 in ^0000FFMorroc^000000 and he seems to be looking for aid.";
 		mes "Perhaps you could help him out and gain their trust.";
 		close2;
 		setquest 30003;	// Flag Quest "No Witnesses (30003) as Active
@@ -76,7 +76,7 @@ OnPCBaseLvUpEvent:
 	if(BaseLevel == 70 && checkquest(30010) == -1) {
 		mes "[Elys]";
 		mes strcharinfo(0) + ",";
-		mes "There is a Beast Clan member in Payon and she seems to be looking for aid.";
+		mes "There is a ^0000FFBeast Clan^000000 member in ^0000FFPayon^000000 and she seems to be looking for aid.";
 		mes "Perhaps you could help her out and gain their trust.";
 		close2;
 		setquest 30010;	// Flag Quest "The hungry cub (30010) as Active
@@ -88,7 +88,7 @@ OnPCBaseLvUpEvent:
 	if(BaseLevel == 80 && checkquest(30000) == -1) {
 		mes "[Elys]";
 		mes strcharinfo(0);
-		mes "There is a Knight in Prontera and he seems to be looking for aid.";
+		mes "There is a ^0000FFHuman Clan^000000 member in ^0000FFProntera^000000 and he seems to be looking for aid.";
 		mes "Perhaps you could help him out and gain their trust.";
 		close2;
 		setquest 30000;	// Flag Quest "Hidden Temple Expedition (30000) as Active
@@ -100,7 +100,7 @@ OnPCBaseLvUpEvent:
 	if(BaseLevel == 90 && checkquest(30006) == -1) {
 		mes "[Elys]";
 		mes strcharinfo(0);
-		mes "There is a Fairy in Al De Baran and she seems to be looking for aid.";
+		mes "There is a ^0000FFFairy Clan^000000 member in ^0000FFAl De Baran^000000 and she seems to be looking for aid.";
 		mes "Perhaps you could help her out and gain their trust.";
 		close2;
 		setquest 30006;	// Flag Quest "Hidden Fairy (30006) as Active

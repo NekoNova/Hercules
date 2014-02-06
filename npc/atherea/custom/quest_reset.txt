@@ -19,7 +19,7 @@ vip,67,67,4	script	Quest Reset	442,{
 		mes "[Quest Reset]";
 		mes "Which quest do you want to reset?";
 		next;
-		switch(select("No Witnesses","Hungry Cub")) {
+		switch(select("No Witnesses","Hungry Cub","Hidden Temple Expediton")) {
 			case 1:
 				if(checkquest(30003) > -1) erasequest(30003);
 				if(checkquest(30004) > -1) erasequest(30004);
@@ -35,6 +35,15 @@ vip,67,67,4	script	Quest Reset	442,{
 				
 				mes "[Quest Reset]";
 				mes "The quest ^0000FFHungry Cub^000000 has been reset.";
+				break;
+
+			case 3:
+				if(checkquest(30000) > -1) erasequest(30000);
+				if(checkquest(30001) > -1) erasequest(30001);
+				if(checkquest(30002) > -1) erasequest(30002);
+
+				mes "[Quest Reset]";
+				mes "The quest ^0000FFHidden Temple Expedition^000000 has been reset.";
 				break;
 		}
 		
