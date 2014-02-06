@@ -121,7 +121,7 @@ end;
 
 OnInit:
 	setarray .jobs[0],Job_Novice_High, Job_Swordman_High, Job_Mage_High, Job_Archer_High, Job_Acolyte_High,
-					 Job_Merchant_High, Job_Thief_High, Job_Lord_Knight, Job_High_Pries, Job_High_Wizard,
+					 Job_Merchant_High, Job_Thief_High, Job_Lord_Knight, Job_High_Priest, Job_High_Wizard,
 					 Job_Whitesmith, Job_Sniper, Job_Assassin_Cross, Job_Lord_Knight2, Job_Paladin,
 					 Job_Champion, Job_Professor, Job_Stalker, Job_Creator, Job_Clown, Job_Gypsy, Job_Paladin2,
 					 Job_Gunslinger, Job_Ninja, Job_Taekwon, Job_Star_Gladiator, Job_Star_Gladiator2, Job_Soul_Linker;
