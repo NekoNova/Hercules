@@ -87,6 +87,10 @@ payon,170,178,4	script	Desperate Mother	510,{
 	}
 	
 	close;
+OnInit:
+	setarray .jobs[0],0;
+	setarray .quests[0],0;
+	end;
 }
 
 payon,171,179,4	script	Young Beast Clan	626,{

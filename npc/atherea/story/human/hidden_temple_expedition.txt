@@ -56,6 +56,11 @@ prt_in,85,106,3	script	Distressed Captain	628,{
 
 		close;
 	}
+
+OnInit:
+	setarray .jobs[0],0;
+	setarray .quests[0],0;
+	end;
 }
 
 prt_fild01,142,364,4	script	Wounded Knight	686,{
