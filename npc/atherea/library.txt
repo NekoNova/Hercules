@@ -84,3 +84,29 @@ function	script	A_FS_HasItem	{
 	
 	return 0;
 }
+
+//============================================
+//= This function returns the proper display
+//= values for the reputation that a player
+//= has. The reputation needs to be passed as
+//= a parameter. The values are returned as array
+//= consisting of the following values:
+//=
+//= - current value of the rep range
+//= - maximum value of the rep range
+//= - name of the rep range
+//============================================
+function	script	A_FS_DisplayReputation	{
+  	.@value = getargs(0);
+
+  	if(.@value < 36000) setarray(.@rep[0], .@value, 36000, "Hated");
+  	if(.@value >= 36000 && .@value < 39000) setarray(.@rep[0], .@value - 36000, 3000, "Hostile");
+  	if(.@value >= 39000 && .@value < 42000) setarray(.@rep[0], .@value - 39000, 3000, "Unfriendly");
+  	if(.@value >= 42000 && .@value < 45000) setarray(.@rep[0], .@value - 42000, 3000, "Neutral");
+  	if(.@value >= 45000 && .@value < 51000) setarray(.@rep[0], .@value - 45000, 6000, "Friendly");
+  	if(.@value >= 51000 && .@value < 63000) setarray(.@rep[0], .@value - 51000, 12000, "Honored");
+  	if(.@value >= 63000 && .@value < 84000) setarray(.@rep[0], .@value - 63000, 21000, "Revered");
+	if(.@value >= 84000) setarray(.@rep[0], .@value - 84000, 1000, "Exalted");
+
+	return .@rep
+}
