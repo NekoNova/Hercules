@@ -108,5 +108,5 @@ function	script	A_FS_DisplayReputation	{
   	if(.@value >= 63000 && .@value < 84000) setarray(.@rep[0], .@value - 63000, 21000, "Revered");
 	if(.@value >= 84000) setarray(.@rep[0], .@value - 84000, 1000, "Exalted");
 
-	return .@rep
+	return .@rep;
 }
