@@ -9,4 +9,23 @@
 //= fields of 1@tnm1.
 //====================================================
 1@tnm1,152,80,0	warp	abandoned_house#exit	2,1,glast_01,136,94
+
+//====================================================
+//= This warp contains additional logic to warp the
+//= player to correct location on the map, based on
+//= his reputation with the Demon Clan faction.
+//====================================================
+1@tnm1,139,101,4	script	demon_clan_portal	10007,{
+	set(@reputation, callfunc("A_FS_DisplayReputation",rep_demon_clan));
+	
+	if(@reputation[2] == "Revered" || @reputation[2] == "Exalted") {
+		warp "hellfire",141,261;
+	} else if(@reputation[2] == "Honored") {
+		warp "hellfire",306,260;
+	} else if(@reputation[2] == "Friendly") {
+		warp "hellfire",120,68;
+	} else {
+		warp "hellfire",323,137;
+	}
+}
 1@tnm1,139,101,0	warp	abandoned_house#portal	1,1,hellfire,306,263
