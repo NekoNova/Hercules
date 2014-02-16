@@ -97,7 +97,7 @@ function	script	A_FS_HasItem	{
 //= - name of the rep range
 //============================================
 function	script	A_FS_DisplayReputation	{
-  	.@value = getargs(0);
+  	.@value = getarg(0);
 
   	if(.@value < 36000) setarray(.@rep[0], .@value, 36000, "Hated");
   	if(.@value >= 36000 && .@value < 39000) setarray(.@rep[0], .@value - 36000, 3000, "Hostile");
