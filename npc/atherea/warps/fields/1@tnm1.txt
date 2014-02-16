@@ -16,6 +16,12 @@
 //= his reputation with the Demon Clan faction.
 //====================================================
 1@tnm1,139,101,4	script	demon_clan_portal	10007,{
+	mes "[Demon Clan Portal]";
+	mes "^0000FFSmoke is pouring out of the portal.^000000";
+	mes "^0000FFAs you approach the portal, it brims to life.^000000";
+	mes "^0000FFAn unknown force pulls you inside.^000000";
+	close2;
+	
 	set(@reputation, callfunc("A_FS_DisplayReputation",rep_demon_clan));
 	
 	if(@reputation[2] == "Revered" || @reputation[2] == "Exalted") {
@@ -27,5 +33,6 @@
 	} else {
 		warp "hellfire",323,137;
 	}
+	
+	end;
 }
-1@tnm1,139,101,0	warp	abandoned_house#portal	1,1,hellfire,306,263
