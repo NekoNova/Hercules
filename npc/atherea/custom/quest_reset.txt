@@ -19,7 +19,7 @@ vip,67,67,4	script	Quest Reset	442,{
 		mes "[Quest Reset]";
 		mes "Which quest do you want to reset?";
 		next;
-		switch(select("No Witnesses","Hungry Cub","Hidden Temple Expediton,"Lost Fairy")) {
+		switch(select("No Witnesses","Hungry Cub","Hidden Temple Expediton","Lost Fairy")) {
 			case 1:
 				if(checkquest(30003) > -1) erasequest(30003);
 				if(checkquest(30004) > -1) erasequest(30004);
