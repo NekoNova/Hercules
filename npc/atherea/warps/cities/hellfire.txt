@@ -9,3 +9,6 @@
 //= town of Hellfire (Demon Clan)
 //====================================================
 hellfire,306,260,0	warp	hellfire#portal	1,1,1@tnm1,143,98
+hellfire,330,138,0	warp	hellfire#portal	1,1,1@tnm1,143,98
+hellfire,120,65,0	warp	hellfire#portal	1,1,1@tnm1,143,98
+hellfire,141,261,0	warp	hellfire#portal	1,1,1@tnm1,143,98

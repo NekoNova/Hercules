@@ -25,7 +25,7 @@
 	if(rep_demon_clan >= 63000) {	// Revered and Exalted
 		warp "hellfire",141,261;
 	} else if(rep_demon_clan >= 51000 && rep_demon_clan < 63000) {	// Honored
-		warp "hellfire",306,260;
+		warp "hellfire",310,260;
 	} else if(rep_demon_clan >= 45000 && rep_demon_clan < 51000) {	// Friendly
 		warp "hellfire",120,68;
 	} else {	// Neutral, Unfriendly, Hostile and Hated
