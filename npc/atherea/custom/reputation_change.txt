@@ -21,8 +21,8 @@ vip,69,67,4	script	Reputation Change	10029,{
 		
 		switch(select("Demon Clan")) {
 			case 1:
-				.@reputation$ = "rep_demon_clan";
-				goto L_RepLvlSelect;
+				set(.@reputation$,"rep_demon_clan");
+				goto RepLvlSelect;
 				break;
 		}
 		
@@ -32,9 +32,8 @@ vip,69,67,4	script	Reputation Change	10029,{
 		mes "I'm sorry, but my services are reserved to GameMasters only.";
 		close;
 	}
-}
-
-L_RepLvlSelect:
+	
+RepLvlSelect:
 	mes "[Reputation Change]";
 	mes "Select your desired level:";
 	next;
@@ -76,4 +75,4 @@ L_RepLvlSelect:
 	mes "[Reputation Change]";
 	mes "Your reputation has been changed.";
 	close;
-end;
+}
